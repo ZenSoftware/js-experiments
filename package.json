@@ -1,0 +1,10 @@
+{
+  "name": "zen",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "live-server --open=src --watch=src"
+  },
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}
