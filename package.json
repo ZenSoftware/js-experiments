@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "start": "live-server --open=src/www --watch=src/www",
-    "start:api": "node src/api/app.js"
+    "start:api": "node src/api/main.js"
   },
   "dependencies": {
     "live-server": "^1.2.1"
