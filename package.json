@@ -2,10 +2,13 @@
   "name": "zen",
   "version": "0.0.0",
   "scripts": {
-    "start": "live-server --open=src/www --watch=src/www",
-    "start:api": "node src/api/main.js"
+    "start": "vite",
+    "start:api": "node src/api/main.js",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
-  "dependencies": {
-    "live-server": "^1.2.1"
+  "devDependencies": {
+    "typescript": "^4.4.4",
+    "vite": "^2.7.2"
   }
 }

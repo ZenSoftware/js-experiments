@@ -1,5 +1,7 @@
-const testButton = document.querySelector('#test-button');
-const testDiv = document.querySelector('#test-div');
+import './style.css';
+
+const testButton = document.querySelector('#test-button') as HTMLButtonElement;
+const testDiv = document.querySelector('#test-div') as HTMLDivElement;
 
 testButton.onclick = () => {
   fetch('http://localhost:7080')
