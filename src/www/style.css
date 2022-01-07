@@ -6,3 +6,19 @@ body {
   height: 100%;
   font-family: 'Mulish', sans-serif;
 }
+
+.zen-card.zen-show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.zen-card {
+  border-radius: 10px;
+  border: 2px solid white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transform: translateX(-200px);
+  opacity: 0;
+  transition: 300ms;
+  transition-timing-function: ease-out;
+}
