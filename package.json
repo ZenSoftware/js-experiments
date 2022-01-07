@@ -1,6 +1,6 @@
 {
   "name": "zen",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "scripts": {
     "start": "live-server --open=src/www --watch=src/www",
     "start:api": "node src/api/main.js"

@@ -1,5 +1,5 @@
-const testButton = document.getElementById('test-button');
-const testDiv = document.getElementById('test-div');
+const testButton = document.querySelector('#test-button');
+const testDiv = document.querySelector('#test-div');
 
 testButton.onclick = () => {
   fetch('http://localhost:7080')
@@ -8,6 +8,6 @@ testButton.onclick = () => {
       testDiv.innerHTML = JSON.stringify(data);
     })
     .catch(err => {
-      testDiv.innerHTML = JSON.stringify(err);
+      testDiv.innerHTML = 'ERROR: ' + JSON.stringify(err);
     });
 };
