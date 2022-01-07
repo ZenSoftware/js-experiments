@@ -1,0 +1,6 @@
+/dist
+*.html
+*.yml
+*.yaml
+*.md
+*.prisma
