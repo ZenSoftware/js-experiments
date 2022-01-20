@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "vite",
-    "start:api": "node src/api/main.js",
+    "start:api": "node api/main.js",
     "test": "jest",
     "build": "tsc && vite build",
     "preview": "vite preview"
