@@ -17,12 +17,3 @@ export function twoSumHash(nums: number[], target: number): number[] | void {
     dict[val] = index;
   }
 }
-
-const testNums = [-1, 2, 11, 15, 7];
-const testTarget = 9;
-
-const bruteResult = twoSumBrute(testNums, testTarget);
-console.log('twoSumBrute', bruteResult);
-
-const hashResult = twoSumHash(testNums, testTarget);
-console.log('twoSumHash', hashResult);
