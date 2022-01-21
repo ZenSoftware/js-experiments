@@ -16,7 +16,7 @@ export function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNod
 function add(
   l1: ListNode | null | undefined,
   l2: ListNode | null | undefined,
-  acc: ListNode | null = null,
+  acc: number[] = [],
   carry: boolean = false
 ): ListNode | null {
   if (l1 || l2) {
@@ -25,13 +25,12 @@ function add(
     let frontVal = val1 + val2;
     if (carry) frontVal += 1;
 
-    let frontNode;
-    if (frontVal >= 10) frontNode = new ListNode(frontVal - 10, acc);
-    else frontNode = new ListNode(frontVal, acc);
+    if (frontVal >= 10) acc.push(frontVal - 10);
+    else acc.push(frontVal);
 
-    return add(l1?.next, l2?.next, frontNode, frontVal >= 10);
+    return add(l1?.next, l2?.next, acc, frontVal >= 10);
   }
-  return acc;
+  return getList(acc);
 }
 
 export function getList(remainder: number[]) {
