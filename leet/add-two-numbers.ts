@@ -9,28 +9,31 @@ class ListNode {
   }
 }
 
-function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+export function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
   const added = getNum(l1) + getNum(l2);
   const addedArray = added
     .toString()
     .split('')
+    .reverse()
     .map(i => parseInt(i));
   const addedList = getList(addedArray);
   return addedList;
 }
 
-function getList(remainder: number[], curr: ListNode | null = null) {
-  if (remainder.length) {
+export function getList(remainder: number[]) {
+  let prev = null;
+
+  while (remainder.length) {
     const val = remainder.pop();
-    const next = new ListNode(val);
-    if (curr) curr.next = next;
-    else curr = next;
-    getList(remainder, next);
+    const front = new ListNode(val);
+    front.next = prev;
+    prev = front;
   }
-  return curr;
+
+  return prev;
 }
 
-function getNum(item: ListNode | null, acc: number[] = []) {
+export function getNum(item: ListNode | null, acc: number[] = []) {
   acc.unshift((<ListNode>item).val);
   if (item?.next !== null) {
     getNum((<ListNode>item).next, acc);
@@ -38,10 +41,22 @@ function getNum(item: ListNode | null, acc: number[] = []) {
   return parseInt(acc.join(''));
 }
 
-// TEST
-const testList1 = getList([2, 2, 2]);
-console.log(testList1);
-const testList2 = getList([1, 2, 3]);
-console.log(testList2);
-const result = addTwoNumbers(testList1, testList2);
-console.log(result);
+export function getArray(item: ListNode | null, acc: number[] = []) {
+  acc.unshift((<ListNode>item).val);
+  if (item?.next !== null) {
+    getArray((<ListNode>item).next, acc);
+  }
+  return acc;
+}
+
+// const testList1 = getList([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
+// const testNum1 = getNum(testList1);
+// console.log(testNum1, testList1);
+
+// const testList2 = getList([1, 2, 3]);
+// const testNum2 = getNum(testList2);
+// console.log(testNum2, testList2);
+
+// const resultList = addTwoNumbers(testList1, testList2);
+// const resultNum = getNum(resultList);
+// console.log(resultNum, resultList);
