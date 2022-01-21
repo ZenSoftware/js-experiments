@@ -9,7 +9,30 @@ class ListNode {
   }
 }
 
-export function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {}
+export function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+  return add(l1, l2);
+}
+
+function add(
+  l1: ListNode | null | undefined,
+  l2: ListNode | null | undefined,
+  acc: ListNode | null = null,
+  carry: boolean = false
+): ListNode | null {
+  if (l1 || l2) {
+    const val1 = l1?.val ?? 0;
+    const val2 = l2?.val ?? 0;
+    let newVal = val1 + val2;
+    if (carry) newVal += 1;
+
+    let front;
+    if (newVal >= 10) front = new ListNode(newVal - 10, acc);
+    else front = new ListNode(newVal, acc);
+
+    return add(l1?.next, l2?.next, front, newVal >= 10);
+  }
+  return acc;
+}
 
 export function getList(remainder: number[]) {
   let prev = null;
@@ -33,13 +56,6 @@ export function getArray(item: ListNode | null, acc: number[] = []) {
 }
 
 const testList1 = getList([2, 4, 3]);
-const testArr1 = getArray(testList1);
-console.log(testArr1, testList1);
-
 const testList2 = getList([5, 6, 4]);
-const testArr2 = getArray(testList2);
-console.log(testArr2, testList2);
-
 const resultList = addTwoNumbers(testList1, testList2);
-const result = getArray(resultList);
-console.log(result, resultList);
+console.log(getArray(resultList));
