@@ -22,14 +22,14 @@ function add(
   if (l1 || l2) {
     const val1 = l1?.val ?? 0;
     const val2 = l2?.val ?? 0;
-    let newVal = val1 + val2;
-    if (carry) newVal += 1;
+    let frontVal = val1 + val2;
+    if (carry) frontVal += 1;
 
-    let front;
-    if (newVal >= 10) front = new ListNode(newVal - 10, acc);
-    else front = new ListNode(newVal, acc);
+    let frontNode;
+    if (frontVal >= 10) frontNode = new ListNode(frontVal - 10, acc);
+    else frontNode = new ListNode(frontVal, acc);
 
-    return add(l1?.next, l2?.next, front, newVal >= 10);
+    return add(l1?.next, l2?.next, frontNode, frontVal >= 10);
   }
   return acc;
 }
