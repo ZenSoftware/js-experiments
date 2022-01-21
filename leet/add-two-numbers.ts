@@ -9,16 +9,7 @@ class ListNode {
   }
 }
 
-export function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
-  const added = getNum(l1) + getNum(l2);
-  const addedArray = added
-    .toString()
-    .split('')
-    .reverse()
-    .map(i => parseInt(i));
-  const addedList = getList(addedArray);
-  return addedList;
-}
+export function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {}
 
 export function getList(remainder: number[]) {
   let prev = null;
@@ -33,30 +24,22 @@ export function getList(remainder: number[]) {
   return prev;
 }
 
-export function getNum(item: ListNode | null, acc: number[] = []) {
-  acc.unshift((<ListNode>item).val);
-  if (item?.next !== null) {
-    getNum((<ListNode>item).next, acc);
-  }
-  return parseInt(acc.join(''));
-}
-
 export function getArray(item: ListNode | null, acc: number[] = []) {
-  acc.unshift((<ListNode>item).val);
+  acc.push((<ListNode>item).val);
   if (item?.next !== null) {
     getArray((<ListNode>item).next, acc);
   }
   return acc;
 }
 
-// const testList1 = getList([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
-// const testNum1 = getNum(testList1);
-// console.log(testNum1, testList1);
+const testList1 = getList([2, 4, 3]);
+const testArr1 = getArray(testList1);
+console.log(testArr1, testList1);
 
-// const testList2 = getList([1, 2, 3]);
-// const testNum2 = getNum(testList2);
-// console.log(testNum2, testList2);
+const testList2 = getList([5, 6, 4]);
+const testArr2 = getArray(testList2);
+console.log(testArr2, testList2);
 
-// const resultList = addTwoNumbers(testList1, testList2);
-// const resultNum = getNum(resultList);
-// console.log(resultNum, resultList);
+const resultList = addTwoNumbers(testList1, testList2);
+const result = getArray(resultList);
+console.log(result, resultList);
