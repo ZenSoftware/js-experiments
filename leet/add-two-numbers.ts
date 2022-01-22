@@ -61,6 +61,7 @@ export function getArray(item: ListNode | null) {
   return acc;
 }
 
+// Example
 const l1 = getList([2, 4, 3]);
 const l2 = getList([5, 6, 4]);
 const result = addTwoNumbers(l1, l2);

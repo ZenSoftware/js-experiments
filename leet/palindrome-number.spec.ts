@@ -1,6 +1,6 @@
 import { isPalindrome } from './palindrome-number';
 
-test('palindrome should pass leetcode.com test cases', () => {
+test('leetcode test 1', () => {
   expect(isPalindrome(121)).toEqual(true);
   expect(isPalindrome(-121)).toEqual(false);
   expect(isPalindrome(10)).toEqual(false);
