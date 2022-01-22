@@ -49,11 +49,15 @@ export function getList(remainder: number[]) {
   return prev;
 }
 
-export function getArray(item: ListNode | null, acc: number[] = []) {
-  acc.push((<ListNode>item).val);
-  if (item?.next !== null) {
-    getArray((<ListNode>item).next, acc);
+export function getArray(item: ListNode | null) {
+  let acc = [];
+  let node = item;
+
+  while (node) {
+    acc.push(node.val);
+    node = node.next;
   }
+
   return acc;
 }
 

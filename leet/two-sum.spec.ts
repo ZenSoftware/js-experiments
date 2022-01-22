@@ -1,4 +1,4 @@
-import { twoSumHash, twoSumBrute } from './twoSum';
+import { twoSumHash, twoSumBrute } from './two-sum';
 
 test('brute force should pass leetcode.com test cases', () => {
   expect(twoSumBrute([2, 7, 11, 15], 9)).toEqual([0, 1]);
