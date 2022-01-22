@@ -61,7 +61,7 @@ export function getArray(item: ListNode | null) {
   return acc;
 }
 
-const testList1 = getList([2, 4, 3]);
-const testList2 = getList([5, 6, 4]);
-const resultList = addTwoNumbers(testList1, testList2);
-console.log(getArray(resultList));
+const l1 = getList([2, 4, 3]);
+const l2 = getList([5, 6, 4]);
+const result = addTwoNumbers(l1, l2);
+console.log(getArray(result));
