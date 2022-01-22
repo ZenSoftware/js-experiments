@@ -9,28 +9,28 @@ class ListNode {
   }
 }
 
-export function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
-  return add(l1, l2);
-}
-
-function add(
+export function addTwoNumbers(
   l1: ListNode | null | undefined,
-  l2: ListNode | null | undefined,
-  acc: number[] = [],
-  carry: boolean = false
+  l2: ListNode | null | undefined
 ): ListNode | null {
-  if (l1 || l2) {
-    const val1 = l1?.val ?? 0;
-    const val2 = l2?.val ?? 0;
-    let val = val1 + val2;
-    if (carry) val += 1;
+  const acc = [];
+  let carry = 0;
 
-    if (val >= 10) acc.push(val - 10);
-    else acc.push(val);
+  while (l1 || l2 || carry) {
+    const v1 = l1?.val ?? 0;
+    const v2 = l2?.val ?? 0;
+    let sum = v1 + v2 + carry;
 
-    return add(l1?.next, l2?.next, acc, val >= 10);
-  } else if (carry) {
-    acc.push(1);
+    if (sum > 9) {
+      carry = 1;
+      acc.push(sum % 10);
+    } else {
+      carry = 0;
+      acc.push(sum);
+    }
+
+    l1 = l1?.next;
+    l2 = l2?.next;
   }
 
   return getList(acc);
