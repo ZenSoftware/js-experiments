@@ -1,16 +1,27 @@
-export function lengthOfLongestSubstring(s: string): number {
-  const arr = s.split('');
-  let longest = 0;
-  let start = 0;
-  let end = 1;
+/** https://leetcode.com/problems/longest-substring-without-repeating-characters/ */
 
-  while (start < s.length && s.length - longest > start) {
-    s.substring(start, end);
+export function lengthOfLongestSubstring(s: string): number {
+  let longest = '';
+
+  for (let start = 0; start < s.length; start++) {
+    let evaluate = '';
+    for (let end = start + 1; end <= s.length && s.length - start > longest.length; end++) {
+      if (evaluate.includes(s[end - 1])) {
+        break;
+      }
+
+      evaluate = s.substring(start, end);
+      console.log(evaluate);
+
+      if (evaluate.length > longest.length) {
+        longest = evaluate;
+      }
+    }
   }
 
-  // for (let [i, c] of arr.entries()) {
-
-  // }
-
-  return 0;
+  console.log('LONGEST:', longest);
+  return longest.length;
 }
+
+const result = lengthOfLongestSubstring('12344444');
+console.log('RESULT:', result);
