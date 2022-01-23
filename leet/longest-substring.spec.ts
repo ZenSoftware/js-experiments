@@ -20,7 +20,7 @@ test('leetcode test 4', () => {
   expect(result).toBe(0);
 });
 
-test('123', () => {
+test('1233456 should has a max of 5 contiguous unique characters', () => {
   const result = lengthOfLongestSubstring('1233456');
-  expect(result).toBe(4);
+  expect(result).toBe(5);
 });
