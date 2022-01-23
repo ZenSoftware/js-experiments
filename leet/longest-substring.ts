@@ -32,7 +32,7 @@ export function lengthOfLongestSubstring(s: string): number {
       }
 
       evaluate = s.substring(start, end);
-      console.log(evaluate);
+      console.log(`${evaluate} [${s[end - 1]}]`);
 
       if (evaluate.length > longest.length) {
         longest = evaluate;
