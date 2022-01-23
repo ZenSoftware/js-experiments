@@ -26,7 +26,7 @@ export function lengthOfLongestSubstring(s: string): number {
 
   for (let start = 0; start < s.length; start++) {
     let evaluate = '';
-    for (let end = start + 1; end <= s.length; end++) {
+    for (let end = start + 1; end <= s.length && s.length - start > longest.length; end++) {
       if (evaluate.includes(s[end - 1])) {
         break;
       }
@@ -44,5 +44,5 @@ export function lengthOfLongestSubstring(s: string): number {
   return longest.length;
 }
 
-const result = lengthOfLongestSubstring('123345');
+const result = lengthOfLongestSubstring('1233456');
 console.log('RESULT:', result);

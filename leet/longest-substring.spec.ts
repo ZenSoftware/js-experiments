@@ -19,3 +19,8 @@ test('leetcode test 4', () => {
   const result = lengthOfLongestSubstring('');
   expect(result).toBe(0);
 });
+
+test('123', () => {
+  const result = lengthOfLongestSubstring('1233456');
+  expect(result).toBe(4);
+});
