@@ -11,7 +11,7 @@ export function lengthOfLongestSubstring(s: string): number {
       }
 
       evaluate = s.substring(start, end);
-      console.log(`${evaluate} [${s[end - 1]}]`);
+      // console.log(`${evaluate} [${s[end - 1]}]`);
 
       if (evaluate.length > longest.length) {
         longest = evaluate;
@@ -19,7 +19,7 @@ export function lengthOfLongestSubstring(s: string): number {
     }
   }
 
-  console.log('LONGEST:', longest);
+  // console.log('LONGEST:', longest);
   return longest.length;
 }
 
