@@ -12,7 +12,7 @@ test('bbbbb = 1', () => {
   expect(lengthOfLongestSubstring('bbbbb')).toBe(1);
 });
 
-test('EMPTY_STRING = 0', () => {
+test('empty string = 0', () => {
   expect(lengthOfLongestSubstring('')).toBe(0);
 });
 
