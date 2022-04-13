@@ -1,4 +1,4 @@
-import { get, getPaths } from './keyof-nested';
+import { get, getObjectKeys } from './keyof-nested';
 
 test('gets property via its string path', () => {
   const person = {
@@ -23,7 +23,7 @@ test('gets all string paths on object', () => {
     },
   };
 
-  expect(getPaths(person).sort()).toEqual(
+  expect(getObjectKeys(person).sort()).toEqual(
     ['name', 'age', 'dog', 'dog.owner', 'dog.owner.name'].sort()
   );
 });
