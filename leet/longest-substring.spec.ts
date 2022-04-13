@@ -16,6 +16,6 @@ test('empty string = 0', () => {
   expect(lengthOfLongestSubstring('')).toBe(0);
 });
 
-test('1233456 = 5', () => {
-  expect(lengthOfLongestSubstring('1233456')).toBe(5);
+test('1233456 = 4', () => {
+  expect(lengthOfLongestSubstring('1233456')).toBe(4);
 });
