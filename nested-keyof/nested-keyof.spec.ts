@@ -1,6 +1,6 @@
-import { get, getObjectKeys } from './keyof-nested';
+import { getFromPath, getObjectKeys } from './nested-keyof';
 
-test('gets property via its string path', () => {
+test('gets a property via its string path', () => {
   const person = {
     name: 'John',
     age: 30,
@@ -9,10 +9,10 @@ test('gets property via its string path', () => {
     },
   };
 
-  expect(get(person, 'dog.name')).toEqual('Rex');
+  expect(getFromPath(person, 'dog.name')).toEqual('Rex');
 });
 
-test('gets all string paths on object', () => {
+test('gets the complete list of string paths on an object', () => {
   const person = {
     name: 'zen',
     age: 30,

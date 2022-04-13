@@ -1,4 +1,14 @@
-export function get<T>(object: T, path: string) {
+/**
+ * TypeScript Utility keyof nested object: [blog post](https://dev.to/pffigueiredo/typescript-utility-nested-keyof-object-2pa3)
+ */
+type NestedKeyOf<ObjectType extends object> = {
+  [Key in keyof ObjectType & (string | number)]: ObjectType[Key] extends object
+    ? // @ts-ignore
+      `${Key}` | `${Key}.${NestedKeyOf<ObjectType[Key]>}`
+    : `${Key}`;
+}[keyof ObjectType & (string | number)];
+
+export function getFromPath<T extends object>(object: T, path: NestedKeyOf<T>) {
   const keys = path.split('.');
 
   let result: { [key: string]: any } = object;
