@@ -3,5 +3,6 @@ import { fromEvent } from 'rxjs';
 const click$ = fromEvent(document, 'click');
 
 click$.subscribe(e => {
-  console.log('Clicked', e);
+  const mouseEvent = e as MouseEvent;
+  console.log(`Click: ${mouseEvent.x}, ${mouseEvent.y}`);
 });
