@@ -1,4 +1,3 @@
-import {} from './sample';
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 import { of, take, throwError } from 'rxjs';
 
