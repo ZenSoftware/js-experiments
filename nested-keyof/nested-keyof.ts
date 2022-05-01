@@ -9,10 +9,9 @@ type NestedKeyOf<ObjectType extends object> = {
 }[keyof ObjectType & (string | number)];
 
 export function getFromPath<T extends object>(object: T, path: NestedKeyOf<T>) {
-  const keys = path.split('.');
-
   let result: { [key: string]: any } = object;
-  for (const key of keys) {
+
+  for (const key of path.split('.')) {
     result = result[key];
   }
 
