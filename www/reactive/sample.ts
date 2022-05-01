@@ -1,6 +1,6 @@
 import { fromEvent } from 'rxjs';
 
-let click$ = fromEvent(document, 'click');
+const click$ = fromEvent(document, 'click');
 
 click$.subscribe(e => {
   console.log('Clicked', e);
