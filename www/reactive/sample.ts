@@ -1,3 +1,7 @@
-import {} from 'rxjs';
+import { fromEvent } from 'rxjs';
 
-console.log('sample.ts loaded');
+let click$ = fromEvent(document, 'click');
+
+click$.subscribe(e => {
+  console.log('Clicked', e);
+});
