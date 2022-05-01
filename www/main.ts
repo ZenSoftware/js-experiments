@@ -2,12 +2,12 @@ import './style.css';
 
 // Fetch example
 const testButton = document.querySelector('#test-button') as HTMLButtonElement;
-const testDiv = document.querySelector('#test-div') as HTMLDivElement;
+const testDiv = document.querySelector('#test-pre') as HTMLDivElement;
 
 testButton.onclick = () => {
   fetch('http://localhost:7080')
     .then(res => res.json())
-    .then(data => (testDiv.innerHTML = JSON.stringify(data)))
+    .then(data => (testDiv.innerHTML = JSON.stringify(data, null, 2).trimEnd()))
     .catch(() => (testDiv.innerHTML = 'Error fetching'));
 };
 
