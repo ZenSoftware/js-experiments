@@ -1,10 +1,10 @@
-import { zenG, getId } from './zen-generator';
+import { yieldDeligate, getId } from './generators';
 
-describe('zenG', () => {
+describe('generators', () => {
   it('should yield correctly', () => {
     const result = [];
 
-    for (const z of zenG(5)) {
+    for (const z of yieldDeligate(5)) {
       result.push(z);
     }
 
