@@ -1,7 +1,7 @@
 import { compose, pipe } from './pipe-compose';
 
 describe('compose', () => {
-  it('should compose left to right', () => {
+  it('should execute left to right', () => {
     const add5 = x => x + 5;
     const multiply2 = x => x * 2;
     const subtract1 = x => x - 1;
@@ -12,7 +12,7 @@ describe('compose', () => {
 });
 
 describe('pipe', () => {
-  it('should pipe right to left', () => {
+  it('should execute right to left', () => {
     const add5 = x => x + 5;
     const multiply2 = x => x * 2;
     const subtract1 = x => x - 1;
