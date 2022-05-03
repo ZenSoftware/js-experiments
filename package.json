@@ -9,11 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/node": "^17.0.31",
     "rxjs": "^7.5.5"
   },
   "devDependencies": {
     "@hirez_io/observer-spy": "^2.2.0",
+    "@types/node": "^17.0.31",
     "@types/jest": "^27.4.0",
     "jest": "^27.4.7",
     "ts-jest": "^27.1.3",
