@@ -2,13 +2,7 @@ import { yieldDeligate, getId } from './generators';
 
 describe('generators', () => {
   it('should yield correctly', () => {
-    const result = [];
-
-    for (const z of yieldDeligate(5)) {
-      result.push(z);
-    }
-
-    expect(result).toEqual([1, 2, 3, 4, 5, 8, 9]);
+    expect([...yieldDeligate(5)]).toEqual([1, 2, 3, 4, 5, 8, 9]);
   });
 
   it('should yield ids', () => {
