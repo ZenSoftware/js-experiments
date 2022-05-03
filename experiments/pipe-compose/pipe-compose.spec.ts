@@ -1,6 +1,6 @@
 import { compose, pipe } from './pipe-compose';
 
-describe('compose', () => {
+describe('pipe & compose', () => {
   it('executes left to right', () => {
     const add5 = x => x + 5;
     const multiply2 = x => x * 2;
@@ -9,9 +9,7 @@ describe('compose', () => {
     const result = compose(add5, multiply2, subtract1)(3);
     expect(result).toEqual(9);
   });
-});
 
-describe('pipe', () => {
   it('executes right to left', () => {
     const add5 = x => x + 5;
     const multiply2 = x => x * 2;
