@@ -6,10 +6,10 @@ describe('generators', () => {
   });
 
   it('manually yields', () => {
-    const itter = getId();
-    expect(itter.next().value).toEqual(1);
-    expect(itter.next(5).value).toEqual(7);
-    expect(itter.next().value).toEqual(8);
-    expect(itter.next().value).toEqual(9);
+    const iter = getId();
+    expect(iter.next().value).toEqual(1);
+    expect(iter.next(5).value).toEqual(7);
+    expect(iter.next().value).toEqual(8);
+    expect(iter.next().value).toEqual(9);
   });
 });

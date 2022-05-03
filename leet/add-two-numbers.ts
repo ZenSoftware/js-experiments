@@ -13,7 +13,7 @@ export function addTwoNumbers(
   l1: ListNode | null | undefined,
   l2: ListNode | null | undefined
 ): ListNode | null {
-  const acc = [];
+  const acc: number[] = [];
   let carry = 0;
 
   while (l1 || l2 || carry) {
@@ -37,7 +37,7 @@ export function addTwoNumbers(
 }
 
 export function getList(remainder: number[]) {
-  let prev = null;
+  let prev: ListNode | null = null;
 
   while (remainder.length) {
     const val = remainder.pop();
@@ -50,7 +50,7 @@ export function getList(remainder: number[]) {
 }
 
 export function getArray(item: ListNode | null) {
-  let acc = [];
+  let acc: number[] = [];
   let node = item;
 
   while (node) {
