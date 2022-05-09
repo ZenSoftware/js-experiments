@@ -39,7 +39,7 @@ child?.addEventListener('click', e => {
 
 addGlobalEventListener('click', 'div', e => console.log('global event on divs'));
 
-function addGlobalEventListener(type: string, selector: string, callback: (e: Event) => void) {
+function addGlobalEventListener(type: string, selector: string, callback: EventListener) {
   document.addEventListener(type, e => {
     const el = e.target as HTMLElement;
     if (el.matches(selector)) callback(e);
