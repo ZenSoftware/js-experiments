@@ -1,0 +1,23 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.grandparent {
+  background: red;
+  padding: 50px;
+
+  margin: auto;
+  max-width: 300px;
+}
+
+.parent {
+  background: blue;
+  padding: 50px;
+}
+
+.child {
+  background: green;
+  padding: 50px;
+}

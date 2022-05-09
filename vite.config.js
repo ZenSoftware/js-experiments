@@ -8,6 +8,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'www/index.html'),
         sample: resolve(__dirname, 'www/sample/index.html'),
+        eventListeners: resolve(__dirname, 'www/event-listeners/index.html'),
         grid: resolve(__dirname, 'www/grid/index.html'),
       },
     },
