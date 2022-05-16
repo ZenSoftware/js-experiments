@@ -17,7 +17,6 @@ async function serialResolve(ids: number[]) {
     const result = await fetchInfo(id);
     console.log(result);
   }
-  console.log('I waited');
   console.timeEnd('bench');
 }
 
@@ -28,7 +27,6 @@ async function serialResolveReduce(ids: number[]) {
     const result = await fetchInfo(id);
     console.log(result);
   }, Promise.resolve());
-  console.log('I waited');
   console.timeEnd('bench');
 }
 
