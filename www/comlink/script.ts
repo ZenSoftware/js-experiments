@@ -2,16 +2,10 @@ import * as Comlink from 'comlink';
 
 const sampleButton = document.querySelector('#sampleButton') as HTMLButtonElement;
 
-sampleButton.addEventListener('mousedown', () => {
-  console.log('clicked');
-  init();
-});
+const worker = new Worker('worker.ts');
+const com = Comlink.wrap(worker) as any;
 
-async function init() {
-  const worker = new Worker('worker.ts');
-  // WebWorkers use `postMessage` and therefore work with Comlink.
-  const obj = Comlink.wrap(worker) as any;
-  alert(`Counter: ${await obj.counter}`);
-  await obj.inc();
-  alert(`Counter: ${await obj.counter}`);
-}
+sampleButton.addEventListener('mousedown', async () => {
+  const result = await com.fib(45);
+  alert(`Result: ${result}`);
+});
