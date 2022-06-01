@@ -11,6 +11,7 @@ export default defineConfig({
         eventListeners: resolve(__dirname, 'www/event-listeners/index.html'),
         grid: resolve(__dirname, 'www/grid/index.html'),
         webworkers: resolve(__dirname, 'www/webworkers/index.html'),
+        comlink: resolve(__dirname, 'www/comlink/index.html'),
       },
     },
   },
