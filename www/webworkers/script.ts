@@ -8,8 +8,11 @@ function showLoading(show: boolean) {
 }
 
 startFibButton?.addEventListener('mousedown', () => {
+  resultContainer.innerHTML = '';
   showLoading(true);
+
   const result = fib(45);
+
   resultContainer.innerHTML = result.toString();
   showLoading(false);
 });
