@@ -1,14 +1,14 @@
 import * as Comlink from 'comlink';
 
-const sampleButton = document.querySelector('#sampleButton') as HTMLButtonElement;
+const executeButton = document.querySelector('#executeButton') as HTMLButtonElement;
 const resultContainer = document.querySelector('#resultContainer') as HTMLHeadingElement;
 const userInput = document.querySelector('#userInput') as HTMLInputElement;
 
 const worker = new Worker('worker.ts');
 const com = Comlink.wrap(worker) as any;
 
-sampleButton.addEventListener('mousedown', async () => {
+executeButton.addEventListener('mousedown', async () => {
   const input = parseInt(userInput.value);
-  const result = await com.fib(input);
+  const result = await com.coinChangeBottomUp([1, 2, 5], input);
   resultContainer.innerHTML = result;
 });
