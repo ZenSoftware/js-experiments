@@ -2,6 +2,33 @@ declare var Comlink: any;
 importScripts('comlink.js');
 
 const api = {
+  // https://betterprogramming.pub/learn-dynamic-programming-the-coin-change-problem-22a104478f50
+  coinChangeTopDown(coins: number[], amount: number) {
+    const memo: number[] = [];
+
+    const coinChangeSub = remaining => {
+      if (remaining === 0) return 0;
+      if (remaining < 0) return -1;
+
+      if (memo[remaining - 1]) return memo[remaining - 1];
+
+      let optimalSolution = Infinity;
+      for (let c of coins) {
+        const optimalForThisCoin = coinChangeSub(remaining - c);
+        if (optimalForThisCoin >= 0 && optimalForThisCoin < optimalSolution) {
+          optimalSolution = optimalForThisCoin + 1;
+        }
+      }
+
+      memo[remaining - 1] = optimalSolution;
+      return optimalSolution;
+    };
+
+    const result = coinChangeSub(amount);
+    console.log('solution:', result);
+    return result;
+  },
+
   coinChangeBottomUp(coins: number[], amount: number) {
     // Initialize memo
     const memo: number[][] = [];
