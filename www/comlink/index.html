@@ -18,10 +18,19 @@
 
 <body>
 
-  <div class="container">
-    <h1 class="text-center">Comlink</h1>
+  <div class="container text-center">
+    <h1>Comlink</h1>
 
-    <button id="sampleButton" type="button" class="btn btn-primary">Sample</button>
+    <div class="row mb-2 mx-auto" style="max-width: 300px;">
+      <div class="col-auto p-0">
+        <button id="sampleButton" type="button" class="btn btn-primary">Execute</button>
+      </div>
+      <div class="col">
+        <input id="userInput" type="number" class="form-control" />
+      </div>
+    </div>
+
+    <h2 id="resultContainer" class="text-info"></h2>
   </div>
 
   <script type="module" src="/comlink/script.ts"></script>
