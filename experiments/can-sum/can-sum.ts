@@ -3,11 +3,11 @@
  * The function should return a boolean indicating whtether or not it is possible
  * to generate the targetSum using numbers from the array.
  *
- * You may use an elemeent of the array as many time as needed.
+ * You may use an element of the array as many time as needed.
  *
  * You may assume that all input numbers are nonnegative
  */
-function canSum(targetSum: number, numbers: number[]) {
+function howSum(targetSum: number, numbers: number[]) {
   const memo: { [key: string]: any } = {};
 
   const compute = target => {
@@ -28,4 +28,4 @@ function canSum(targetSum: number, numbers: number[]) {
   return compute(targetSum);
 }
 
-console.log(canSum(200, [11]));
+console.log(howSum(200, [11]));
