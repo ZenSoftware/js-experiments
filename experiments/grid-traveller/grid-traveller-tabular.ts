@@ -3,25 +3,14 @@
  * Starting at the top left, you are only allowed to move down & right.
  * Count the number of ways to arrive at the bottom left
  */
-function gridTraveller(m: number, n: number) {
-  const memo = {};
 
-  const compute = (row: number, col: number) => {
-    const key = `${row}-${col}`;
-    if (key in memo) return memo[key];
-    if (`${col}-${row}` in memo) return memo[`${col}-${row}`];
+function gridTraveller(row: number, col: number) {
+  if (row === 0 || col === 0) return 0;
+  if (row === 1 && col === 1) return 1;
 
-    if (row === 0 || col === 0) return 0;
-    if (row === 1 && col === 1) return 1;
+  const result = gridTraveller(row - 1, col) + gridTraveller(row, col - 1);
 
-    const result = compute(row - 1, col) + compute(row, col - 1);
-
-    memo[key] = result;
-    return result;
-  };
-
-  return compute(m, n);
+  return result;
 }
 
-const result = gridTraveller(200, 5);
-console.log(result);
+console.log(gridTraveller(200, 5));
