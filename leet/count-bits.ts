@@ -9,7 +9,7 @@ function countBits(n: number): number[] {
   for (let i = 0; i <= n; i++) {
     let temp = i;
     let count = 0;
-    while (temp > 0) {
+    while (temp !== 0) {
       if (temp & 1) count++;
       temp = temp >> 1;
     }
@@ -20,5 +20,5 @@ function countBits(n: number): number[] {
 }
 
 console.time('bench');
-console.log(countBits(5));
+countBits(1_000_000);
 console.timeEnd('bench');
