@@ -7,31 +7,35 @@
  *
  * You may reuse elements of the `wordBank` as many times as needed.
  */
-function canConstruct(target: string, wordBank: string[]) {
-  if (target.length === 0) return true;
+export function canConstruct(target: string, wordBank: string[]) {
+  const table = Array(target.length + 1).fill(false);
+  table[0] = true;
 
-  for (let word of wordBank) {
-    if (target.startsWith(word)) {
-      const suffix = target.slice(word.length);
-      if (canConstruct(suffix, wordBank)) {
-        return true;
+  for (let i = 0; i <= target.length; i++) {
+    if (table[i]) {
+      for (let word of wordBank) {
+        if (target.substring(i).startsWith(word)) {
+          table[i + word.length] = true;
+        }
       }
     }
   }
 
-  return false;
+  return table[target.length];
 }
 
 /**
  * m = target.length
  * n = wordBank.length
  *
- * Time: O()
- * Space: O()
+ * Time: O(m^2*n)
+ * Space: O(m)
  */
-console.log(canConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd']));
-console.log(canConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
-console.log(canConstruct('enterapotentpot', ['a', 'p', 'ent', 'enter', 'ot', 'o', 't']));
+// console.log(canConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd']));
+// console.log(canConstruct('purple', ['purp', 'p', 'ur', 'le', 'purpl']));
+// console.log(canConstruct('purple', ['le', 'purp', 'purpl']));
+// console.log(canConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
+// console.log(canConstruct('enterapotentpot', ['a', 'p', 'ent', 'enter', 'ot', 'o', 't']));
 // console.log(
 //   canConstruct('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', [
 //     'e',
