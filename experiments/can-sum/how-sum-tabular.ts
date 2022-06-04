@@ -15,9 +15,9 @@ function howSum(targetSum: number, numbers: number[]) {
 
   for (let i = 0; i <= targetSum; i++) {
     if (table[i]) {
-      for (let n of numbers) {
-        if (i + n <= targetSum) {
-          table[i + n] = [...table[i], n];
+      for (let num of numbers) {
+        if (i + num <= targetSum) {
+          table[i + num] = [...table[i], num];
         }
       }
     }
