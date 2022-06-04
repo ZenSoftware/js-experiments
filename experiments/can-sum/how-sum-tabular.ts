@@ -18,13 +18,12 @@ function howSum(targetSum: number, numbers: number[]) {
       for (let n of numbers) {
         if (i + n <= targetSum) {
           table[i + n] = [...table[i], n];
-          if (i + n === targetSum) return table[targetSum];
         }
       }
     }
   }
 
-  return null;
+  return table[targetSum];
 }
 
 /**
@@ -34,5 +33,4 @@ function howSum(targetSum: number, numbers: number[]) {
  * Time: O(m*n)
  * Space: O(m)
  */
-
-console.log(howSum(15, [7, 3]));
+console.log(howSum(20, [5, 3, 4]));
