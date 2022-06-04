@@ -1,0 +1,49 @@
+/**
+ * https://youtu.be/oBt53YbR9Kk?t=9517
+ * Write a function `countConstruct(target, wordBank)` that accepts a target string and an array of strings.
+ *
+ * The function should return the number of ways that the `target` can be constructed by concatenating
+ * elemnts of the `wordBank` array.
+ *
+ * You may reuse elements of the `wordBank` as many times as needed.
+ */
+function countConstruct(target: string, wordBank: string[]) {
+  if (target.length === 0) return true;
+
+  for (let word of wordBank) {
+    if (target.startsWith(word)) {
+      const suffix = target.slice(word.length);
+      if (countConstruct(suffix, wordBank)) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+/**
+ * m = target.length
+ * n = wordBank.length
+ *
+ * Brute force
+ * Time: O()
+ * Space: O()
+ *
+ * Memoized
+ * Time: O()
+ * Space: O()
+ */
+console.log(countConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd']));
+console.log(countConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
+console.log(countConstruct('enterapotentpot', ['a', 'p', 'ent', 'enter', 'ot', 'o', 't']));
+console.log(
+  countConstruct('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', [
+    'e',
+    'ee',
+    'eee',
+    'eeee',
+    'eeeee',
+    'eeeeee',
+  ])
+);
