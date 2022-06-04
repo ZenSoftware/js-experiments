@@ -9,16 +9,16 @@
  * You may assume that all input numbers are nonnegative
  */
 function howSum(targetSum: number, numbers: number[]) {
-  const table = Array(targetSum + 1).fill([]);
+  const table = Array(targetSum + 1).fill(null);
 
-  table[0] = [0];
+  table[0] = [];
 
   for (let i = 0; i <= targetSum; i++) {
-    if (table[i].length) {
+    if (table[i]) {
       for (let n of numbers) {
         if (i + n <= targetSum) {
           table[i + n] = [...table[i], n];
-          if (i + n === targetSum) return table[targetSum].splice(1);
+          if (i + n === targetSum) return table[targetSum];
         }
       }
     }
@@ -35,4 +35,4 @@ function howSum(targetSum: number, numbers: number[]) {
  * Space: O(m)
  */
 
-console.log(howSum(15, [3, 2, 5, 20000]));
+console.log(howSum(15, [7, 3]));
