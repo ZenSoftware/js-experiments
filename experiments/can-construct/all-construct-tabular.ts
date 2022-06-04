@@ -19,8 +19,8 @@ export function allConstruct(target: string, wordBank: string[]) {
     if (table[i].length > 0) {
       for (let word of wordBank) {
         if (target.slice(i).startsWith(word)) {
-          const ways = table[i].map(way => [...way, word]);
-          table[i + word.length].push(...ways);
+          const combinations = table[i].map(subArray => [...subArray, word]);
+          table[i + word.length].push(...combinations);
         }
       }
     }
