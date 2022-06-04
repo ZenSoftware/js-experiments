@@ -22,4 +22,12 @@ function canSum(targetSum: number, numbers: number[]) {
   return table[targetSum];
 }
 
+/**
+ * m = targetSum
+ * n = numbers.length
+ *
+ * Time: O(m*n)
+ * Space: O(m)
+ */
+
 console.log(canSum(10, [5, 7]));
