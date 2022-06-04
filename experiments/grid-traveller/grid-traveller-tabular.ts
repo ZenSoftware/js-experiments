@@ -5,26 +5,24 @@
  */
 
 function gridTraveller(row: number, col: number) {
-  const grid = Array(row + 1)
-    .fill(null)
-    .map(() => Array(col + 1).fill(0));
+  const grid = Array(row).fill([]);
 
-  for (let r = 1; r <= row; r++) {
-    grid[r][1] = 1;
+  for (let r = 0; r < row; r++) {
+    grid[r][0] = 1;
   }
 
-  for (let c = 1; c <= col; c++) {
-    grid[1][c] = 1;
+  for (let c = 0; c < col; c++) {
+    grid[0][c] = 1;
   }
 
-  for (let r = 2; r <= row; r++) {
-    for (let c = 2; c <= col; c++) {
+  for (let r = 1; r < row; r++) {
+    for (let c = 1; c < col; c++) {
       grid[r][c] = grid[r - 1][c] + grid[r][c - 1];
     }
   }
 
   console.log(grid);
-  return grid[row][col];
+  return grid[row - 1][col - 1];
 }
 
 console.log(gridTraveller(5, 3));
