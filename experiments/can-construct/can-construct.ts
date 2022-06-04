@@ -35,7 +35,7 @@ function canConstruct(target: string, wordBank: string[], memo = {}) {
  *
  * Memoized
  * Time: O(n*m^2)
- * Spacce: O(m^2)
+ * Space: O(m^2)
  */
 console.log(canConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd']));
 console.log(canConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
