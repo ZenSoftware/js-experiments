@@ -29,12 +29,12 @@ function countConstruct(target: string, wordBank: string[], memo = {}) {
  * n = wordBank.length
  *
  * Brute force
- * Time: O()
- * Space: O()
+ * Time: O(n^m * m)
+ * Space: O(m^2)
  *
  * Memoized
- * Time: O()
- * Space: O()
+ * Time: O(n*m^2)
+ * Space: O(m^2)
  */
 console.log(countConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd']));
 console.log(countConstruct('purple', ['purp', 'p', 'ur', 'le', 'purpl']));
