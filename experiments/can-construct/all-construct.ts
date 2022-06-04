@@ -30,12 +30,10 @@ function allConstruct(target: string, wordBank: string[]) {
  * n = wordBank.length
  *
  * Brute force
- * Time: O()
- * Space: O()
+ * Time: O(n^m)
+ * Space: O(m) call stack size / not result size
  *
- * Memoized
- * Time: O()
- * Space: O()
+ * We are asked for an exhaustive result, therefore this changes what would account for our worste case scenario.
  */
 console.log(allConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd']));
 // console.log(allConstruct('purple', ['purp', 'p', 'ur', 'le', 'purpl']));
