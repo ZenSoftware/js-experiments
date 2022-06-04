@@ -1,15 +1,18 @@
-function canConstruct(target: string, wordBank: string[]) {
+function canConstruct(target: string, wordBank: string[], memo = {}) {
+  if (target in memo) return memo[target];
   if (target.length === 0) return true;
 
   for (let word of wordBank) {
     if (target.startsWith(word)) {
       const suffix = target.slice(word.length);
-      if (canConstruct(suffix, wordBank)) {
+      if (canConstruct(suffix, wordBank, memo)) {
+        memo[target] = true;
         return true;
       }
     }
   }
 
+  memo[target] = false;
   return false;
 }
 
@@ -22,19 +25,19 @@ function canConstruct(target: string, wordBank: string[]) {
  * Space: O(m^2)
  *
  * Memoized
- * Time: O()
- * Spacce: O()
+ * Time: O(n*m^2)
+ * Spacce: O(m^2)
  */
 console.log(canConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd']));
 console.log(canConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
 console.log(canConstruct('enterapotentpot', ['a', 'p', 'ent', 'enter', 'ot', 'o', 't']));
-// console.log(
-//   canConstruct('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', [
-//     'e',
-//     'ee',
-//     'eee',
-//     'eeee',
-//     'eeeee',
-//     'eeeeee',
-//   ])
-// );
+console.log(
+  canConstruct('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', [
+    'e',
+    'ee',
+    'eee',
+    'eeee',
+    'eeeee',
+    'eeeeee',
+  ])
+);
