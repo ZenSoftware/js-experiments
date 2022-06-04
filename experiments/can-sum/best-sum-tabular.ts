@@ -14,8 +14,10 @@ function bestSum(targetSum: number, numbers: number[]) {
       for (let num of numbers) {
         const combination = [...table[i], num];
         const n = i + num;
-        if (!table[n] || table[n].length > combination.length) {
-          table[n] = combination;
+        if (n <= targetSum) {
+          if (!table[n] || table[n].length > combination.length) {
+            table[n] = combination;
+          }
         }
       }
     }
@@ -30,5 +32,5 @@ function bestSum(targetSum: number, numbers: number[]) {
  */
 
 console.log(bestSum(11, [2, 5, 6]));
-console.log(bestSum(8, [1, 2, 3, 5]));
+console.log(bestSum(8, [1, 2, 3, 5, 2000]));
 console.log(bestSum(8, [7, 5, 3, 2]));
