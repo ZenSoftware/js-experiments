@@ -7,7 +7,7 @@
  *
  * You may assume that all input numbers are nonnegative
  */
-function howSum(targetSum: number, numbers: number[]) {
+function canSum(targetSum: number, numbers: number[]) {
   const memo: { [key: string]: any } = {};
 
   const compute = target => {
@@ -28,4 +28,4 @@ function howSum(targetSum: number, numbers: number[]) {
   return compute(targetSum);
 }
 
-console.log(howSum(200, [11]));
+console.log(canSum(200, [11]));
