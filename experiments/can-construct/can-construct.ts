@@ -1,31 +1,40 @@
-// function canConstruct(target: string, wordBank: string[]) {
-
-// }
-
-console.log(canConstruct('shabadaba', ['da', 'sha', 'ba']));
-console.log(canConstruct('shabadaba', ['ku', 'da', 'sha', 'ba']));
-console.log(canConstruct('shabadaba', ['ku', 'da', 'sha', '', 'ba']));
-console.log(canConstruct('shabadaba', ['ku', 'sha', 'ba']));
-console.log(canConstruct('shabadaba', ['ku', 'da', 'ba']));
-console.log(canConstruct('shabadaba', ['ku', 'sha', 'ba']));
-console.log(canConstruct('shabadaba', []));
-
 function canConstruct(target: string, wordBank: string[]) {
-  let accum = '';
+  if (target.length === 0) return true;
 
-  wordBank = wordBank.filter(w => w !== '');
-
-  while (accum.length < target.length) {
-    let added = false;
-    for (let word of wordBank) {
-      if (target.startsWith(accum + word)) {
-        accum += word;
-        added = true;
-        break;
+  for (let word of wordBank) {
+    if (target.startsWith(word)) {
+      const suffix = target.slice(word.length);
+      if (canConstruct(suffix, wordBank)) {
+        return true;
       }
     }
-
-    if (!added) return false;
   }
-  return true;
+
+  return false;
 }
+
+/**
+ * m = target.length
+ * n = wordBank.length
+ *
+ * Brute force
+ * Time: O(n^m * m)
+ * Space: O(m^2)
+ *
+ * Memoized
+ * Time: O()
+ * Spacce: O()
+ */
+console.log(canConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd']));
+console.log(canConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
+console.log(canConstruct('enterapotentpot', ['a', 'p', 'ent', 'enter', 'ot', 'o', 't']));
+// console.log(
+//   canConstruct('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', [
+//     'e',
+//     'ee',
+//     'eee',
+//     'eeee',
+//     'eeeee',
+//     'eeeeee',
+//   ])
+// );
