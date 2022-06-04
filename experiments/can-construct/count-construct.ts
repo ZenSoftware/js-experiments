@@ -7,18 +7,20 @@
  *
  * You may reuse elements of the `wordBank` as many times as needed.
  */
-function countConstruct(target: string, wordBank: string[]) {
-  if (target.length === 0) return 1;
+function countConstruct(target: string, wordBank: string[], memo = {}) {
+  if (target in memo) return memo[target];
+  if (target === '') return 1;
 
   let count = 0;
 
   for (let word of wordBank) {
     if (target.startsWith(word)) {
       const suffix = target.slice(word.length);
-      count += countConstruct(suffix, wordBank);
+      count += countConstruct(suffix, wordBank, memo);
     }
   }
 
+  memo[target] = count;
   return count;
 }
 
@@ -38,13 +40,13 @@ console.log(countConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd']));
 console.log(countConstruct('purple', ['purp', 'p', 'ur', 'le', 'purpl']));
 console.log(countConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
 console.log(countConstruct('enterapotentpot', ['a', 'p', 'ent', 'enter', 'ot', 'o', 't']));
-// console.log(
-//   countConstruct('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', [
-//     'e',
-//     'ee',
-//     'eee',
-//     'eeee',
-//     'eeeee',
-//     'eeeeee',
-//   ])
-// );
+console.log(
+  countConstruct('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', [
+    'e',
+    'ee',
+    'eee',
+    'eeee',
+    'eeeee',
+    'eeeeee',
+  ])
+);
