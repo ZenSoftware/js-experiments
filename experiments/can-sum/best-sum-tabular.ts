@@ -8,26 +8,20 @@ function bestSum(targetSum: number, numbers: number[]) {
   const table = Array(targetSum + 1).fill(null);
 
   table[0] = [];
-  let optimal = null;
 
   for (let i = 0; i <= targetSum; i++) {
     if (table[i]) {
       for (let num of numbers) {
-        const numIndex = i + num;
-        if (numIndex <= targetSum) {
-          table[numIndex] = [...table[i], num];
-
-          if (numIndex === targetSum) {
-            if (optimal === null || table[targetSum].length < optimal.length) {
-              optimal = table[targetSum];
-            }
-          }
+        const combination = [...table[i], num];
+        const n = i + num;
+        if (!table[n] || table[n].length > combination.length) {
+          table[n] = combination;
         }
       }
     }
   }
 
-  return optimal;
+  return table[targetSum];
 }
 
 /**
@@ -36,5 +30,5 @@ function bestSum(targetSum: number, numbers: number[]) {
  */
 
 console.log(bestSum(11, [2, 5, 6]));
-console.log(bestSum(8, [2, 3, 5]));
+console.log(bestSum(8, [1, 2, 3, 5]));
 console.log(bestSum(8, [7, 5, 3, 2]));
