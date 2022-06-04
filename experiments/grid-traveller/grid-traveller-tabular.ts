@@ -8,12 +8,14 @@
 function gridTraveller(row: number, col: number) {
   const grid = Array(row).fill([]);
 
-  for (let r = 0; r < row; r++) {
-    grid[r][0] = 1;
-  }
-
+  // Seed first row with 1
   for (let c = 0; c < col; c++) {
     grid[0][c] = 1;
+  }
+
+  // Seed first column 1 with
+  for (let r = 0; r < row; r++) {
+    grid[r][0] = 1;
   }
 
   for (let r = 1; r < row; r++) {
