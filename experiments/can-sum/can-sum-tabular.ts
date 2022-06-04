@@ -8,16 +8,18 @@
  * You may assume that all input numbers are nonnegative
  */
 function canSum(targetSum: number, numbers: number[]) {
-  if (targetSum === 0) return true;
-  if (targetSum < 0) return false;
-
-  for (let n of numbers) {
-    if (canSum(targetSum - n, numbers)) {
-      return true;
+  const table = Array(targetSum + 1).fill(false);
+  table[0] = true;
+  for (let i = 0; i <= targetSum; i++) {
+    if (table[i]) {
+      for (let n of numbers) {
+        if (i + n <= targetSum) table[i + n] = true;
+      }
     }
   }
 
-  return false;
+  console.log(table);
+  return table[targetSum];
 }
 
-console.log(canSum(200, [10, 5]));
+console.log(canSum(10, [5, 7]));
