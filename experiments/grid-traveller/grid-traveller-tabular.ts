@@ -1,4 +1,5 @@
 /**
+ * https://youtu.be/oBt53YbR9Kk?t=12138
  * You are given a grid of m rows & n columns.
  * Starting at the top left, you are only allowed to move down & right.
  * Count the number of ways to arrive at the bottom left
@@ -25,4 +26,4 @@ function gridTraveller(row: number, col: number) {
   return grid[row - 1][col - 1];
 }
 
-console.log(gridTraveller(5, 3));
+console.log(gridTraveller(3, 5));
