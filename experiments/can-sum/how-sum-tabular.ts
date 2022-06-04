@@ -30,7 +30,7 @@ function howSum(targetSum: number, numbers: number[]) {
  * m = targetSum
  * n = numbers.length
  *
- * Time: O(m*n)
- * Space: O(m)
+ * Time: O(m^2*n)
+ * Space: O(m*m)
  */
-console.log(howSum(20, [5, 3, 4]));
+console.log(howSum(20, [1]));
