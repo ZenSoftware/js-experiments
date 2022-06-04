@@ -9,18 +9,20 @@
  * You may resuse elements of `wordBank` as many times as needed.
  */
 function allConstruct(target: string, wordBank: string[]) {
-  if (target === '') return 1;
+  if (target === '') return [[]];
 
-  let count = 0;
+  let result = [];
 
   for (let word of wordBank) {
     if (target.startsWith(word)) {
       const suffix = target.slice(word.length);
-      count += allConstruct(suffix, wordBank);
+      const suffixWays = allConstruct(suffix, wordBank);
+      const targetWays = suffixWays.map(way => [word, ...way]);
+      result.push(...targetWays);
     }
   }
 
-  return count;
+  return result;
 }
 
 /**
@@ -36,8 +38,9 @@ function allConstruct(target: string, wordBank: string[]) {
  * Space: O()
  */
 console.log(allConstruct('abcdef', ['ab', 'abc', 'cd', 'def', 'abcd']));
-console.log(allConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
-console.log(allConstruct('enterapotentpot', ['a', 'p', 'ent', 'enter', 'ot', 'o', 't']));
+// console.log(allConstruct('purple', ['purp', 'p', 'ur', 'le', 'purpl']));
+// console.log(allConstruct('skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']));
+// console.log(allConstruct('enterapotentpot', ['a', 'p', 'ent', 'enter', 'ot', 'o', 't']));
 // console.log(
 //   allConstruct('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', [
 //     'e',
