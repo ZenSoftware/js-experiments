@@ -14,6 +14,8 @@ function fib(n: number) {
   return table[n];
 }
 
+console.log(fib(200));
+
 // function fib(n: number) {
 //   let prev1 = 1;
 //   let prev2 = 1;
@@ -27,5 +29,3 @@ function fib(n: number) {
 
 //   return prev1;
 // }
-
-console.log(fib(7));
