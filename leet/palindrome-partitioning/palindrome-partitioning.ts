@@ -7,29 +7,38 @@
  */
 
 export function partition(s: string): string[][] {
-  const result: string[][] = [];
-  dfs(0, result, s);
-  return result;
-}
+  const results: string[][] = [];
+  const current: string[] = [];
 
-function dfs(start: number, result: string[][], s: string, currentList: string[] = []) {
-  if (start >= s.length) result.push([...currentList]);
-  for (let end = start; end < s.length; end++) {
-    if (isPalindrome(s, start, end)) {
-      // add current substring in the currentList
-      currentList.push(s.substring(start, end + 1));
-      dfs(end + 1, result, s, currentList);
-      // backtrack and remove the current substring from currentList
-      currentList.pop();
+  let dfs = (start: number) => {
+    if (start >= s.length) {
+      results.push([...current]);
+      return;
     }
-  }
+
+    for (let end = start; end < s.length; end++) {
+      const strToEval = s.substring(start, end + 1);
+      if (isPalindrome(strToEval)) {
+        current.push(strToEval);
+        dfs(end + 1);
+        current.pop();
+      }
+    }
+  };
+
+  dfs(0);
+  return results;
 }
 
-function isPalindrome(s: string, low: number, high: number) {
-  while (low < high) {
-    if (s.charAt(low++) !== s.charAt(high--)) return false;
+export function isPalindrome(str: string) {
+  let start = 0;
+  let end = str.length - 1;
+  while (start < end) {
+    if (str.charAt(start++) !== str.charAt(end--)) {
+      return false;
+    }
   }
   return true;
 }
 
-// console.log(partition('bacab'));
+console.log(partition('ababa'));
