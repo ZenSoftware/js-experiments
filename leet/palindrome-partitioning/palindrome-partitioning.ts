@@ -6,7 +6,7 @@
  * A palindrome string is a string that reads the same backward as forward.
  */
 
-function partition(s: string): string[][] {
+export function partition(s: string): string[][] {
   const result = [];
   dfs(0, result, [], s);
   return result;
