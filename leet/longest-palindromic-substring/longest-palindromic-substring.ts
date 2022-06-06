@@ -8,21 +8,26 @@
 export function longestPalindrome(s: string) {
   let optimal = '';
 
-  let dfs = (start: number) => {
-    for (let end = start; end < s.length; end++) {
-      const current = s.substring(start, end + 1);
-      if (isPalindrome(current)) {
-        if (current.length > optimal.length) {
-          optimal = current;
-          dfs(optimal.length);
-        } else {
-          dfs(end + 1);
-        }
+  for (let i = 0; i < s.length; i++) {
+    let largestSub = s.charAt(i);
+    // expand from center
+    let start = i - 1;
+    let end = i + 1;
+    while (start >= 0 && end < s.length) {
+      if (s.charAt(start) !== s.charAt(end)) {
+        break;
       }
+      largestSub = s.slice(start, end + 1);
+      --start;
+      ++end;
     }
-  };
 
-  dfs(0);
+    // replace optimal if substring is larger
+    if (largestSub.length > optimal.length) {
+      optimal = largestSub;
+    }
+  }
+
   return optimal;
 }
 
@@ -37,4 +42,4 @@ export function isPalindrome(str: string) {
   return true;
 }
 
-console.log(longestPalindrome('zzababadadadadada'));
+console.log(longestPalindrome('abacddc'));
