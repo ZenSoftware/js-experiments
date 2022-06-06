@@ -1,24 +1,37 @@
 /**
  * https://leetcode.com/problems/integer-to-roman/
  * Given an integer, convert it to a roman numeral.
+ *
+ * Solution: https://javascript.plainenglish.io/leetcode-12-integer-to-roman-javascript-21459e45a0ee
  */
 
-function intToRoman(num: number): string {}
+function intToRoman(num: number): string {
+  const map = {
+    M: 1000,
+    CM: 900,
+    D: 500,
+    CD: 400,
+    C: 100,
+    XC: 90,
+    L: 50,
+    XL: 40,
+    X: 10,
+    IX: 9,
+    V: 5,
+    IV: 4,
+    I: 1,
+  };
 
-const ROMAN = {
-  I: 1,
-  V: 5,
-  X: 10,
-  L: 50,
-  C: 100,
-  D: 500,
-  M: 1000,
-  IV: 4,
-  IX: 9,
-  XL: 40,
-  XC: 90,
-  CD: 400,
-  CM: 900,
-};
+  let result = '';
 
-console.log(intToRoman(1994));
+  for (let key in map) {
+    result += key.repeat(Math.floor(num / map[key]));
+    num %= map[key];
+  }
+
+  return result;
+}
+
+let str = '1234';
+console.log(intToRoman(4994));
+console.log(4994 % 1000);
