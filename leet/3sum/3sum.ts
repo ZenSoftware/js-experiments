@@ -22,7 +22,9 @@ function threeSum(nums: number[]): number[][] {
 
 function resultContains(result: number[][], s: number[]) {
   for (let r of result) {
-    if (r[0] === s[0] && r[1] === s[1] && r[2] === s[2]) return true;
+    if (r[0] === s[0] && r[1] === s[1] && r[2] === s[2]) {
+      return true;
+    }
   }
   return false;
 }
