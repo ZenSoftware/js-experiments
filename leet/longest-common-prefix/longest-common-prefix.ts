@@ -4,27 +4,28 @@
  * If there is no common prefix, return an empty string "".
  */
 function longestCommonPrefix(strs: string[]): string {
-  if (strs.length === 1) return strs[0];
-  if (!hasCommonPrefix(strs)) return '';
+  let shortestLength = Infinity;
+  for (let s = 0; s < strs.length; s++) {
+    if (strs[s].length < shortestLength) shortestLength = strs[s].length;
+  }
 
   let result = '';
+
+  for (let c = 0; c < shortestLength; c++) {
+    const character = strs[0][c];
+    for (let s = 0; s < strs.length; s++) {
+      if (strs[s][c] !== character) {
+        return result;
+      }
+    }
+    result += character;
+  }
 
   return result;
 }
 
-function hasCommonPrefix(strs: string[]) {
-  const firstLetters: string[] = [];
-
-  for (let i = 0; i < strs.length; i++) {
-    firstLetters.push(strs[i][0]);
-  }
-
-  for (let letter of firstLetters) {
-    if (firstLetters.indexOf(letter) !== firstLetters.lastIndexOf(letter)) return true;
-  }
-
-  return false;
-}
-
 console.log(longestCommonPrefix(['flower', 'flow', 'flight']));
 console.log(longestCommonPrefix(['flower', 'flow', 'abcde', 'abcdef']));
+console.log(longestCommonPrefix(['dog', 'racecar', 'car']));
+console.log(longestCommonPrefix(['a']));
+console.log(longestCommonPrefix(['', '']));
