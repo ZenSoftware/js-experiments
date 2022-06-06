@@ -8,8 +8,21 @@
  * Return the maximum amount of water a container can store.
  */
 function maxArea(height: number[]): number {
-  return 0;
+  let maxResult = 0;
+
+  const dfs = (start: number) => {
+    for (let end = start + 1; end < height.length; end++) {
+      const h = Math.min(height[start], height[end]);
+      let w = end - start;
+      const area = w * h;
+      if (area > maxResult) maxResult = area;
+      dfs(end);
+    }
+  };
+
+  dfs(0);
+  return maxResult;
 }
 
-const height = [1, 8, 6, 2, 5, 4, 8, 3, 7];
+const height = [1, 1, 3];
 console.log(maxArea(height));
