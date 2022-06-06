@@ -4,15 +4,8 @@
  * letter combinations that the number could represent. Return the answer
  * in any order.
  */
-function letterCombinations(digits: string): string[] {
-  const result = [];
 
-  return result;
-}
-
-console.log(letterCombinations('23'));
-
-const PHONE_LETTERS = {
+const PHONE_LETTERS: { [key: string]: string[] } = {
   2: ['a', 'b', 'c'],
   3: ['d', 'e', 'f'],
   4: ['g', 'h', 'i'],
@@ -22,3 +15,25 @@ const PHONE_LETTERS = {
   8: ['t', 'u', 'v'],
   9: ['w', 'x', 'y', 'z'],
 };
+
+function letterCombinations(digits: string): string[] {
+  if (digits === '') return [];
+
+  const digitsArray = digits.split('');
+  let result = [...PHONE_LETTERS[digitsArray[0]]];
+
+  for (let i = 1; i < digitsArray.length; i++) {
+    let possibilities = PHONE_LETTERS[digitsArray[i]];
+    let tempResult: string[] = [];
+    for (let r of result) {
+      for (let p of possibilities) {
+        tempResult.push(r + p);
+      }
+    }
+    result = tempResult;
+  }
+
+  return result;
+}
+
+console.log(letterCombinations('23'));
