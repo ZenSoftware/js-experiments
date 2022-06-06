@@ -4,7 +4,11 @@
  * If there is no common prefix, return an empty string "".
  */
 function longestCommonPrefix(strs: string[]): string {
-  return '';
+  if (strs.length === 1) return strs[0];
+
+  let result = '';
+
+  return result;
 }
 
 console.log(longestCommonPrefix(['flower', 'flow', 'flight']));
