@@ -7,9 +7,11 @@ function threeSum(nums: number[]): number[][] {
   for (let i = 0; i < nums.length; i++) {
     for (let j = i + 1; j < nums.length; j++) {
       for (let k = j + 1; k < nums.length; k++) {
-        console.log(`(${i}, ${j}, ${k})`);
         if (nums[i] + nums[j] + nums[k] === 0) {
-          result.push([nums[i], nums[j], nums[k]]);
+          const sum0 = [nums[i], nums[j], nums[k]].sort();
+          if (!resultContains(result, sum0)) {
+            result.push(sum0);
+          }
         }
       }
     }
@@ -18,6 +20,11 @@ function threeSum(nums: number[]): number[][] {
   return result;
 }
 
-// console.log(threeSum([-1, 0, 1, 2]));
+function resultContains(result: number[][], s: number[]) {
+  for (let r of result) {
+    if (r[0] === s[0] && r[1] === s[1] && r[2] === s[2]) return true;
+  }
+  return false;
+}
+
 console.log(threeSum([-1, 0, 1, 2, -1, -4]));
-console.log(threeSum([-1, 0, 1]));
