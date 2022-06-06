@@ -5,11 +5,25 @@
  * A palindrome string is a string that reads the same backward as forward.
  */
 
-// @ts-ignore
-export function longestPalindrome(s: string): string {
-  const result: string = '';
+export function longestPalindrome(s: string) {
+  let optimal = '';
 
-  return result;
+  let dfs = (start: number) => {
+    for (let end = start; end < s.length; end++) {
+      const current = s.substring(start, end + 1);
+      if (isPalindrome(current)) {
+        if (current.length > optimal.length) {
+          optimal = current;
+          dfs(optimal.length);
+        } else {
+          dfs(end + 1);
+        }
+      }
+    }
+  };
+
+  dfs(0);
+  return optimal;
 }
 
 export function isPalindrome(str: string) {
@@ -23,4 +37,4 @@ export function isPalindrome(str: string) {
   return true;
 }
 
-console.log(longestPalindrome('zzababa'));
+console.log(longestPalindrome('zzababadadadadada'));
