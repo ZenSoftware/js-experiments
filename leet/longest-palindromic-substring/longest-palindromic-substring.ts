@@ -5,6 +5,7 @@
  * A palindrome string is a string that reads the same backward as forward.
  */
 
+// @ts-ignore
 export function longestPalindrome(s: string): string {
   const result: string = '';
 
