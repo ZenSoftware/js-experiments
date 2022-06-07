@@ -14,20 +14,6 @@ class ListNode {
 }
 
 function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
-  if ((<ListNode>head).next === null) return null;
-
-  let list: ListNode[] = [];
-  let next = head as ListNode;
-  list.push(next);
-
-  while (next.next !== null) {
-    next = next.next as ListNode;
-    list.push(next);
-  }
-
-  const indexToRemove = list.length - n;
-  list[indexToRemove - 1].next = list[indexToRemove].next;
-
   return head;
 }
 
@@ -42,4 +28,10 @@ node2.next = node3;
 node3.next = node4;
 node4.next = node5;
 
-console.log(removeNthFromEnd(node1, 2));
+const result = removeNthFromEnd(node1, 2);
+console.log(getValues(result));
+
+function getValues(root: ListNode | null) {
+  if (root === null) return [];
+  return [root.val, ...getValues(root.next)];
+}
