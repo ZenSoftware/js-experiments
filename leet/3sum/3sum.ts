@@ -8,7 +8,7 @@ function threeSum(nums: number[]): number[][] {
     for (let j = i + 1; j < nums.length - 1; j++) {
       for (let k = j + 1; k < nums.length; k++) {
         if (nums[i] + nums[j] + nums[k] === 0) {
-          const sum0 = [nums[i], nums[j], nums[k]].sort(x => x);
+          const sum0 = [nums[i], nums[j], nums[k]].sort();
           if (!resultContains(result, sum0)) {
             result.push(sum0);
           }
@@ -29,4 +29,4 @@ function resultContains(result: number[][], s: number[]) {
   return false;
 }
 
-console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+console.log(threeSum([-1, 0, 1, 0]));

@@ -19,7 +19,7 @@ function fourSum(nums: number[], target: number): number[][] {
       for (let k = j + 1; k < nums.length - 1; k++) {
         for (let l = k + 1; l < nums.length; l++) {
           if (nums[i] + nums[j] + nums[k] + nums[l] === target) {
-            const sum = [nums[i], nums[j], nums[k], nums[l]].sort(x => x);
+            const sum = [nums[i], nums[j], nums[k], nums[l]].sort();
             result.push(sum);
           }
         }
