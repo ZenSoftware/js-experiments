@@ -3,6 +3,7 @@
  * Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]]
  * such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
  * Notice that the solution set must not contain duplicate triplets.
+ * O(n^2) solution: https://dev.to/urfan/leetcode-3sum-with-javascript-4b8j
  */
 export function threeSum(nums: number[]): number[][] {
   nums.sort();
