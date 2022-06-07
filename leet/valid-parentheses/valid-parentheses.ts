@@ -31,26 +31,25 @@ function isValid(s: string): boolean {
 
     switch (char) {
       case ')':
-        console.log(paren);
-        console.log(square);
-        console.log(curly);
         const pCount = paren.pop();
         console.log(pCount);
-
+        if (pCount === undefined) {
+          return false;
+        }
         break;
       case ']':
-        console.log(paren);
-        console.log(square);
-        console.log(curly);
         const sCount = square.pop();
         console.log(sCount);
+        if (sCount === undefined) {
+          return false;
+        }
         break;
       case '}':
-        console.log(paren);
-        console.log(square);
-        console.log(curly);
         const cCount = curly.pop();
         console.log(cCount);
+        if (cCount === undefined) {
+          return false;
+        }
         break;
     }
   }
@@ -66,4 +65,4 @@ function isValid(s: string): boolean {
 }
 
 // console.log(isValid('()[]{}'));
-console.log(isValid('{[()]}'));
+console.log(isValid('{(([]))}'));
