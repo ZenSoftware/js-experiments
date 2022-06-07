@@ -10,22 +10,22 @@ function isValid(s: string): boolean {
   const square: number[] = [];
   const curly: number[] = [];
 
-  let count = 0;
+  let order = 0;
   for (let i = 0; i < s.length; i++) {
     const char = s.charAt(i);
 
     switch (char) {
       case '(':
-        paren.push(count);
-        count++;
+        paren.push(order);
+        order++;
         break;
       case '[':
-        square.push(count);
-        count++;
+        square.push(order);
+        order++;
         break;
       case '{':
-        curly.push(count);
-        count++;
+        curly.push(order);
+        order++;
         break;
     }
 
