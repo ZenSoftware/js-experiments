@@ -6,63 +6,32 @@
  * - Open brackets must be closed in the correct order.
  */
 function isValid(s: string): boolean {
-  const paren: number[] = [];
-  const square: number[] = [];
-  const curly: number[] = [];
+  const brackets: string[] = [];
 
-  let order = 0;
   for (let i = 0; i < s.length; i++) {
     const char = s.charAt(i);
 
-    switch (char) {
-      case '(':
-        paren.push(order);
-        order++;
-        break;
-      case '[':
-        square.push(order);
-        order++;
-        break;
-      case '{':
-        curly.push(order);
-        order++;
-        break;
+    if (char === '(' || char === '[' || char === '{') {
+      brackets.push(char);
     }
 
     switch (char) {
       case ')':
-        const pCount = paren.pop();
-        console.log(pCount);
-        if (pCount === undefined) {
-          return false;
-        }
+        if (brackets.pop() !== '(') return false;
         break;
       case ']':
-        const sCount = square.pop();
-        console.log(sCount);
-        if (sCount === undefined) {
-          return false;
-        }
+        if (brackets.pop() !== '[') return false;
         break;
       case '}':
-        const cCount = curly.pop();
-        console.log(cCount);
-        if (cCount === undefined) {
-          return false;
-        }
+        if (brackets.pop() !== '{') return false;
         break;
     }
   }
 
-  if (paren.length > 0 || square.length > 0 || curly.length > 0) {
-    return false;
-  }
+  if (brackets.length > 0) return false;
 
-  console.log(paren);
-  console.log(square);
-  console.log(curly);
   return true;
 }
 
 // console.log(isValid('()[]{}'));
-console.log(isValid('{(([]))}'));
+console.log(isValid('{([{}])}'));
