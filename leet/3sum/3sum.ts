@@ -8,7 +8,7 @@ function threeSum(nums: number[]): number[][] {
     for (let j = i + 1; j < nums.length - 1; j++) {
       for (let k = j + 1; k < nums.length; k++) {
         if (nums[i] + nums[j] + nums[k] === 0) {
-          const sum0 = [nums[i], nums[j], nums[k]].sort();
+          const sum0 = [nums[i], nums[j], nums[k]].sort(x => x);
           if (!resultContains(result, sum0)) {
             result.push(sum0);
           }
