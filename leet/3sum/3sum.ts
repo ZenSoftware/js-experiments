@@ -6,7 +6,7 @@
  * O(n^2) solution: https://dev.to/urfan/leetcode-3sum-with-javascript-4b8j
  */
 export function threeSum(nums: number[]): number[][] {
-  nums.sort();
+  nums.sort((a, b) => a - b);
   const triplets: number[][] = [];
 
   for (let i = 0; i < nums.length - 2; i++) {
@@ -35,5 +35,3 @@ export function threeSum(nums: number[]): number[][] {
 }
 
 console.log(threeSum([-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]).sort((a, b) => a[0] - b[0]));
-
-// console.log([-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4].sort());
