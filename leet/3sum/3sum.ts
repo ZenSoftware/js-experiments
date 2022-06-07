@@ -25,14 +25,15 @@ export function threeSum(nums: number[]): number[][] {
           right--;
         } else if (sum < 0) {
           left++;
-        } else {
+        } else if (sum > 0) {
           right--;
         }
       }
     }
   }
-
   return triplets;
 }
 
-console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+console.log(threeSum([-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]).sort((a, b) => a[0] - b[0]));
+
+// console.log([-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4].sort());
