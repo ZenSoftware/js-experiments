@@ -1,31 +1,43 @@
-export function mergeSort(array: number[]) {
+export function mergeSort<T>(array: T[], predicate?: (a: T, b: T) => number) {
   if (array.length === 1) return;
 
   const halfWay = Math.floor(array.length / 2);
   const left = array.slice(0, halfWay);
   const right = array.slice(halfWay);
 
-  mergeSort(left);
-  mergeSort(right);
-  merge(left, right, array);
+  mergeSort(left, predicate);
+  mergeSort(right, predicate);
+  merge(left, right, array, predicate);
 
   return array;
 }
 
-export function merge(left: number[], right: number[], array: number[]) {
+export function merge<T>(left: T[], right: T[], array: T[], predicate) {
   let a = 0;
   let l = 0;
   let r = 0;
 
   while (l < left.length && r < right.length) {
-    if (left[l] < right[r]) {
-      array[a] = left[l];
-      a++;
-      l++;
+    if (predicate) {
+      if (predicate(left[l], right[r]) < 0) {
+        array[a] = left[l];
+        a++;
+        l++;
+      } else {
+        array[a] = right[r];
+        a++;
+        r++;
+      }
     } else {
-      array[a] = right[r];
-      a++;
-      r++;
+      if (left[l] < right[r]) {
+        array[a] = left[l];
+        a++;
+        l++;
+      } else {
+        array[a] = right[r];
+        a++;
+        r++;
+      }
     }
   }
 
@@ -42,12 +54,5 @@ export function merge(left: number[], right: number[], array: number[]) {
   }
 }
 
-console.log(
-  mergeSort([
-    3, 6, 7, 1, 2, 9, 4, 8, 5, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 4, 2, 1,
-    2, 3, 4, 5, 6, 4, 3, 2, 4, 6, 8, 3, 2, 4, 5, 7, 8, 9, 0, 4, 3, 1, 3, 4, 6, 7, 89, 3, 23, 2, 4,
-    5, 7, 8, 4, 32, 3, 54, 5, 6, 3, 2, 1, 2, 5, 6, 8, 0, 0, 5, 3, 2, 2, 1, 2, 43, 4, 5, 6, 4, 3, 2,
-    4, 4, 3, 2, 2, 34, 5, 5, 6, 4, 3, 2, 4, 5, 6, 6, 4, 3, 2, 3, 4, 5, 6, 7, 8, 9, 45, 3, 1, 2, 43,
-    5, 6, 8, 5, 3, 2, 1,
-  ])
-);
+console.log(mergeSort([-3, 6, 7, -5, 8, -4, 9, 1, 2], (a, b) => a - b));
+console.log([-3, 6, 7, -5, 8, -4, 9, 1, 2].sort((a, b) => a - b));
