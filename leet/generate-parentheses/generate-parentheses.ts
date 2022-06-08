@@ -13,11 +13,12 @@ function generateParenthesis(n: number): string[] {
   }
 
   generateAll(current, 0, combinations);
+
   return combinations;
 }
 
 function generateAll(current: string[], pos: number, result: string[]) {
-  if (pos == current.length) {
+  if (pos === current.length) {
     if (valid(current)) result.push(current.join(''));
   } else {
     current[pos] = '(';
@@ -29,6 +30,7 @@ function generateAll(current: string[], pos: number, result: string[]) {
 
 function valid(current: string[]) {
   let balance = 0;
+
   for (let c of current) {
     if (c == '(') balance++;
     else balance--;
