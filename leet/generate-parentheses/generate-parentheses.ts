@@ -20,12 +20,13 @@ function generateParenthesis(n: number): string[] {
 function generateAll(current: string[], pos: number, result: string[]) {
   if (pos === current.length) {
     if (valid(current)) result.push(current.join(''));
-  } else {
-    current[pos] = '(';
-    generateAll(current, pos + 1, result);
-    current[pos] = ')';
-    generateAll(current, pos + 1, result);
+    return;
   }
+
+  current[pos] = '(';
+  generateAll(current, pos + 1, result);
+  current[pos] = ')';
+  generateAll(current, pos + 1, result);
 }
 
 function valid(current: string[]) {
