@@ -4,7 +4,7 @@
  * all combinations of well-formed parentheses.
  */
 
-function generateParenthesis(n: number): string[] {
+export function generateParenthesis(n: number): string[] {
   const combinations: string[] = [];
 
   let current: string[] = [];
@@ -38,7 +38,7 @@ function valid(current: string[]) {
     if (balance < 0) return false;
   }
 
-  return balance == 0;
+  return balance === 0;
 }
 
 console.log(generateParenthesis(3));
