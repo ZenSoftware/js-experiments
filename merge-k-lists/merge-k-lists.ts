@@ -3,7 +3,7 @@
  * You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
  * Merge all the linked-lists into one sorted linked-list and return it.
  */
-class ListNode {
+export class ListNode {
   val: number;
   next: ListNode | null;
   constructor(val?: number, next?: ListNode | null) {
@@ -12,7 +12,10 @@ class ListNode {
   }
 }
 
-function mergeKLists(lists: Array<ListNode | null>): ListNode | null {}
+export function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
+  if (lists.length === 0) return null;
+  if (lists.length === 1) return lists[0];
+}
 
 const a1 = new ListNode(1);
 const a2 = new ListNode(3);
@@ -29,7 +32,7 @@ b2.next = b3;
 const res = mergeKLists([a1, b1]);
 console.log(getVals(res));
 
-function getVals(root: ListNode | null) {
+export function getVals(root: ListNode | null) {
   if (root === null) return [];
   return [root.val, ...getVals(root.next)];
 }
