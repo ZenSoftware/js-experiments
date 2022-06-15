@@ -1,26 +1,33 @@
-function generateParenthesis(n: number): string[] {
-  let ans: string[] = [];
-  backtrack(ans, [], 0, 0, n);
-  return ans;
-}
+/**
+ * https://leetcode.com/problems/generate-parentheses/
+ * Given n pairs of parentheses, write a function to generate
+ * all combinations of well-formed parentheses.
+ */
 
-function backtrack(ans: string[], cur: string[], open: number, close: number, max: number) {
-  if (cur.length === max * 2) {
-    ans.push(cur.join(''));
-    return;
-  }
+export function generateParenthesis(max: number): string[] {
+  const result: string[] = [];
+  const maxLength = max * 2;
 
-  if (open < max) {
-    cur.push('(');
-    backtrack(ans, cur, open + 1, close, max);
-    cur.pop();
-  }
+  const backtrack = (current: string[], open: number, close: number) => {
+    if (current.length >= maxLength) {
+      result.push(current.join(''));
+    }
 
-  if (close < open) {
-    cur.push(')');
-    backtrack(ans, cur, open, close + 1, max);
-    cur.pop();
-  }
+    if (open < max) {
+      current.push('(');
+      backtrack(current, open + 1, close);
+      current.pop();
+    }
+
+    if (close < open) {
+      current.push(')');
+      backtrack(current, open, close + 1);
+      current.pop();
+    }
+  };
+
+  backtrack([], 0, 0);
+  return result;
 }
 
 console.log(generateParenthesis(3));
