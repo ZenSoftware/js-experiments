@@ -1,1 +1,1 @@
-Javascript experiments
+JavaScript/TypeScript experiments
