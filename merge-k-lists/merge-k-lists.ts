@@ -14,16 +14,22 @@ class ListNode {
 
 function mergeKLists(lists: Array<ListNode | null>): ListNode | null {}
 
-const node1 = new ListNode(1);
-const node2 = new ListNode(2);
-const node3 = new ListNode(3);
+const a1 = new ListNode(1);
+const a2 = new ListNode(3);
+const a3 = new ListNode(5);
+a1.next = a2;
+a2.next = a3;
 
-node1.next = node2;
-node2.next = node3;
+const b1 = new ListNode(2);
+const b2 = new ListNode(4);
+const b3 = new ListNode(6);
+b1.next = b2;
+b2.next = b3;
 
-console.log(getVals(node1));
+const res = mergeKLists([a1, b1]);
+console.log(getVals(res));
 
-function getVals(root: ListNode) {
+function getVals(root: ListNode | null) {
   if (root === null) return [];
-  return [root.val, ...getVals(root.next as ListNode)];
+  return [root.val, ...getVals(root.next)];
 }
