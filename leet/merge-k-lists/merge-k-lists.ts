@@ -18,7 +18,7 @@ export function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   if (lists.length === 0) return null;
   if (lists.length === 1) return lists[0];
 
-  let mergeInto: any = null;
+  let mergeInto: ListNode | null = null;
   let mergeIntoIndex = 0;
 
   for (let l of lists) {
