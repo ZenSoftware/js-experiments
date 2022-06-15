@@ -17,6 +17,25 @@ export class ListNode {
 export function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   if (lists.length === 0) return null;
   if (lists.length === 1) return lists[0];
+
+  let mergeInto: any = null;
+  let mergeIntoIndex = 0;
+
+  for (let l of lists) {
+    if (l !== null) {
+      mergeInto = l;
+      break;
+    }
+    mergeIntoIndex++;
+  }
+
+  if (mergeInto === null) return null;
+
+  for (let i = mergeIntoIndex + 1; i < lists.length; i++) {
+    mergeInto = merge2Lists(mergeInto, lists[i]);
+  }
+
+  return mergeInto;
 }
 
 function merge2Lists(listA: ListNode | null, listB: ListNode | null): ListNode | null {
@@ -66,9 +85,7 @@ const b3 = new ListNode(5);
 b1.next = b2;
 b2.next = b3;
 
-// const res = mergeKLists([a1, b1]);
-// console.log(getVals(res));
-const res = merge2Lists(a1, b1);
+const res = mergeKLists([null, a1, null, b2]);
 console.log(getVals(res));
 
 export function getVals(root: ListNode | null) {
