@@ -1,3 +1,10 @@
+/**
+ * https://www.youtube.com/watch?v=NA2Oj9xqaZQ
+ * ## Complexity
+ * Time: O(2^n)
+ * Space: O()
+ */
+
 function combinations(elements: any[]) {
   if (elements.length === 0) return [[]];
 
