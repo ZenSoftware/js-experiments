@@ -17,19 +17,56 @@ export function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   if (lists.length === 1) return lists[0];
 }
 
-const a1 = new ListNode(1);
-const a2 = new ListNode(3);
-const a3 = new ListNode(5);
+function merge2Lists(listA: ListNode | null, listB: ListNode | null): ListNode | null {
+  if (listA === null) return listB;
+  if (listB === null) return listA;
+
+  let head1, head2;
+
+  if (listA.val < listB.val) {
+    head1 = listA;
+    head2 = listB;
+  } else {
+    head1 = listB;
+    head2 = listA;
+  }
+
+  const result = head1;
+
+  while (head1 !== null && head2 !== null) {
+    if (head1.next === null) {
+      head1.next = head2;
+      return result;
+    }
+
+    if (head1.val <= head2.val && head2.val <= head1.next.val) {
+      const head2temp = head2.next;
+      head2.next = head1.next;
+      head1.next = head2;
+      head2 = head2temp;
+    } else {
+      head1 = head1.next;
+    }
+  }
+
+  return result;
+}
+
+const a1 = new ListNode(2);
+const a2 = new ListNode(4);
+const a3 = new ListNode(6);
 a1.next = a2;
 a2.next = a3;
 
-const b1 = new ListNode(2);
-const b2 = new ListNode(4);
-const b3 = new ListNode(6);
+const b1 = new ListNode(1);
+const b2 = new ListNode(3);
+const b3 = new ListNode(5);
 b1.next = b2;
 b2.next = b3;
 
-const res = mergeKLists([a1, b1]);
+// const res = mergeKLists([a1, b1]);
+// console.log(getVals(res));
+const res = merge2Lists(a1, b1);
 console.log(getVals(res));
 
 export function getVals(root: ListNode | null) {
