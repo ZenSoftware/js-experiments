@@ -2,7 +2,10 @@
  * https://www.youtube.com/watch?v=NA2Oj9xqaZQ
  * ## Complexity
  * Time: O(2^n)
- * Space: O()
+ * Space: O(n^2)
+ * Tree depth of n due to recursing by excluding only first.
+ * Each stack frame has up to an array of n.
+ * Therefore space complexity is n*n.
  */
 
 function combinations(elements: any[]) {
