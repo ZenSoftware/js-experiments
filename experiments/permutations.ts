@@ -7,5 +7,4 @@
 
 function permutations(elements: any[]) {}
 
-const sample = ['a', 'b', 'c'];
-console.log(permutations(sample));
+console.log(permutations(['a', 'b', 'c']));

@@ -22,5 +22,4 @@ function combinations(elements: any[]) {
   return [...combsExcludingFirst, ...combsIncludingFirst];
 }
 
-const sample = ['a', 'b', 'c'];
-console.log(combinations(sample));
+console.log(combinations(['a', 'b', 'c']));
