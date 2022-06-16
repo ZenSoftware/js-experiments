@@ -12,6 +12,7 @@ export default defineConfig({
         grid: resolve(__dirname, 'www/grid/index.html'),
         webworkers: resolve(__dirname, 'www/webworkers/index.html'),
         comlink: resolve(__dirname, 'www/comlink/index.html'),
+        webgl: resolve(__dirname, 'www/webgl/index.html'),
       },
     },
   },
