@@ -18,7 +18,63 @@ class ListNode {
   }
 }
 
-function reverseKGroup(head: ListNode | null, k: number): ListNode | null {}
+function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
+  if (head === null) return null;
+  if (head.next === null) return head;
+
+  let result;
+  let count = 1;
+  let start = head;
+
+  for (let i = 1; i <= k; i++) {
+    if (i === k) {
+      const rest = head.next;
+      head.next = null;
+      const { newStart, newEnd } = reverse(start);
+      result = newStart;
+      newEnd.next = rest;
+      head = newEnd;
+      start = newEnd;
+    }
+    head = head.next;
+  }
+
+  while (head !== null) {
+    if (count % k === 0) {
+      const rest = head.next;
+      head.next = null;
+      const { newStart, newEnd } = reverse(start.next);
+      newEnd.next = rest;
+      head = newEnd;
+      start.next = newStart;
+      start = newEnd;
+    }
+
+    head = head.next;
+    count++;
+  }
+
+  return result;
+}
+
+function reverse(head: ListNode | null): { newStart: any; newEnd: any } {
+  if (head === null) return { newStart: null, newEnd: null };
+  if (head.next === null) return { newStart: head, newEnd: head };
+
+  const listAsArray: ListNode[] = [];
+
+  while (head !== null) {
+    listAsArray.push(head);
+    head = head.next;
+  }
+
+  for (let i = listAsArray.length - 1; i >= 0; i--) {
+    listAsArray[i].next = listAsArray[i - 1];
+  }
+  listAsArray[0].next = null;
+
+  return { newStart: listAsArray[listAsArray.length - 1], newEnd: listAsArray[0] }; // return pointer to new tail
+}
 
 const a1 = new ListNode(1);
 const a2 = new ListNode(2);
@@ -30,7 +86,7 @@ a2.next = a3;
 a3.next = a4;
 a4.next = a5;
 
-console.log(getVals(a1));
+console.log(getVals(reverseKGroup(a1, 2)));
 
 export function getVals(root: ListNode | null) {
   if (root === null) return [];
