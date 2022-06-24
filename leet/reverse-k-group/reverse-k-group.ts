@@ -25,32 +25,33 @@ function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
   let result;
   let count = 1;
   let start = head;
+  let traverse: any = head;
 
   for (let i = 1; i <= k; i++) {
     if (i === k) {
-      const rest = head.next;
-      head.next = null;
+      const rest = traverse.next;
+      traverse.next = null;
       const { newStart, newEnd } = reverse(start);
       result = newStart;
       newEnd.next = rest;
-      head = newEnd;
+      traverse = newEnd;
       start = newEnd;
     }
-    head = head.next;
+    traverse = traverse.next;
   }
 
-  while (head !== null) {
+  while (traverse !== null) {
     if (count % k === 0) {
-      const rest = head.next;
-      head.next = null;
+      const rest = traverse.next;
+      traverse.next = null;
       const { newStart, newEnd } = reverse(start.next);
       newEnd.next = rest;
-      head = newEnd;
+      traverse = newEnd;
       start.next = newStart;
       start = newEnd;
     }
 
-    head = head.next;
+    traverse = traverse.next;
     count++;
   }
 
