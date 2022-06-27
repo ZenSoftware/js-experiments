@@ -13,6 +13,7 @@ export default defineConfig({
         webworkers: resolve(__dirname, 'www/webworkers/index.html'),
         comlink: resolve(__dirname, 'www/comlink/index.html'),
         webgl: resolve(__dirname, 'www/webgl/index.html'),
+        socketio: resolve(__dirname, 'www/socketio/index.html'),
       },
     },
   },
