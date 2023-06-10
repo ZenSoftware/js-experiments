@@ -12,7 +12,7 @@ class Item {
 }
 
 function knapsack(items: Item[], capacity: number): number {
-  const table = Array(items.length + 1)
+  const table: number[][] = Array(items.length + 1)
     .fill(null)
     .map(() => []);
 
