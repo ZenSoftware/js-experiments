@@ -9,7 +9,7 @@
  * You may resuse elements of `wordBank` as many times as needed.
  */
 export function allConstruct(target: string, wordBank: string[]) {
-  let table = Array(target.length + 1)
+  let table: any[][] = Array(target.length + 1)
     .fill(null)
     .map(() => []);
 

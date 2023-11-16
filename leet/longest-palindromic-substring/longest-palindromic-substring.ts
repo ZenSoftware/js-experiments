@@ -38,4 +38,15 @@ function expandFromCenter(s: string, start: number, end: number) {
   return largestSub;
 }
 
+export function isPalindrome(str: string) {
+  let start = 0;
+  let end = str.length - 1;
+  while (start < end) {
+    if (str.charAt(start++) !== str.charAt(end--)) {
+      return false;
+    }
+  }
+  return true;
+}
+
 console.log(longestPalindrome('abcba'));

@@ -27,11 +27,11 @@ c.right = f;
  * BREADTH FIRST TRAVERSAL
  */
 function bfs() {
-  const queue = [];
+  const queue: Vertex[] = [];
   queue.push(a);
 
   while (queue.length) {
-    const current = queue.shift();
+    const current = queue.shift() as Vertex;
     console.log(current.value);
     if (current.left) queue.push(current.left);
     if (current.right) queue.push(current.right);
@@ -49,11 +49,11 @@ bfs(); // abcdef
  */
 
 function dfsPreIterative() {
-  const stack = [];
+  const stack: Vertex[] = [];
   stack.push(a);
 
   while (stack.length) {
-    const current = stack.pop();
+    const current = stack.pop() as Vertex;
     console.log(current.value);
     if (current.right) stack.push(current.right);
     if (current.left) stack.push(current.left);
