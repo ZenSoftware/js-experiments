@@ -1,8 +1,11 @@
 import express from 'express';
+import cors from 'cors';
 import http from 'http';
 
 function bootstrap() {
   const app = express();
+  app.use(cors());
+
   const server = http.createServer(app);
 
   app.get('/', (req, res) => {
