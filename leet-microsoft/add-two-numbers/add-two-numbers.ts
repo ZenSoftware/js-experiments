@@ -12,7 +12,35 @@
  * Space: O();
  */
 export function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
-  return null;
+  const result: number[] = [];
+  let a: any = l1;
+  let b: any = l2;
+  let carry = 0;
+
+  do {
+    let valA = 0;
+    if (a !== null) valA = a.val;
+
+    let valB = 0;
+    if (b !== null) valB = b.val;
+
+    const sum = valA + valB + carry;
+
+    if (sum >= 10) {
+      result.push(sum - 10);
+      carry = 1;
+    } else {
+      result.push(sum);
+      carry = 0;
+    }
+
+    if (a !== null) a = a.next;
+    if (b !== null) b = b.next;
+  } while (a !== null || b !== null);
+
+  if (carry !== 0) result.push(1);
+
+  return toList(result);
 }
 
 export class ListNode {
