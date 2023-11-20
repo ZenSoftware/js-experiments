@@ -12,7 +12,7 @@ function bestSum(targetSum: number, numbers: number[]) {
     if (target === 0) return [];
     if (target < 0) return null;
 
-    let shortestCombination = null;
+    let shortestCombination: any[] | null = null;
 
     for (let n of numbers) {
       const remainderResult = compute(target - n);

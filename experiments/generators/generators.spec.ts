@@ -1,7 +1,7 @@
 import { yieldDeligate, getId } from './generators';
 
 describe('generators', () => {
-  it('deligates yield', () => {
+  it('delegates yield', () => {
     expect([...yieldDeligate(5)]).toEqual([1, 2, 3, 4, 5, 8, 9]);
   });
 

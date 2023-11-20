@@ -11,7 +11,7 @@
 function allConstruct(target: string, wordBank: string[]) {
   if (target === '') return [[]];
 
-  let result = [];
+  let result: string[][] = [];
 
   for (let word of wordBank) {
     if (target.startsWith(word)) {

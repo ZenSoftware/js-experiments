@@ -15,5 +15,5 @@
     "noImplicitReturns": true,
     "noImplicitAny": false
   },
-  "include": ["./www", "./leet", "./api", "./nested-keyof"]
+  "include": ["./www", "./api", "./nested-keyof"]
 }
