@@ -9,6 +9,7 @@ export function lengthOfLongestSubstring(s: string): number {
   let longest = 0;
 
   if (s.length <= 1) return s.length;
+
   longest = 1;
 
   for (let start = 0; start < s.length; start++) {
