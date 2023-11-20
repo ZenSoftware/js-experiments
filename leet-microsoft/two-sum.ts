@@ -6,14 +6,16 @@
  */
 
 /**
- * Time: O(n^2)
+ * Time: O(n)
  * Space: O(n);
  */
 export function twoSum(nums: number[], target: number): number[] {
-  for (let i = 0; i < nums.length - 1; i++) {
-    for (let j = i + 1; j < nums.length; j++) {
-      if (i !== j && nums[i] + nums[j] === target) return [i, j];
-    }
+  const hash: Record<number, number> = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    const memo = hash[target - nums[i]];
+    if (memo !== undefined) return [memo, i];
+    else hash[nums[i]] = i;
   }
 
   throw new Error('There is no answer');
