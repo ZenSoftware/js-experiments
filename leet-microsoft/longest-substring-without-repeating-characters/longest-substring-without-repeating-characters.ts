@@ -12,7 +12,7 @@ export function lengthOfLongestSubstring(s: string): number {
 
   longest = 1;
 
-  for (let start = 0; start < s.length - 1; start++) {
+  for (let start = 0; start < s.length - 1 && s.length - start + 1 > longest; start++) {
     for (let end = start + 1; end < s.length; end++) {
       if (s.substring(start, end).includes(s[end])) break;
 
