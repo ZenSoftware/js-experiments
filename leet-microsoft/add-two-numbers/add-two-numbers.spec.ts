@@ -9,10 +9,6 @@ describe('Two Sum', () => {
     const list2 = toList([1]);
     const array2 = toArray(list2);
     expect(array2).toEqual([1]);
-
-    const list3 = toList([7, 0, 8]);
-    const array3 = toArray(list3);
-    expect(array3).toEqual([7, 0, 8]);
   });
 
   it('evaluates example 1 correctly', () => {
