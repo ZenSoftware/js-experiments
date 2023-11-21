@@ -10,10 +10,10 @@ export function longestPalindrome(s: string): string {
 
   for (let i = 0; i < s.length - 1; i++) {
     for (let j = i + 1; j < s.length; j++) {
-      const stringUnderEvaluation = s.substring(i, j + 1);
+      const evaluating = s.substring(i, j + 1);
 
-      if (isPalindrome(stringUnderEvaluation) && stringUnderEvaluation.length > longest.length) {
-        longest = stringUnderEvaluation;
+      if (isPalindrome(evaluating) && evaluating.length > longest.length) {
+        longest = evaluating;
       }
     }
   }
