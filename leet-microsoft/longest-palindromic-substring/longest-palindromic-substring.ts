@@ -9,7 +9,7 @@ export function longestPalindrome(s: string): string {
   let longest = s[0];
 
   for (let i = 0; i < s.length - 1; i++) {
-    for (let j = i + 1; j < s.length; j++) {
+    for (let j = s.length - 1; j > i && j - i + 1 > longest.length; j--) {
       const evaluating = s.substring(i, j + 1);
 
       if (isPalindrome(evaluating) && evaluating.length > longest.length) {
