@@ -6,6 +6,7 @@ describe('Longest Palindromic Substring', () => {
     expect(longestPalindrome('bb')).toEqual('bb');
     expect(longestPalindrome('babad')).toEqual('bab');
     expect(longestPalindrome('cbbd')).toEqual('bb');
+    expect(longestPalindrome('aacabdkacaa')).toEqual('aca');
   });
 
   it('evaluates if string is a palindrome correctly', () => {
