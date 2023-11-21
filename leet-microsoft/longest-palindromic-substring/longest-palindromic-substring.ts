@@ -13,14 +13,14 @@ export function longestPalindrome(s: string): string {
   let lo = 0;
   let result = s;
 
-  const expandPalindrome = (j, k) => {
-    while (j >= 0 && k < s.length && s[j] === s[k]) {
-      j--;
-      k++;
+  const expandPalindrome = (start, end) => {
+    while (start >= 0 && end < s.length && s[start] === s[end]) {
+      start--;
+      end++;
     }
-    if (maxLen < k - j - 1) {
-      maxLen = k - j - 1;
-      lo = j + 1;
+    if (maxLen < end - start - 1) {
+      maxLen = end - start - 1;
+      lo = start + 1;
     }
   };
 
