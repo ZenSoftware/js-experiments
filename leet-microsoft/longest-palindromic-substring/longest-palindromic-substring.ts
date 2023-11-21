@@ -14,6 +14,7 @@ export function longestPalindrome(s: string): string {
 
       if (isPalindrome(evaluating) && evaluating.length > longest.length) {
         longest = evaluating;
+        break;
       }
     }
   }
