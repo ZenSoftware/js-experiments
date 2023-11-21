@@ -9,7 +9,38 @@
  * - 1 <= m + n <= 2000
  * - -106 <= nums1[i], nums2[i] <= 106
  */
-export function findMedianSortedArrays(nums1: number[], nums2: number[]): number {
+export function findMedianSortedArrays(nums1: number[], nums2: number[]) {
+  const merged = merge(nums1, nums2);
+  if (merged.length % 2 === 0) {
+  } else {
+  }
+}
+
+export function merge(nums1: number[], nums2: number[]) {
   const merged: number[] = [];
-  return 0;
+  let index1 = 0;
+  let index2 = 0;
+
+  while (index1 + index2 < nums1.length + nums2.length) {
+    if (index1 >= nums1.length) {
+      merged.push(nums2[index2]);
+      index2++;
+    } else if (index2 >= nums2.length) {
+      merged.push(nums1[index1]);
+      index1++;
+    } else {
+      const a = nums1[index1];
+      const b = nums2[index2];
+
+      if (a < b) {
+        merged.push(a);
+        index1++;
+      } else {
+        merged.push(b);
+        index2++;
+      }
+    }
+  }
+
+  return merged;
 }
