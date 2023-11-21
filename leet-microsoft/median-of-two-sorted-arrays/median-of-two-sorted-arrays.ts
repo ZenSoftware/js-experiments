@@ -13,8 +13,8 @@ export function findMedianSortedArrays(nums1: number[], nums2: number[]): number
   const merged = merge(nums1, nums2);
 
   if (merged.length % 2 === 0) {
-    const halfWay = merged.length / 2 - 1;
-    return (merged[halfWay] + merged[halfWay + 1]) / 2;
+    const halfWay = merged.length / 2;
+    return (merged[halfWay - 1] + merged[halfWay]) / 2;
   } else {
     const halfWay = Math.floor(merged.length / 2);
     return merged[halfWay];
