@@ -12,7 +12,7 @@ export function longestPalindrome(s: string): string {
     for (let j = s.length - 1; j > i && j - i + 1 > longest.length; j--) {
       const evaluating = s.substring(i, j + 1);
 
-      if (isPalindrome(evaluating) && evaluating.length > longest.length) {
+      if (isPalindrome(evaluating)) {
         longest = evaluating;
         break;
       }
