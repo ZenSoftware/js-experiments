@@ -7,7 +7,7 @@ const usersById_v1 = new Map([['sam', { name: 'Sam Harris', country: 'US' }]]);
 const usersById_v2 = produce(usersById_v1, draft => {
   const user = draft.get('sam');
   if (user) {
-    user.country = 'UK';
+    user.country = 'CA';
   }
 });
 
