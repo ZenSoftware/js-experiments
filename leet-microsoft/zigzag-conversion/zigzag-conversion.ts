@@ -1,9 +1,21 @@
 /**
- * https://leetcode.com/problems/longest-palindromic-substring/
- * Given a string s, return the longest palindromic substring in s.
+ * https://leetcode.com/problems/zigzag-conversion/
+ * The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+ *
+ * P   A   H   N
+ * A P L S I I G
+ * Y   I   R
+ *
+ * And then read line by line: "PAHNAPLSIIGYIR"
+ *
+ * Write the code that will take a string and make this conversion given a number of rows:
+ * `string convert(string s, int numRows);`
+ *
  * 1 <= s.length <= 1000
- * s consist of only digits and English letters.
+ * s consists of English letters (lower-case and upper-case), ',' and '.'.
+ * 1 <= numRows <= 1000
  */
+
 export function convert(s: string, numRows: number): string {
   const layout: string[][] = new Array(numRows);
   for (let i = 0; i < layout.length; i++) {
