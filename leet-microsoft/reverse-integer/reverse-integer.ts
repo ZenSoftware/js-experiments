@@ -4,6 +4,7 @@
  * Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
  * -231 <= x <= 231 - 1
  */
+
 export function reverse(x: number): number {
   let reversedString: string;
   if (x >= 0) {
@@ -16,8 +17,8 @@ export function reverse(x: number): number {
 
   const reversedNumber = parseInt(reversedString, 10);
 
-  const twoToThe31 = 2 ** 31;
-  if (-twoToThe31 <= reversedNumber && reversedNumber <= twoToThe31 - 1) {
+  const TWO_TO_THE_31 = 2 ** 31;
+  if (-TWO_TO_THE_31 <= reversedNumber && reversedNumber <= TWO_TO_THE_31 - 1) {
     return reversedNumber;
   } else {
     return 0;
