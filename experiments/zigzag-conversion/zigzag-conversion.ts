@@ -23,8 +23,6 @@ export function convert(s: string, numRows: number): string {
     col++;
   }
 
-  console.log(layout);
-
   let result = '';
   for (let row = 0; row < layout.length; row++) {
     for (let col = 0; col < layout[row].length; col++) {
