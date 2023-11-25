@@ -1,3 +1,9 @@
+/**
+ * https://leetcode.com/problems/longest-palindromic-substring/
+ * Given a string s, return the longest palindromic substring in s.
+ * 1 <= s.length <= 1000
+ * s consist of only digits and English letters.
+ */
 export function convert(s: string, numRows: number): string {
   const layout: string[][] = new Array(numRows);
   for (let i = 0; i < layout.length; i++) {
