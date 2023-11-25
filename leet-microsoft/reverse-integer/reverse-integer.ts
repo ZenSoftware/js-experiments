@@ -9,10 +9,9 @@ export function reverse(x: number): number {
   if (x >= 0) {
     reversedString = x.toString().split('').reverse().join('');
   } else {
-    let reversedArray = x.toString().split('');
-    reversedArray.shift();
-    reversedString = reversedArray.reverse().join('');
-    reversedString = '-' + reversedString;
+    let reversedArray = x.toString().split('').reverse();
+    reversedArray.pop();
+    reversedString = '-' + reversedArray.join('');
   }
 
   const reversedNumber = parseInt(reversedString, 10);
