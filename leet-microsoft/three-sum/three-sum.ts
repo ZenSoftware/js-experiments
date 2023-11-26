@@ -28,6 +28,7 @@ function containsDuplicate(results: number[][], input: number[]): boolean {
     for (let i = 0; i < 3; i++) {
       const foundNumber = evaluate.findIndex(n => n === input[i]);
       if (foundNumber !== -1) evaluate.splice(foundNumber, 1);
+      else break;
     }
     if (evaluate.length === 0) return true;
   }
