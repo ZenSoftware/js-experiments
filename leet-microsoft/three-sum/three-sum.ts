@@ -44,5 +44,3 @@ export function threeSum(nums: number[]): number[][] {
 
   return results;
 }
-
-console.log(threeSum([0, 0, 0, 0]));
