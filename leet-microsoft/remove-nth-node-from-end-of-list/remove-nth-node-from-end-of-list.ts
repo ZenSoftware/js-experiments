@@ -17,10 +17,37 @@ export class ListNode {
 }
 
 export function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
-  return null;
+  if (head === null) return null;
+  if (head.next === null) return null;
+  // if (head.next.next === null) {
+  //   head.next = null;
+  //   return head;
+  // }
+
+  let trailingPointer: any = head;
+  let lastPointer: any = head;
+
+  for (let i = 1; i <= n; i++) {
+    if (lastPointer.next === null) {
+      return head.next;
+    }
+    lastPointer = lastPointer.next;
+  }
+
+  while (lastPointer.next !== null) {
+    trailingPointer = trailingPointer.next;
+    lastPointer = lastPointer.next;
+  }
+
+  trailingPointer.next = lastPointer;
+
+  return head;
 }
 
 function toList(vals: number[]) {
+  if (vals.length === 0) return null;
+  else if (vals.length === 1) return new ListNode(vals[0]);
+
   let pointer = new ListNode(vals[vals.length - 1]);
 
   for (let i = vals.length - 2; i >= 0; i--) {
@@ -46,4 +73,5 @@ function printList(head: ListNode | null) {
   return result;
 }
 
-console.log(printList(toList([1, 2, 3, 4, 5])));
+const sample = toList([1, 2]);
+console.log(removeNthFromEnd(sample, 1));
