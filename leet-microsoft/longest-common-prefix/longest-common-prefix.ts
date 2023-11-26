@@ -7,5 +7,29 @@
  * strs[i] consists of only lowercase English letters.
  */
 export function longestCommonPrefix(strs: string[]): string {
-  return '';
+  let result = '';
+  const firstStr = strs[0];
+
+  for (let i = 0; i < firstStr.length; i++) {
+    if (stringsEqualAt(strs, i)) result += firstStr.charAt(i);
+    else break;
+  }
+
+  return result;
+}
+
+function stringsEqualAt(strs: string[], index: number): boolean {
+  const firstStr = strs[0];
+
+  let charToEqual: string;
+  if (index + 1 <= firstStr.length) charToEqual = firstStr.charAt(index);
+  else return false;
+
+  for (let i = 1; i < strs.length; i++) {
+    if (index + 1 > strs[i].length || charToEqual !== strs[i].charAt(index)) {
+      return false;
+    }
+  }
+
+  return true;
 }
