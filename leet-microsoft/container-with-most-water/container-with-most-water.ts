@@ -9,5 +9,22 @@
  * 0 <= height[i] <= 104
  */
 export function maxArea(height: number[]): number {
-  return 0;
+  let largest = 0;
+  let left = 0;
+  let right = height.length - 1;
+
+  while (left < right) {
+    const length = right - left;
+    if (height[left] > height[right]) {
+      const area = height[right] * length;
+      if (area > largest) largest = area;
+      right--;
+    } else {
+      const area = height[left] * length;
+      if (area > largest) largest = area;
+      left++;
+    }
+  }
+
+  return largest;
 }
