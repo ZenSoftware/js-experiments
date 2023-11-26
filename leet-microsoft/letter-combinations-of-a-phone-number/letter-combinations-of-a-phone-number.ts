@@ -6,7 +6,13 @@
  * digits[i] is a digit in the range ['2', '9'].
  */
 export function letterCombinations(digits: string): string[] {
-  return [];
+  const results: string[] = [];
+
+  for (let i = 0; i < digits.length; i++) {
+    const letters = PHONE_DIGIT_LETTERS[digits.charAt(i)];
+  }
+
+  return results;
 }
 
 const PHONE_DIGIT_LETTERS = {
