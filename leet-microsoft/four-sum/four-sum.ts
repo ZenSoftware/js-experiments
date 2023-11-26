@@ -9,5 +9,17 @@
  * -109 <= target <= 109
  */
 export function fourSum(nums: number[], target: number): number[][] {
-  return [];
+  const results: number[][] = [];
+  let lp1 = 0;
+  let lp2 = 1;
+  let rp2 = nums.length - 2;
+  let rp1 = nums.length - 1;
+
+  const sum = nums[lp1] + nums[lp2] + nums[rp2] + nums[rp1];
+  const quaduplet = [nums[lp1], nums[lp2], nums[rp2], nums[rp1]];
+  if (sum === target) {
+    results.push(quaduplet);
+  }
+
+  return results;
 }
