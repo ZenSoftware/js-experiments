@@ -6,6 +6,15 @@
  * -105 <= nums[i] <= 105
  */
 
+/**
+ * Two-pointer approach
+ *
+ * Time complexity: O(n^2)
+ * There is an outter for loop, with an inner while loop
+ *
+ * Space complexity: O(1)
+ * This is because it can find the target value in the original sorted array
+ */
 export function threeSum(nums: number[]): number[][] {
   nums.sort((a, b) => a - b);
   const results: number[][] = [];
