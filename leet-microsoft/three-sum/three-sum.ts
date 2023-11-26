@@ -6,19 +6,43 @@
  * -105 <= nums[i] <= 105
  */
 export function threeSum(nums: number[]): number[][] {
-  const result: number[][] = [];
+  const results: number[][] = [];
 
   for (let i = 0; i < nums.length - 2; i++) {
     for (let j = i + 1; j < nums.length - 1; j++) {
       for (let k = j + 1; k < nums.length; k++) {
         if (nums[i] + nums[j] + nums[k] === 0) {
-          result.push([nums[i], nums[j], nums[k]]);
+          const tripplet = [nums[i], nums[j], nums[k]];
+          if (!containsDuplicate(results, tripplet)) results.push(tripplet);
         }
       }
     }
   }
 
-  return result;
+  return results;
 }
 
-console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+function containsDuplicate(results: number[][], input: number[]): boolean {
+  for (let r of results) {
+    const evaluate = [...r];
+    for (let i = 0; i < 3; i++) {
+      const foundNumber = evaluate.findIndex(n => n === input[i]);
+      if (foundNumber !== -1) evaluate.splice(foundNumber, 1);
+    }
+    if (evaluate.length === 0) return true;
+  }
+
+  return false;
+}
+
+// console.log(
+//   containsDuplicate(
+//     [
+//       [2, 0, -2],
+//       [-1, 0, 1],
+//     ],
+//     [0, 1, -1]
+//   )
+// );
+
+// console.log(threeSum([-1, 0, 1, 2, -1, -4]));
