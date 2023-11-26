@@ -7,24 +7,24 @@
  */
 
 export function threeSum(nums: number[]): number[][] {
-  const orderedNums = [...nums].sort((a, b) => a - b);
+  nums.sort((a, b) => a - b);
   const results: number[][] = [];
 
-  for (let fp = 0; fp < orderedNums.length - 2; fp++) {
+  for (let fp = 0; fp < nums.length - 2; fp++) {
     let lp = fp + 1;
     let rp = nums.length - 1;
 
     while (lp < rp) {
-      const sum = orderedNums[fp] + orderedNums[lp] + orderedNums[rp];
+      const sum = nums[fp] + nums[lp] + nums[rp];
 
       if (sum === 0) {
-        results.push([orderedNums[fp], orderedNums[lp], orderedNums[rp]]);
+        results.push([nums[fp], nums[lp], nums[rp]]);
 
-        while (orderedNums[lp] === orderedNums[lp + 1]) {
+        while (nums[lp] === nums[lp + 1]) {
           lp++;
         }
 
-        while (orderedNums[rp] === orderedNums[rp - 1]) {
+        while (nums[rp] === nums[rp - 1]) {
           rp--;
         }
 
@@ -37,7 +37,7 @@ export function threeSum(nums: number[]): number[][] {
       }
     }
 
-    while (orderedNums[fp] === orderedNums[fp + 1]) {
+    while (nums[fp] === nums[fp + 1]) {
       fp++;
     }
   }
