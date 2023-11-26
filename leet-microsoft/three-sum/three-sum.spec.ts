@@ -8,5 +8,6 @@ describe('3Sum', () => {
     ]);
     expect(threeSum([0, 1, 1])).toEqual([]);
     expect(threeSum([0, 0, 0])).toEqual([[0, 0, 0]]);
+    expect(threeSum([0, 0, 0, 0])).toEqual([[0, 0, 0]]);
   });
 });
