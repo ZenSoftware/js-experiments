@@ -6,10 +6,19 @@
  * digits[i] is a digit in the range ['2', '9'].
  */
 export function letterCombinations(digits: string): string[] {
-  const results: string[] = [];
+  if (digits.length === 0) return [];
 
-  for (let i = 0; i < digits.length; i++) {
+  let results: string[] = [...PHONE_DIGIT_LETTERS[digits.charAt(0)]];
+
+  for (let i = 1; i < digits.length; i++) {
     const letters = PHONE_DIGIT_LETTERS[digits.charAt(i)];
+
+    let additions: string[] = [];
+    for (const letter of letters) {
+      additions.push(...results.map(x => x + letter));
+    }
+
+    results = additions;
   }
 
   return results;
@@ -24,4 +33,4 @@ const PHONE_DIGIT_LETTERS = {
   7: ['p', 'q', 'r', 's'],
   8: ['t', 'u', 'v'],
   9: ['w', 'x', 'y', 'z'],
-};
+} as const;

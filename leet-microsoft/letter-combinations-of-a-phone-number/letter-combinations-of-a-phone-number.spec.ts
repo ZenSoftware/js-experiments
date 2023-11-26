@@ -2,7 +2,7 @@ import { letterCombinations } from './letter-combinations-of-a-phone-number';
 
 describe('Letter Combinations of a Phone Number', () => {
   it('evaluates correctly', () => {
-    expect(letterCombinations('23')).toEqual([
+    expect(letterCombinations('23').sort()).toEqual([
       'ad',
       'ae',
       'af',
