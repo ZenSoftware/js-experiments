@@ -7,7 +7,7 @@
  */
 
 export function threeSum(nums: number[]): number[][] {
-  const orderedNums = nums.sort((a, b) => a - b);
+  const orderedNums = [...nums].sort((a, b) => a - b);
   const results: number[][] = [];
 
   for (let fp = 0; fp < orderedNums.length - 2; fp++) {
@@ -16,9 +16,9 @@ export function threeSum(nums: number[]): number[][] {
 
     while (lp < rp) {
       const sum = orderedNums[fp] + orderedNums[lp] + orderedNums[rp];
-      const tripplet = [orderedNums[fp], orderedNums[lp], orderedNums[rp]];
+
       if (sum === 0) {
-        results.push(tripplet);
+        results.push([orderedNums[fp], orderedNums[lp], orderedNums[rp]]);
 
         while (orderedNums[lp] === orderedNums[lp + 1]) {
           lp++;
