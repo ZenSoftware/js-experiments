@@ -10,5 +10,16 @@
 export function threeSumClosest(nums: number[], target: number): number {
   let best = nums[0] + nums[1] + nums[2];
 
+  for (let i = 0; i < nums.length - 2; i++) {
+    for (let j = i + 1; j < nums.length - 1; j++) {
+      for (let k = j + 1; k < nums.length; k++) {
+        const sum = nums[i] + nums[j] + nums[k];
+        const targetDif = Math.abs(target - sum);
+        const bestDif = Math.abs(target - best);
+        if (targetDif < bestDif) best = sum;
+      }
+    }
+  }
+
   return best;
 }
