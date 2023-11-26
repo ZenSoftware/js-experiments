@@ -34,15 +34,3 @@ function containsDuplicate(results: number[][], input: number[]): boolean {
 
   return false;
 }
-
-// console.log(
-//   containsDuplicate(
-//     [
-//       [2, 0, -2],
-//       [-1, 0, 1],
-//     ],
-//     [0, 1, -1]
-//   )
-// );
-
-// console.log(threeSum([-1, 0, 1, 2, -1, -4]));
