@@ -10,7 +10,30 @@
  * 1 <= target <= 40
  */
 export function combinationSum(candidates: number[], target: number): number[][] {
-  const ans = [];
+  const result: number[][] = [];
 
-  return ans;
+  function dfs(index: number, sum: number, path: number[]) {
+    if (sum === target) {
+      result.push([...path]);
+      return;
+    }
+
+    // if sum is greater than target
+    // or index is eqaul to length of nums
+    // then we know that the path we are going in is wrong, so stop
+    if (sum > target || index === candidates.length) return;
+
+    // retake current element
+    sum = sum + candidates[index];
+    path.push(candidates[index]);
+    dfs(index, sum, path);
+
+    // exclude current element
+    path.pop();
+    sum = sum - candidates[index];
+    dfs(index + 1, sum, path);
+  }
+
+  dfs(0, 0, []);
+  return result;
 }
