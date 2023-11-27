@@ -19,3 +19,31 @@ class ListNode {
 export function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
   return null;
 }
+
+function toList(nums: number[]): ListNode | null {
+  if (nums === null || nums.length === 0) return null;
+  if (nums.length === 1) new ListNode(nums[0]);
+
+  let pointer = new ListNode(nums[nums.length - 1]);
+
+  for (let i = nums.length - 2; i >= 0; i--) {
+    const node = new ListNode(nums[i]);
+    node.next = pointer;
+    pointer = node;
+  }
+
+  return pointer;
+}
+
+function toArray(head: ListNode | null) {
+  if (head === null) return [];
+
+  let pointer: any = head;
+  const results: number[] = [];
+  do {
+    results.push(pointer.val);
+    pointer = pointer.next;
+  } while (pointer !== null);
+
+  return results;
+}
