@@ -19,10 +19,6 @@ export class ListNode {
 export function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
   if (head === null) return null;
   if (head.next === null) return null;
-  // if (head.next.next === null) {
-  //   head.next = null;
-  //   return head;
-  // }
 
   let trailingPointer: any = head;
   let lastPointer: any = head;
@@ -39,12 +35,12 @@ export function removeNthFromEnd(head: ListNode | null, n: number): ListNode | n
     lastPointer = lastPointer.next;
   }
 
-  trailingPointer.next = lastPointer;
+  trailingPointer.next = trailingPointer.next.next;
 
   return head;
 }
 
-function toList(vals: number[]) {
+export function toList(vals: number[]) {
   if (vals.length === 0) return null;
   else if (vals.length === 1) return new ListNode(vals[0]);
 
@@ -59,7 +55,7 @@ function toList(vals: number[]) {
   return pointer;
 }
 
-function printList(head: ListNode | null) {
+export function toArray(head: ListNode | null) {
   if (head === null) return [];
 
   const result: number[] = [];
@@ -72,6 +68,3 @@ function printList(head: ListNode | null) {
 
   return result;
 }
-
-const sample = toList([1, 2]);
-console.log(removeNthFromEnd(sample, 1));
