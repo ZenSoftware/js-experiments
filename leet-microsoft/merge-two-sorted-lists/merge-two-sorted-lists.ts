@@ -20,12 +20,33 @@ export function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): L
   if (list1 === null) return list2;
   if (list2 === null) return list1;
 
-  let pointer1 = list1;
-  let pointer2 = list2;
+  let p1: ListNode | null = list1;
+  let p2: ListNode | null = list2;
 
-  while (pointer1 !== null && pointer2 !== null) {}
+  let head: ListNode;
+  if (p1.val <= p2.val) head = p1;
+  else head = p2;
 
-  return null;
+  let previous = head;
+  while (p1 !== null && p2 !== null) {
+    if (p1.val <= p2.val) {
+      if (p1.next === null) {
+        p1.next = p2;
+        break;
+      }
+
+      previous = p1;
+      p1 = p1.next;
+    } else {
+      const tempP2Next = p2.next;
+      p2.next = p1;
+      previous.next = p2;
+      previous = p2;
+      p2 = tempP2Next;
+    }
+  }
+
+  return head;
 }
 
 export function toList(nums: number[]): ListNode | null {
