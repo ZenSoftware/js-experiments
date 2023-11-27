@@ -10,7 +10,42 @@
  * 1 <= target <= 40
  */
 export function combinationSum(candidates: number[], target: number): number[][] {
-  const ans = [];
+  const ans: number[][] = [];
+
+  function backtrack(curSum: number[]) {
+    const sum = curSum.reduce((prev, cur) => prev + cur, 0);
+
+    if (sum === target) {
+      if (!exists(ans, curSum)) ans.push(curSum);
+      return;
+    } else if (sum > target) {
+      return;
+    }
+
+    for (let candidate of candidates) {
+      backtrack([...curSum, candidate]);
+    }
+  }
+
+  backtrack([]);
 
   return ans;
+}
+
+function exists(ans: number[][], sum: number[]) {
+  sum.sort((a, b) => a - b);
+  for (const a of ans) {
+    if (arraysEqual(a, sum)) return true;
+  }
+  return false;
+}
+
+function arraysEqual(a: number[], b: number[]) {
+  if (a.length === b.length) {
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) return false;
+    }
+  } else return false;
+
+  return true;
 }
