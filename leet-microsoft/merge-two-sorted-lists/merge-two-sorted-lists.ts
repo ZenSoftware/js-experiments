@@ -17,6 +17,14 @@ class ListNode {
 }
 
 export function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
+  if (list1 === null) return list2;
+  if (list2 === null) return list1;
+
+  let pointer1 = list1;
+  let pointer2 = list2;
+
+  while (pointer1 !== null && pointer2 !== null) {}
+
   return null;
 }
 
