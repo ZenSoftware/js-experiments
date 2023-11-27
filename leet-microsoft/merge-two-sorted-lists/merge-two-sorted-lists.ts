@@ -20,7 +20,7 @@ export function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): L
   return null;
 }
 
-function toList(nums: number[]): ListNode | null {
+export function toList(nums: number[]): ListNode | null {
   if (nums === null || nums.length === 0) return null;
   if (nums.length === 1) new ListNode(nums[0]);
 
@@ -35,7 +35,7 @@ function toList(nums: number[]): ListNode | null {
   return pointer;
 }
 
-function toArray(head: ListNode | null) {
+export function toArray(head: ListNode | null) {
   if (head === null) return [];
 
   let pointer: any = head;
