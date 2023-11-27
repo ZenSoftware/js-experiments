@@ -5,5 +5,6 @@ describe('Valid Parentheses', () => {
     expect(isValid('()')).toEqual(true);
     expect(isValid('()[]{}')).toEqual(true);
     expect(isValid('(]')).toEqual(false);
+    expect(isValid('[')).toEqual(false);
   });
 });

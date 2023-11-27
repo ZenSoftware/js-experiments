@@ -8,5 +8,18 @@
  * s consists of parentheses only '()[]{}'.
  */
 export function isValid(s: string): boolean {
-  return false;
+  const memo: string[] = [];
+  for (let i = 0; i < s.length; i++) {
+    const char = s.charAt(i);
+    if (char === '(' || char === '[' || char === '{') {
+      memo.push(char);
+    } else if (char === ')') {
+      if (memo.pop() !== '(') return false;
+    } else if (char === ']') {
+      if (memo.pop() !== '[') return false;
+    } else if (char === '}') {
+      if (memo.pop() !== '{') return false;
+    }
+  }
+  return memo.length === 0;
 }
