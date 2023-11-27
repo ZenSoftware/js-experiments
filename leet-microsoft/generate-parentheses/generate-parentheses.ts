@@ -9,13 +9,12 @@ export function generateParenthesis(n: number): string[] {
   return ans;
 }
 
-function backtrack(ans: string[], cur: string, open: number, close: number, max: number) {
+function backtrack(answer: string[], current: string, open: number, close: number, max: number) {
   if (close === max) {
-    ans.push(cur);
+    answer.push(current);
     return;
   }
 
-  if (open < max) backtrack(ans, cur + '(', open + 1, close, max);
-
-  if (close < open) backtrack(ans, cur + ')', open, close + 1, max);
+  if (open < max) backtrack(answer, current + '(', open + 1, close, max);
+  if (close < open) backtrack(answer, current + ')', open, close + 1, max);
 }
