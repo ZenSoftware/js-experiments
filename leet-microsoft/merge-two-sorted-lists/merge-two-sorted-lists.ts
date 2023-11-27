@@ -16,38 +16,18 @@ class ListNode {
   }
 }
 
-export function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
-  if (list1 === null) return list2;
-  if (list2 === null) return list1;
-
-  let p1: ListNode | null = list1;
-  let p2: ListNode | null = list2;
-
-  let head: ListNode;
-  if (p1.val <= p2.val) head = p1;
-  else head = p2;
-
-  let previous = head;
-  while (p1 !== null && p2 !== null) {
-    if (p1.val <= p2.val) {
-      if (p1.next === null) {
-        p1.next = p2;
-        break;
-      }
-
-      previous = p1;
-      p1 = p1.next;
-    } else {
-      const tempP2Next = p2.next;
-      p2.next = p1;
-      previous.next = p2;
-      previous = p2;
-      p2 = tempP2Next;
-    }
+// https://leetcode.com/problems/merge-two-sorted-lists/solutions/2705782/js-recursion-with-exlanation/
+export var mergeTwoLists = function (l1, l2) {
+  if (!l1) return l2;
+  else if (!l2) return l1;
+  else if (l1.val <= l2.val) {
+    l1.next = mergeTwoLists(l1.next, l2);
+    return l1;
+  } else {
+    l2.next = mergeTwoLists(l1, l2.next);
+    return l2;
   }
-
-  return head;
-}
+};
 
 export function toList(nums: number[]): ListNode | null {
   if (nums === null || nums.length === 0) return null;
