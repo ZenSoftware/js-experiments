@@ -58,6 +58,7 @@ export function dfs<T>(
     if (v.right) depthFirstSearch(v.right);
     if (order === 'postorder') fn(v);
   }
+
   depthFirstSearch(root);
 }
 
