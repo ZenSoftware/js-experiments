@@ -1,4 +1,4 @@
-class Vertex<T> {
+export class Vertex<T> {
   constructor(public value: T, public left?: Vertex<T>, public right?: Vertex<T>) {}
 }
 
