@@ -37,31 +37,44 @@ export function bfs<T>(root: Vertex<T> | undefined) {
   return result;
 }
 
+/**
+ *
+ * @param root The root of the tree
+ * @param fn The function to operate over a vertex upon visiting
+ * @param order The order of the depth first search
+ * @returns void
+ */
 export function dfs<T>(
   root: Vertex<T> | undefined,
+  fn: (v: Vertex<T>) => void,
   order: 'preorder' | 'inorder' | 'postorder' = 'preorder'
 ) {
-  if (!root) return [];
-  const result: T[] = [];
+  if (!root) return;
+
   function depthFirstSearch(v: Vertex<T>) {
-    if (order === 'preorder') result.push(v.value);
+    if (order === 'preorder') fn(v);
     if (v.left) depthFirstSearch(v.left);
-    if (order === 'inorder') result.push(v.value);
+    if (order === 'inorder') fn(v);
     if (v.right) depthFirstSearch(v.right);
-    if (order === 'postorder') result.push(v.value);
+    if (order === 'postorder') fn(v);
   }
   depthFirstSearch(root);
-  return result;
 }
 
-console.log(bfs(a));
+console.log('bfs', bfs(a));
 // a b c d e f
 
-console.log(dfs(a, 'preorder'));
+let result: string[] = [];
+dfs(a, v => result.push(v.value), 'preorder');
+console.log('dfs preorder', result);
 // a b d e c f
 
-console.log(dfs(a, 'inorder'));
+result = [];
+dfs(a, v => result.push(v.value), 'inorder');
+console.log('dfs inorder', result);
 // d b e a c f
 
-console.log(dfs(a, 'postorder'));
+result = [];
+dfs(a, v => result.push(v.value), 'postorder');
+console.log('dfs postorder', result);
 // d e b f c a
