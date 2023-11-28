@@ -21,23 +21,38 @@ class ListNode {
 export function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   if (lists.length === 0) return null;
 
-  let remaining = lists.filter(x => x !== null);
+  const filteredList = lists.filter(x => x !== null) as ListNode[];
+  const hash = new Map(filteredList.map(val => [val, null]));
 
   let head: ListNode | null = null;
   let smallest = new ListNode(Infinity);
 
-  for (let hp of remaining) {
+  for (let hp of hash.keys()) {
     if (hp && hp.val < smallest.val) {
       smallest = hp;
     }
   }
 
   if (smallest.val === Infinity) return null;
+  hash.delete(smallest);
+  if (smallest.next) hash.set(smallest.next, null);
+  head = smallest;
+  let pointer = head;
 
-  remaining.splice(remaining.indexOf(smallest), 1);
-  if (smallest.next) remaining.push(smallest.next);
+  while (hash.size > 0) {
+    smallest = new ListNode(Infinity);
+    for (let hp of hash.keys()) {
+      if (hp.val < smallest.val) {
+        smallest = hp;
+      }
+    }
 
-  while (remaining.length > 0) {}
+    pointer.next = smallest;
+    pointer = smallest;
+
+    hash.delete(smallest);
+    if (smallest.next) hash.set(smallest.next, null);
+  }
 
   return head;
 }
