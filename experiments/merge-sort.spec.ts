@@ -1,4 +1,4 @@
-import { mergeSort } from './divide-conquer-merge-sort';
+import { mergeSort } from './merge-sort';
 
 describe('Merge Sort', () => {
   it('evaluates correctly', () => {
