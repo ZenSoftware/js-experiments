@@ -21,3 +21,25 @@ class ListNode {
 export function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   return null;
 }
+
+function arrayToList(nums: number[]) {
+  if (!nums || nums.length === 0) return null;
+  let pointer = new ListNode(nums[nums.length - 1]);
+  for (let i = nums.length - 2; i >= 0; i--) {
+    let node = new ListNode(nums[i]);
+    node.next = pointer;
+    pointer = node;
+  }
+  return pointer;
+}
+
+function listToArray(head: ListNode | null) {
+  if (!head) return [];
+  const result: number[] = [];
+  let pointer: ListNode | null = head;
+  do {
+    result.push(pointer.val);
+    pointer = pointer.next;
+  } while (pointer !== null);
+  return result;
+}
