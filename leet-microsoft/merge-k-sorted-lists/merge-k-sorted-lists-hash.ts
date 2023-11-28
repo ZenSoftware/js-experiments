@@ -19,7 +19,42 @@ class ListNode {
 }
 
 export function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
-  return null;
+  if (lists.length === 0) return null;
+
+  const filteredList = lists.filter(x => x !== null) as ListNode[];
+  const hash = new Map(filteredList.map(val => [val, null]));
+
+  let head: ListNode | null = null;
+  let smallest = new ListNode(Infinity);
+
+  for (let hp of hash.keys()) {
+    if (hp && hp.val < smallest.val) {
+      smallest = hp;
+    }
+  }
+
+  if (smallest.val === Infinity) return null;
+  hash.delete(smallest);
+  if (smallest.next) hash.set(smallest.next, null);
+  head = smallest;
+  let pointer = head;
+
+  while (hash.size > 0) {
+    smallest = new ListNode(Infinity);
+    for (let hp of hash.keys()) {
+      if (hp.val < smallest.val) {
+        smallest = hp;
+      }
+    }
+
+    pointer.next = smallest;
+    pointer = smallest;
+
+    hash.delete(smallest);
+    if (smallest.next) hash.set(smallest.next, null);
+  }
+
+  return head;
 }
 
 export function arrayToList(nums: number[]) {
