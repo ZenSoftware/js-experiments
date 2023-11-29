@@ -9,6 +9,50 @@
  * 1 <= words[i].length <= 30
  * s and words[i] consist of lowercase English letters.
  */
-export function findSubstring(s: string, words: string[]): number[] {
-  return [];
+export function findSubstring(s: string, words: string[]) {
+  const results: number[] = [];
+
+  for (let word of permutations(words)) {
+    for (let i = 0; i < s.length - word.length + 1; i++) {
+      const sub = s.substring(i, i + word.length);
+      if (word === sub) {
+        results.push(i);
+      }
+    }
+  }
+
+  results.sort((a, b) => a - b);
+  return [...new Set(results)];
 }
+
+export function permutations(words: string[]): string[] {
+  function perms(options: string[]) {
+    if (options.length === 0) return [[]];
+
+    const firstEl = options[0];
+    const rest = options.slice(1);
+    const permsWithoutFirst = perms(rest);
+    const allPerms: string[][] = [];
+    for (const permWithoutFirst of permsWithoutFirst) {
+      for (let i = 0; i <= permWithoutFirst.length; i++) {
+        const permWithFirst = [
+          ...permWithoutFirst.slice(0, i),
+          firstEl,
+          ...permWithoutFirst.slice(i),
+        ];
+        allPerms.push(permWithFirst);
+      }
+    }
+    return allPerms;
+  }
+
+  return perms(words).map(x => {
+    let concatenated = '';
+    for (let w of x) {
+      concatenated += w;
+    }
+    return concatenated;
+  });
+}
+
+console.log(findSubstring('barfoothefoobarman', ['foo', 'bar']));
