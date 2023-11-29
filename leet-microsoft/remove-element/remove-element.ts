@@ -9,18 +9,24 @@
  * 0 <= val <= 100
  */
 export function removeElement(nums: number[], val: number): number {
-  let lp = 0;
-  let rp = nums.length - 1;
-  while (lp < rp) {
-    const left = nums[lp];
-    if (left === val) {
-      while (nums[rp] === val) {
-        rp--;
-      }
+  let startP = 0;
+  let endP = nums.length - 1;
+  let k = nums.length;
 
-      const temp = left;
+  while (startP <= endP) {
+    if (nums[startP] === val) {
+      if (nums[endP] === val) {
+        endP--;
+        k--;
+        continue;
+      } else {
+        nums[startP] = nums[endP];
+        endP--;
+        k--;
+      }
     }
+    startP++;
   }
 
-  return 0;
+  return k;
 }
