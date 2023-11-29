@@ -9,5 +9,8 @@
  * nums is sorted in non-decreasing order
  */
 export function removeDuplicates(nums: number[]): number {
-  return 0;
+  let temp = [...new Set(nums)];
+  nums.length = 0;
+  nums.push(...temp);
+  return nums.length;
 }
