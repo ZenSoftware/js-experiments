@@ -15,12 +15,15 @@ export function removeElement(nums: number[], val: number): number {
     const left = nums[lp];
     if (left === val) {
       while (nums[rp] === val) {
-        rp--;
+        --rp;
       }
 
-      const temp = left;
+      nums[lp] = nums[rp];
+      nums[rp] = left;
+      --rp;
     }
+    ++lp;
   }
 
-  return 0;
+  return lp + 1;
 }
