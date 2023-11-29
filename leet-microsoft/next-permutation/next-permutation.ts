@@ -11,4 +11,47 @@
  * 1 <= nums.length <= 100
  * 0 <= nums[i] <= 100
  */
-export function nextPermutation(nums: number[]): void {}
+export function nextPermutation(nums: number[]): void {
+  swapAt(nums, 0, 1);
+}
+
+function swapAt(nums: number[], start: number, end: number) {
+  const temp = nums[start];
+  nums[start] = nums[end];
+  nums[end] = temp;
+  return nums;
+}
+
+function lexMax(nums: number[]) {
+  return lexSort(nums, 'desc')[0];
+}
+
+function lexSort(nums: number[], order: 'asc' | 'desc' = 'asc') {
+  if (order === 'desc') {
+    return nums.sort((a, b) => {
+      const as = a.toString();
+      const bs = b.toString();
+      if (as === bs) return 0;
+      return as < bs ? 1 : -1;
+    });
+  } else {
+    return nums.sort((a, b) => {
+      const as = a.toString();
+      const bs = b.toString();
+      if (as === bs) return 0;
+      return as > bs ? 1 : -1;
+    });
+  }
+}
+
+/**
+ * [1,2,3]
+ * [1,3,2]
+ * [2,1,3]
+ * [2,3,1]
+ * [3,1,2]
+ * [3,2,1]
+ */
+console.log(swapAt([1, 2, 3], 0, 1));
+console.log(lexSort([1, 2, 10]));
+console.log(lexMax([1, 2, 10]));
