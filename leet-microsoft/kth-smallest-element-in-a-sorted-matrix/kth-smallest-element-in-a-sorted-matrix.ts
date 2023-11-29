@@ -11,3 +11,10 @@
 export function kthSmallest(matrix: number[][], k: number): number {
   return 0;
 }
+
+const matrix1 = [
+  [1, 5, 9],
+  [10, 11, 13],
+  [12, 13, 15],
+];
+console.log(kthSmallest(matrix1, 8));
