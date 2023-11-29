@@ -8,5 +8,42 @@
  * divisor != 0
  */
 export function divide(dividend: number, divisor: number): number {
-  return 0;
+  let result = 0;
+
+  if (dividend > 0 && divisor > 0) {
+    let accum = 0;
+    while (accum < dividend) {
+      accum += divisor;
+      if (accum > dividend) return result;
+      result++;
+    }
+  } else if (dividend < 0 && divisor < 0) {
+    let accum = 0;
+    while (accum > dividend) {
+      accum += divisor;
+      if (accum < dividend) return result;
+      result++;
+    }
+  } else if (dividend > 0 && divisor < 0) {
+    let accum = dividend;
+    while (accum > 0) {
+      accum += divisor;
+      if (accum < 0) return result;
+      result--;
+    }
+  } else {
+    let accum = dividend;
+    while (accum < 0) {
+      accum += divisor;
+      if (accum > 0) return result;
+      result--;
+    }
+  }
+
+  const MIN = Math.pow(-2, 31);
+  const MAX = Math.pow(2, 31) - 1;
+  if (result > MAX) return MAX;
+  else if (result < MIN) return MIN;
+
+  return result;
 }
