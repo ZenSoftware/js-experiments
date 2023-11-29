@@ -14,7 +14,17 @@ class ListNode {
 }
 
 export function swapPairs(head: ListNode | null): ListNode | null {
-  return null;
+  if (!head?.next) return head;
+
+  const first = head;
+  const second = head.next;
+
+  const remaining = swapPairs(second.next);
+
+  first.next = remaining;
+  second.next = first;
+
+  return second;
 }
 
 export function arrayToList(nums: number[]) {
