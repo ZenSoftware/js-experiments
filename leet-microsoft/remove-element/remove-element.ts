@@ -11,18 +11,18 @@
 export function removeElement(nums: number[], val: number): number {
   let lp = 0;
   let rp = nums.length - 1;
+
   while (lp < rp) {
-    const left = nums[lp];
-    if (left === val) {
+    if (nums[lp] === val) {
       while (nums[rp] === val) {
-        --rp;
+        rp--;
       }
 
       nums[lp] = nums[rp];
-      nums[rp] = left;
-      --rp;
+      nums[rp] = -1;
+      rp--;
     }
-    ++lp;
+    lp++;
   }
 
   return lp + 1;
