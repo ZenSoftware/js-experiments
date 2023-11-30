@@ -27,7 +27,7 @@ export function combinationSum2(candidates: number[], target: number): number[][
     dfs(cur, idx + 1, sum + candidates[idx]);
     cur.pop();
 
-    while (idx <= candidates.length && candidates[idx] === candidates[idx + 1]) {
+    while (idx < candidates.length && candidates[idx] === candidates[idx + 1]) {
       idx++;
     }
     dfs(cur, idx + 1, sum);
