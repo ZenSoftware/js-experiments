@@ -10,11 +10,11 @@
 
 // Solution: https://leetcode.com/problems/combination-sum-ii/solutions/2922413/easy-to-understand-solution-beats-80-typescript/
 export function combinationSum2(candidates: number[], target: number): number[][] {
-  candidates = candidates.sort((a, b) => a - b);
-  const result: any[] = [];
+  candidates.sort((a, b) => a - b);
+  const result: number[][] = [];
 
   function dfs(cur: number[], idx: number, sum: number) {
-    if (sum === target) {
+    if (target === sum) {
       result.push([...cur]);
       return;
     }
@@ -27,7 +27,7 @@ export function combinationSum2(candidates: number[], target: number): number[][
     dfs(cur, idx + 1, sum + candidates[idx]);
     cur.pop();
 
-    while (idx < candidates.length && candidates[idx] === candidates[idx + 1]) {
+    while (idx <= candidates.length && candidates[idx] === candidates[idx + 1]) {
       idx++;
     }
     dfs(cur, idx + 1, sum);
