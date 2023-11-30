@@ -11,35 +11,31 @@
  * -104 <= target <= 104
  */
 
-// better solution: https://leetcode.com/problems/search-in-rotated-sorted-array/solutions/3881504/typescript-javascript-explanation-with-detailed-comments-binary-search/
+// Solution: https://leetcode.com/problems/search-in-rotated-sorted-array/solutions/3881504/typescript-javascript-explanation-with-detailed-comments-binary-search/
 
 export function search(nums: number[], target: number): number {
-  const pivot = findPivot(nums);
-  const firstStart = 0;
-  const firstEnd = pivot;
+  let left = 0;
+  let right = nums.length - 1;
 
-  if (nums[firstStart] <= target && target <= nums[firstEnd]) {
-    return binarySearch(nums, target, firstStart, firstEnd);
-  } else {
-    const secondStart = pivot + 1;
-    const secondEnd = nums.length - 1;
-    return binarySearch(nums, target, secondStart, secondEnd);
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+
+    if (nums[mid] === target) return mid;
+
+    if (nums[left] <= nums[mid]) {
+      if (nums[left] <= target && target < nums[mid]) {
+        right = mid - 1;
+      } else {
+        left = mid + 1;
+      }
+    } else {
+      if (nums[mid] < target && target <= nums[right]) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
   }
-}
 
-function findPivot(nums: number[]) {
-  for (let i = 1; i < nums.length; i++) {
-    if (nums[i] < nums[i - 1]) return i - 1;
-  }
-  return 0;
-}
-
-function binarySearch(nums: number[], target: number, start: number, end: number): number {
-  if (start > end) return -1;
-
-  const half = Math.floor((start + end) / 2);
-  if (target === nums[half]) return half;
-
-  if (target < nums[half]) return binarySearch(nums, target, start, half - 1);
-  else return binarySearch(nums, target, half + 1, end);
+  return -1;
 }
