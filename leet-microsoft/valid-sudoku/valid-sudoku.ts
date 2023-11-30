@@ -11,5 +11,55 @@
  * board[i][j] is a digit 1-9 or '.'
  */
 export function isValidSudoku(board: string[][]): boolean {
-  return false;
+  let rowMemo: Record<string, true> = {};
+  let colMemo: Record<string, true> = {};
+
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      const rowVal = board[i][j];
+      if (rowVal !== '.') {
+        if (rowMemo[rowVal]) return false;
+        else rowMemo[rowVal] = true;
+      }
+
+      const colVal = board[j][i];
+      if (colVal !== '.') {
+        if (colMemo[colVal]) return false;
+        else colMemo[colVal] = true;
+      }
+    }
+
+    rowMemo = {};
+    colMemo = {};
+  }
+
+  for (let i = 0; i <= 6; i += 3) {
+    for (let j = 0; j <= 6; j += 3) {
+      if (!validateGrid(board, i, j)) return false;
+    }
+  }
+
+  return true;
+}
+
+function validateGrid(board: string[][], rowIndex: number, colIndex: number) {
+  let rowMemo: Record<string, true> = {};
+  let colMemo: Record<string, true> = {};
+
+  for (let i = rowIndex; i < rowIndex + 3; i++) {
+    for (let j = colIndex; j < colIndex + 3; j++) {
+      const rowVal = board[i][j];
+      if (rowVal !== '.') {
+        if (rowMemo[rowVal]) return false;
+        else rowMemo[rowVal] = true;
+      }
+
+      const colVal = board[j][i];
+      if (colVal !== '.') {
+        if (colMemo[colVal]) return false;
+        else colMemo[colVal] = true;
+      }
+    }
+  }
+  return true;
 }
