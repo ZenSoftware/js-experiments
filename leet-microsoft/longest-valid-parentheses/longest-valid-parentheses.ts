@@ -26,5 +26,3 @@ export function isValid(s: string) {
   }
   return memo.length === 0;
 }
-
-console.log(isValid('((()))'));
