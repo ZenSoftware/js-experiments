@@ -8,5 +8,41 @@
  * 1 <= target <= 30
  */
 export function combinationSum2(candidates: number[], target: number): number[][] {
-  return [];
+  const result: number[][] = [];
+  const combinations = getCombinations(candidates);
+
+  for (let comb of combinations) {
+    const sum = comb.reduce((accum, next) => accum + next, 0);
+    if (sum === target) result.push(comb);
+  }
+
+  result.forEach(r => r.sort((a, b) => a - b));
+  return deduplicate(result);
+}
+
+function deduplicate(result: number[][]) {
+  const hash: Record<string, number[]> = {};
+
+  for (let r of result) {
+    const key = r.reduce((accum, curr) => (accum += curr), '');
+    if (!hash[key]) hash[key] = r;
+  }
+
+  return Object.values(hash);
+}
+
+function getCombinations(entries: number[]): number[][] {
+  if (entries.length === 0) return [[]];
+
+  const firstEnt = entries[0];
+  const rest = entries.slice(1);
+  const combsWithoutFirst = getCombinations(rest);
+  const combsWithFirst: number[][] = [];
+
+  for (let comb of combsWithoutFirst) {
+    const withFirst = [firstEnt, ...comb];
+    combsWithFirst.push(withFirst);
+  }
+
+  return [...combsWithoutFirst, ...combsWithFirst];
 }
