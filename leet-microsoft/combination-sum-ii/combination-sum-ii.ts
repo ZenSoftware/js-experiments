@@ -7,42 +7,33 @@
  * 1 <= candidates[i] <= 50
  * 1 <= target <= 30
  */
+
+// Solution: https://leetcode.com/problems/combination-sum-ii/solutions/2922413/easy-to-understand-solution-beats-80-typescript/
 export function combinationSum2(candidates: number[], target: number): number[][] {
-  const result: number[][] = [];
-  const combinations = getCombinations(candidates);
+  candidates = candidates.sort((a, b) => a - b);
+  const result: any[] = [];
 
-  for (let comb of combinations) {
-    const sum = comb.reduce((accum, next) => accum + next, 0);
-    if (sum === target) result.push(comb);
+  function dfs(cur: number[], idx: number, sum: number) {
+    if (sum === target) {
+      result.push([...cur]);
+      return;
+    }
+
+    if (idx >= candidates.length || sum > target) {
+      return;
+    }
+
+    cur.push(candidates[idx]);
+    dfs(cur, idx + 1, sum + candidates[idx]);
+    cur.pop();
+
+    while (idx < candidates.length && candidates[idx] === candidates[idx + 1]) {
+      idx++;
+    }
+    dfs(cur, idx + 1, sum);
   }
 
-  result.forEach(r => r.sort((a, b) => a - b));
-  return deduplicate(result);
-}
+  dfs([], 0, 0);
 
-function deduplicate(result: number[][]) {
-  const hash: Record<string, number[]> = {};
-
-  for (let r of result) {
-    const key = r.reduce((accum, curr) => (accum += curr), '');
-    if (!hash[key]) hash[key] = r;
-  }
-
-  return Object.values(hash);
-}
-
-function getCombinations(entries: number[]): number[][] {
-  if (entries.length === 0) return [[]];
-
-  const firstEnt = entries[0];
-  const rest = entries.slice(1);
-  const combsWithoutFirst = getCombinations(rest);
-  const combsWithFirst: number[][] = [];
-
-  for (let comb of combsWithoutFirst) {
-    const withFirst = [firstEnt, ...comb];
-    combsWithFirst.push(withFirst);
-  }
-
-  return [...combsWithoutFirst, ...combsWithFirst];
+  return result;
 }
