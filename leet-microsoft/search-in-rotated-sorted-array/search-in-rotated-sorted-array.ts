@@ -11,5 +11,32 @@
  * -104 <= target <= 104
  */
 export function search(nums: number[], target: number): number {
+  const pivot = findPivot(nums);
+  const firstStart = 0;
+  const firstEnd = pivot;
+
+  if (nums[firstStart] <= target && target <= nums[firstEnd]) {
+    return binarySearch(nums, target, firstStart, firstEnd);
+  } else {
+    const secondStart = pivot + 1;
+    const secondEnd = nums.length - 1;
+    return binarySearch(nums, target, secondStart, secondEnd);
+  }
+}
+
+function findPivot(nums: number[]) {
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] < nums[i - 1]) return i - 1;
+  }
   return 0;
+}
+
+function binarySearch(nums: number[], target: number, start: number, end: number): number {
+  if (start > end) return -1;
+
+  const half = Math.floor((start + end) / 2);
+  if (target === nums[half]) return half;
+
+  if (target < nums[half]) return binarySearch(nums, target, start, half - 1);
+  else return binarySearch(nums, target, half + 1, end);
 }
