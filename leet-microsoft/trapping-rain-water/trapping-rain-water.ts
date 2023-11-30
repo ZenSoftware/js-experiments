@@ -6,5 +6,7 @@
  * 0 <= height[i] <= 105
  */
 export function trap(height: number[]): number {
+  for (let i = 1; i < height.length - 1; i++) {}
+
   return 0;
 }
