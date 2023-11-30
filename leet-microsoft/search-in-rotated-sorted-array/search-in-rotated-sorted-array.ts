@@ -10,6 +10,9 @@
  * nums is an ascending array that is possibly rotated.
  * -104 <= target <= 104
  */
+
+// better solution: https://leetcode.com/problems/search-in-rotated-sorted-array/solutions/3881504/typescript-javascript-explanation-with-detailed-comments-binary-search/
+
 export function search(nums: number[], target: number): number {
   const pivot = findPivot(nums);
   const firstStart = 0;
