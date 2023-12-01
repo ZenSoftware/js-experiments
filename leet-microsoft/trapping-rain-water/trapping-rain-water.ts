@@ -9,8 +9,8 @@ export function trap(height: number[]): number {
   let result = 0;
 
   for (let i = 1; i < height.length - 1; i++) {
-    const bounds = getBoundaries(height, i);
-    const lowestBound = Math.min(bounds.left, bounds.right);
+    const bounds = getBounds(height, i);
+    const lowestBound = Math.min(bounds.left!.height, bounds.right!.height);
     const filled = lowestBound - height[i];
     if (filled > 0) result += filled;
   }
@@ -18,23 +18,60 @@ export function trap(height: number[]): number {
   return result;
 }
 
-function getBoundaries(height: number[], index: number): { left: number; right: number } {
-  const result = {
-    left: 0,
-    right: 0,
+function getBounds(height: number[], index: number): Bounds {
+  let left = getBoundsLeft(height, index);
+  let right = getBoundsRight(height, index);
+  return { left, right };
+}
+
+function getBoundsLeft(height: number[], index: number): Terrain {
+  let result: Terrain = {
+    height: 0,
+    index: 0,
   };
 
   let left = index - 1;
   while (left >= 0) {
-    if (height[left] > result.left) result.left = height[left];
+    if (height[left] > result.height) {
+      result = {
+        height: height[left],
+        index: left,
+      };
+    }
+
     left--;
   }
 
+  return result;
+}
+
+function getBoundsRight(height: number[], index: number): Terrain {
+  let result: Terrain = {
+    height: 0,
+    index: height.length - 1,
+  };
+
   let right = index + 1;
   while (right < height.length) {
-    if (height[right] > result.right) result.right = height[right];
+    if (height[right] > result.height) {
+      result = {
+        height: height[right],
+        index: right,
+      };
+    }
+
     right++;
   }
 
   return result;
+}
+
+interface Terrain {
+  height: number;
+  index: number;
+}
+
+interface Bounds {
+  left?: Terrain;
+  right?: Terrain;
 }
