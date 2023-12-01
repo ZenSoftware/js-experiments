@@ -19,10 +19,20 @@
 <body>
 
   <div class="container">
-    <h1 class="text-center">Sample</h1>
+    <h1 class="text-center">Shadow DOM</h1>
+
+    <div id="host"></div>
+    <hr>
+    <span>After host</span>
+
+    <div class="mt-4">
+      <button id="upper" type="button" class="btn btn-primary">
+        Uppercase
+      </button>
+    </div>
   </div>
 
-  <script type="module" src="/sample/script.ts"></script>
+  <script type="module" src="/shadow-dom/script.ts"></script>
 </body>
 
 </html>

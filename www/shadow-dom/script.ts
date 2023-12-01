@@ -1,7 +1,11 @@
-import { fromEvent } from 'rxjs';
+const host = document.querySelector('#host') as HTMLDivElement;
+const shadow = host.attachShadow({ mode: 'open' });
+const sampleSpan = document.createElement('span');
+sampleSpan.innerHTML = 'sample span';
+shadow.appendChild(sampleSpan);
 
-const click$ = fromEvent<MouseEvent>(document, 'click');
-
-click$.subscribe(e => {
-  console.log(`Click: ${e.offsetX}, ${e.offsetY}`);
+const uppercaseButton = document.querySelector('#upper') as HTMLButtonElement;
+uppercaseButton.addEventListener('click', () => {
+  const allSpans = document.querySelectorAll('span');
+  allSpans.forEach(s => (s.innerText = s.innerText.toLocaleUpperCase()));
 });
