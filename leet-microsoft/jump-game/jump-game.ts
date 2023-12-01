@@ -5,6 +5,17 @@
  * 1 <= nums.length <= 104
  * 0 <= nums[i] <= 105
  */
+
+// Solution: https://leetcode.com/problems/jump-game/solutions/2531333/simple-ts-with-explanation/
+
 export function canJump(nums: number[]): boolean {
-  return false;
+  let left = nums[0];
+
+  for (let i = 1; i < nums.length; i++) {
+    if (left === 0) {
+      return false;
+    }
+    left = Math.max(left - 1, nums[i]);
+  }
+  return true;
 }
