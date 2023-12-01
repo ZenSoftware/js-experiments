@@ -17,12 +17,18 @@ export function trap(height: number[]): number {
   let result = 0;
 
   while (left < right) {
-    if (maxLeft <= maxRight) {
-      const val = maxLeft - height[left];
-
+    if (height[left] <= height[right]) {
+      const dif = maxLeft - height[left];
+      if (dif > 0) result += dif;
+      if (maxLeft < height[left]) maxLeft = height[left];
       left++;
     } else {
+      const dif = maxRight - height[right];
+      if (dif > 0) result += dif;
+      if (maxRight < height[right]) maxRight = height[right];
       right--;
     }
   }
+
+  return result;
 }
