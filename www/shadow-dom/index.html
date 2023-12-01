@@ -16,10 +16,23 @@
   <title>Zen</title>
 </head>
 
+<style>
+  span {
+    color: blue;
+  }
+</style>
 <body>
 
   <div class="container">
     <h1 class="text-center">Shadow DOM</h1>
+
+    <template id="style-template">
+      <style>
+        span {
+          color: red;
+        }
+      </style>
+    </template>
 
     <div id="host"></div>
     <hr>
@@ -28,6 +41,9 @@
     <div class="mt-4">
       <button id="upper" type="button" class="btn btn-primary">
         Uppercase
+      </button>
+      <button id="style-shadow" type="button" class="btn btn-primary">
+        Style Shadow Root
       </button>
     </div>
   </div>
