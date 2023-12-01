@@ -5,6 +5,9 @@
  * 1 <= n <= 2 * 104
  * 0 <= height[i] <= 105
  */
+
+// Better solution: https://leet-codes.blogspot.com/2022/09/42-trapping-rain-water-stack.html
+
 export function trap(height: number[]): number {
   let result = 0;
   const bounds = getBounds(height, 1);
