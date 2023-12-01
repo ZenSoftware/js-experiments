@@ -7,30 +7,22 @@
  */
 
 // Solution: https://leet-codes.blogspot.com/2022/09/42-trapping-rain-water-stack.html
+// Video solution: https://www.youtube.com/watch?v=ZI2z5pq0TqA&ab_channel=NeetCode
 
 export function trap(height: number[]): number {
+  let maxLeft = 0;
+  let maxRight = 0;
   let left = 0;
   let right = height.length - 1;
   let result = 0;
-  let leftMaxHeight = 0;
-  let rightMaxHeight = 0;
 
-  while (left <= right) {
-    if (height[left] < height[right]) {
-      if (height[left] > leftMaxHeight) {
-        leftMaxHeight = height[left];
-      } else {
-        result += leftMaxHeight - height[left];
-      }
+  while (left < right) {
+    if (maxLeft <= maxRight) {
+      const val = maxLeft - height[left];
+
       left++;
     } else {
-      if (height[right] > rightMaxHeight) {
-        rightMaxHeight = height[right];
-      } else {
-        result += rightMaxHeight - height[right];
-      }
       right--;
     }
   }
-  return result;
 }
