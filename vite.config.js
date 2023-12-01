@@ -12,6 +12,7 @@ export default defineConfig({
         immer: resolve(__dirname, 'www/immer/index.html'),
         main: resolve(__dirname, 'www/index.html'),
         sample: resolve(__dirname, 'www/sample/index.html'),
+        shadowDom: resolve(__dirname, 'www/shadow-dom/index.html'),
         webgl: resolve(__dirname, 'www/webgl/index.html'),
         webworkers: resolve(__dirname, 'www/webworkers/index.html'),
       },
