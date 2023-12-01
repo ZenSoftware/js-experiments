@@ -7,5 +7,7 @@ shadow.appendChild(sampleSpan);
 const uppercaseButton = document.querySelector('#upper') as HTMLButtonElement;
 uppercaseButton.addEventListener('click', () => {
   const allSpans = document.querySelectorAll('span');
-  allSpans.forEach(s => (s.innerText = s.innerText.toLocaleUpperCase()));
+  allSpans.forEach(s => {
+    s.innerText = s.innerText.toLocaleUpperCase();
+  });
 });
