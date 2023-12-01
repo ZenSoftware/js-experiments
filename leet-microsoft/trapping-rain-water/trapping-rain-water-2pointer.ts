@@ -11,7 +11,7 @@
 export function trap(height: number[]): number {
   let left = 0;
   let right = height.length - 1;
-  let trappedWater = 0;
+  let result = 0;
   let leftMaxHeight = 0;
   let rightMaxHeight = 0;
 
@@ -20,17 +20,17 @@ export function trap(height: number[]): number {
       if (height[left] > leftMaxHeight) {
         leftMaxHeight = height[left];
       } else {
-        trappedWater += leftMaxHeight - height[left];
+        result += leftMaxHeight - height[left];
       }
       left++;
     } else {
       if (height[right] > rightMaxHeight) {
         rightMaxHeight = height[right];
       } else {
-        trappedWater += rightMaxHeight - height[right];
+        result += rightMaxHeight - height[right];
       }
       right--;
     }
   }
-  return trappedWater;
+  return result;
 }
