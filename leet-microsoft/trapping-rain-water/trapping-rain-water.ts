@@ -6,7 +6,35 @@
  * 0 <= height[i] <= 105
  */
 export function trap(height: number[]): number {
-  for (let i = 1; i < height.length - 1; i++) {}
+  let result = 0;
 
-  return 0;
+  for (let i = 1; i < height.length - 1; i++) {
+    const bounds = getBoundaries(height, i);
+    const lowestBound = Math.min(bounds.left, bounds.right);
+    const filled = lowestBound - height[i];
+    if (filled > 0) result += filled;
+  }
+
+  return result;
+}
+
+function getBoundaries(height: number[], index: number): { left: number; right: number } {
+  const result = {
+    left: 0,
+    right: 0,
+  };
+
+  let left = index - 1;
+  while (left >= 0) {
+    if (height[left] > result.left) result.left = height[left];
+    left--;
+  }
+
+  let right = index + 1;
+  while (right < height.length) {
+    if (height[right] > result.right) result.right = height[right];
+    right++;
+  }
+
+  return result;
 }
