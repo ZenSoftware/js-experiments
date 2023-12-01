@@ -12,22 +12,22 @@ export function trap(height: number[]): number {
   let left = 0;
   let right = height.length - 1;
   let trappedWater = 0;
-  let leftMaxHegith = 0;
-  let rightMaxHegith = 0;
+  let leftMaxHeight = 0;
+  let rightMaxHeight = 0;
 
   while (left <= right) {
     if (height[left] < height[right]) {
-      if (height[left] > leftMaxHegith) {
-        leftMaxHegith = height[left];
+      if (height[left] > leftMaxHeight) {
+        leftMaxHeight = height[left];
       } else {
-        trappedWater += leftMaxHegith - height[left];
+        trappedWater += leftMaxHeight - height[left];
       }
       left++;
     } else {
-      if (height[right] > rightMaxHegith) {
-        rightMaxHegith = height[right];
+      if (height[right] > rightMaxHeight) {
+        rightMaxHeight = height[right];
       } else {
-        trappedWater += rightMaxHegith - height[right];
+        trappedWater += rightMaxHeight - height[right];
       }
       right--;
     }

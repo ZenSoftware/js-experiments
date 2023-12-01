@@ -11,7 +11,7 @@
 export function trap(height: number[]): number {
   let stack = new Stack<number>();
   let i = 0;
-  let ret = 0;
+  let result = 0;
   while (i < height.length) {
     if (stack.isEmpty() || height[i] <= height[stack.peek()]) {
       stack.push(i++);
@@ -19,11 +19,11 @@ export function trap(height: number[]): number {
       let middle = stack.pop() as number;
       if (!stack.isEmpty()) {
         let minHeight = Math.min(height[i], height[stack.peek()]);
-        ret += (minHeight - height[middle]) * (i - stack.peek() - 1);
+        result += (minHeight - height[middle]) * (i - stack.peek() - 1);
       }
     }
   }
-  return ret;
+  return result;
 }
 
 class Stack<T = any> {
