@@ -11,6 +11,8 @@ export default defineConfig({
         grid: resolve(__dirname, 'www/grid/index.html'),
         immer: resolve(__dirname, 'www/immer/index.html'),
         main: resolve(__dirname, 'www/index.html'),
+        postMessage: resolve(__dirname, 'www/post-message/index.html'),
+        postWindow: resolve(__dirname, 'www/post-message/post-window/index.html'),
         sample: resolve(__dirname, 'www/sample/index.html'),
         shadowDom: resolve(__dirname, 'www/shadow-dom/index.html'),
         webgl: resolve(__dirname, 'www/webgl/index.html'),
