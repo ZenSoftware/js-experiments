@@ -11,5 +11,5 @@ openButtonClicked.subscribe(() => {
 const postButton = document.querySelector('#post-button') as HTMLButtonElement;
 const postButtonClicked = fromEvent(postButton, 'click');
 postButtonClicked.subscribe(() => {
-  popup?.postMessage({ message: 'I love you Lily!' }, 'http://localhost:5173');
+  popup?.postMessage({ message: 'I love you Lily!' });
 });
