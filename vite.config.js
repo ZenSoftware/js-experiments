@@ -19,6 +19,7 @@ export default defineConfig({
         sample: resolve(__dirname, 'www/sample/index.html'),
         shadowDom: resolve(__dirname, 'www/shadow-dom/index.html'),
         webgl: resolve(__dirname, 'www/webgl/index.html'),
+        webworker2: resolve(__dirname, 'www/webworker2/index.html'),
         webworkers: resolve(__dirname, 'www/webworkers/index.html'),
       },
     },
