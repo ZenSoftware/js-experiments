@@ -7,6 +7,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         comlink: resolve(__dirname, 'www/comlink/index.html'),
+        cookies: resolve(__dirname, 'www/cookies/index.html'),
         eventListeners: resolve(__dirname, 'www/event-listeners/index.html'),
         grid: resolve(__dirname, 'www/grid/index.html'),
         immer: resolve(__dirname, 'www/immer/index.html'),
