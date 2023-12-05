@@ -13,6 +13,10 @@ function bootstrap() {
     res.send({ message: 'Hello world!' });
   });
 
+  app.post('/form', (req, res) => {
+    console.log('form hit', req);
+  });
+
   server.listen(3080, () => {
     console.log('Listening at http://localhost:3080');
   });
