@@ -1,5 +1,3 @@
-console.log('I love you Lily');
-
 self.addEventListener('install', ev => {
   // self.skipWaiting();
   console.log('installed');

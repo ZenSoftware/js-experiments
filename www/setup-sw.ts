@@ -23,7 +23,7 @@ if (!window.ZEN_APP) {
 
   const cache = await caches.open(window.ZEN_APP.cacheName);
 
-  const url = 'assets/Lily_and_Pups.jfif';
+  const url = 'assets/sample.jpg';
 
   let response = await cache.match(url);
   if (response) {
@@ -34,8 +34,4 @@ if (!window.ZEN_APP) {
     if (!response.ok) throw response.statusText;
     cache.put(url, response.clone());
   }
-
-  const lilyImg = document.querySelector('#lily-img') as HTMLImageElement;
-  const imgUrl = URL.createObjectURL(await response.blob());
-  lilyImg.src = imgUrl;
 })();

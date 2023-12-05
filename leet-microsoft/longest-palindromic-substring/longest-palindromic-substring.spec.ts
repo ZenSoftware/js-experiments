@@ -14,6 +14,5 @@ describe('Longest Palindromic Substring', () => {
   //   expect(isPalindrome('bb')).toEqual(true);
   //   expect(isPalindrome('bab')).toEqual(true);
   //   expect(isPalindrome('zeez')).toEqual(true);
-  //   expect(isPalindrome('lily')).toEqual(false);
   // });
 });
