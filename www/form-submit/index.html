@@ -24,14 +24,16 @@
 
   <script type="module" src="/form-submit/script.ts"></script>
 
-  <form action="http://localhost:3080/form">
+  <form id="my-form" action="http://localhost:3080/form" method="post">
     <label for="name">Name</label>
-    <input id="name" name="name" type="text">
+    <input id="name" name="name" type="text" class="form-control"/>
 
     <label for="phone">Phone</label>
-    <input id="phone" name="phone" type="text">
+    <input id="phone" name="phone" type="text" class="form-control"/>
 
-    <input type="submit" class="btn btn-primary">Submit</input>
+    <button id="submit-button" type="submit" class="btn btn-primary">
+      Submit
+    </button>
   </form>
 </body>
 

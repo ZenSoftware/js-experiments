@@ -1,10 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import http from 'http';
+import bodyParser from 'body-parser';
 
 function bootstrap() {
   const app = express();
   app.use(cors());
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
 
   const server = http.createServer(app);
 
@@ -14,7 +17,10 @@ function bootstrap() {
   });
 
   app.post('/form', (req, res) => {
-    console.log('form hit', req);
+    console.log('form hit', req.body);
+    res.setHeader('Content-Type', 'text/plain');
+    res.write('you posted:\n');
+    res.end(JSON.stringify(req.body));
   });
 
   server.listen(3080, () => {
