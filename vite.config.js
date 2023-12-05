@@ -6,6 +6,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
+        capslock: resolve(__dirname, 'www/capslock/index.html'),
         comlink: resolve(__dirname, 'www/comlink/index.html'),
         cookies: resolve(__dirname, 'www/cookies/index.html'),
         eventListeners: resolve(__dirname, 'www/event-listeners/index.html'),
