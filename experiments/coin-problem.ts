@@ -17,12 +17,16 @@ function change(coins: number[], target: number) {
     coinCount += numCoins;
   }
 
-  return coinCount;
+  return result;
 }
 
 console.log(change([1, 5, 10, 25], 234));
 // 9x25c = 225
 // 1x5c = 230
 // 4x1c = 234
-
 // 14 coins
+
+console.log(change([1, 4, 5], 13));
+// 3x4c = 12
+// 1x1c = 13
+// 4 coins
