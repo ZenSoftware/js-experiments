@@ -12,4 +12,4 @@ function curry(fn: Function) {
 
 const sum = (x, y, z) => x + y + z;
 const curriedSum = curry(sum);
-console.log(curriedSum(1, 2)(3));
+console.log(curriedSum(1)(2)(3));
