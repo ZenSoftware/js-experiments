@@ -25,6 +25,6 @@ console.log(greedyChange([1, 5, 10, 25], 234));
 // 14 coins
 
 console.log(greedyChange([1, 4, 5], 13));
-// 3x4c = 12
-// 1x1c = 13
-// 4 coins
+// 1x5c = 12
+// 2x4c = 13
+// 3 coins
