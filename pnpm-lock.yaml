@@ -46,6 +46,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.9.0
     version: 20.9.0
+  '@types/sharedworker':
+    specifier: ^0.0.108
+    version: 0.0.108
   '@types/three':
     specifier: ^0.158.2
     version: 0.158.2
@@ -1052,6 +1055,10 @@ packages:
       '@types/http-errors': 2.0.4
       '@types/mime': 3.0.4
       '@types/node': 20.9.0
+    dev: true
+
+  /@types/sharedworker@0.0.108:
+    resolution: {integrity: sha512-S55WpLn93gXs0ImNjrjLIuuQQgDBlDF2VPQIqffZvGjTvzGzXPxCl9jiKTsVUSJzm0lv2ZnWFEAhir5cOfEghQ==}
     dev: true
 
   /@types/stack-utils@2.0.3:
