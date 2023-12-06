@@ -26,8 +26,8 @@ function dynamicChange(coins: number[], target: number) {
   }
 
   function minimumCoins(m: number) {
-    if (m <= 0) return 0;
     if (cache[m] !== undefined) return cache[m];
+    if (m <= 0) return 0;
 
     let result: number | null = null;
 
