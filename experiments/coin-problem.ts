@@ -12,13 +12,11 @@ function greedyChange(coins: number[], target: number) {
     }
   }
 
-  let coinCount = 0;
-  for (const numCoins of result.values()) {
-    coinCount += numCoins;
-  }
-
+  const coinCount = Array.from(result.values()).reduce((accum, curr) => accum + curr, 0);
   return result;
 }
+
+function dynamicChange(coins: number[], target: number) {}
 
 console.log(greedyChange([1, 5, 10, 25], 234));
 // 9x25c = 225
