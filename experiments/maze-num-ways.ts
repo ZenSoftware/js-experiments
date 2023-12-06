@@ -8,8 +8,8 @@ function mazeNumWays(rows: number, cols: number) {
 
   function ways(r: number, c: number) {
     let key = '';
-    if (r <= c) key = `${r}-${c}`;
-    else key = `${c}-${r}`;
+    if (r <= c) key = `${r}x${c}`;
+    else key = `${c}x${r}`;
 
     if (cache[key] !== undefined) return cache[key];
 
