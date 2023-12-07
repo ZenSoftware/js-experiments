@@ -7,5 +7,39 @@
  */
 
 export function merge(intervals: number[][]): number[][] {
-  return [];
+  if (intervals.length <= 1) return intervals;
+
+  let left = 0;
+  let right = 1;
+
+  let result = [...intervals];
+
+  while (true) {
+    if (isOverlapped(result[left], result[right])) {
+      const merged = mergeIntervals(result[left], result[right]);
+      result.splice(right, 1);
+      result.splice(left, 1, merged);
+
+      if (left >= result.length - 1) break;
+      if (right >= result.length) right = left + 1;
+    } else {
+      right++;
+
+      if (right >= result.length) {
+        left++;
+        if (left >= result.length - 1) break;
+        right = left + 1;
+      }
+    }
+  }
+
+  return result;
+}
+
+function mergeIntervals(a: number[], b: number[]) {
+  return [Math.min(a[0], b[0]), Math.max(a[1], b[1])];
+}
+
+function isOverlapped(a: number[], b: number[]) {
+  return (b[0] <= a[0] && a[0] <= b[1]) || (a[0] <= b[0] && b[0] <= a[1]);
 }
