@@ -11,11 +11,9 @@ export function rotate(matrix: number[][]): void {
 export function transpose(matrix: number[][]): void {
   for (let r = 0; r < matrix.length; r++) {
     for (let c = r + 1; c < matrix[r].length; c++) {
-      if (r !== c) {
-        let temp = matrix[c][r];
-        matrix[c][r] = matrix[r][c];
-        matrix[r][c] = temp;
-      }
+      let temp = matrix[c][r];
+      matrix[c][r] = matrix[r][c];
+      matrix[r][c] = temp;
     }
   }
 }
