@@ -7,5 +7,11 @@
  * strs[i] consists of lowercase English letters.
  */
 export function groupAnagrams(strs: string[]): string[][] {
-  return [];
+  const result: Record<string, string[]> = {};
+
+  for (let str of strs) {
+    //
+  }
+
+  return Object.values(result);
 }
