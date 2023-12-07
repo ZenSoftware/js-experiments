@@ -10,7 +10,7 @@ export function groupAnagrams(strs: string[]): string[][] {
   const result: Record<string, string[]> = {};
 
   for (let str of strs) {
-    const sortedStr = sortStr(str);
+    const sortedStr = str.split('').sort().join('');
 
     if (result[sortedStr] !== undefined) {
       result[sortedStr].push(str);
@@ -20,8 +20,4 @@ export function groupAnagrams(strs: string[]): string[][] {
   }
 
   return Object.values(result);
-}
-
-function sortStr(str: string) {
-  return str.split('').sort().join('');
 }
