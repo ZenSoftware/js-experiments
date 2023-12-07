@@ -12,6 +12,33 @@
  */
 export function insert(intervals: number[][], newInterval: number[]): number[][] {
   let result: number[][] = [];
+  let n = intervals.length;
+  let i = 0;
+  let start = 0;
+
+  while (i < n) {
+    if (intervals[i][0] > newInterval[0]) {
+      start = i - 1;
+      break;
+    }
+    i++;
+  }
+
+  let end = start;
+
+  while (i < n) {
+    if (newInterval[1] >= intervals[i][0]) {
+      end = i;
+    } else {
+      break;
+    }
+    i++;
+  }
+
+  const min = Math.min(intervals[start][0], newInterval[0]);
+  const max = Math.max(intervals[end][1], newInterval[1]);
+  const deleteCount = end - start + 1;
+  intervals.splice(start, deleteCount, [min, max]);
 
   return result;
 }
