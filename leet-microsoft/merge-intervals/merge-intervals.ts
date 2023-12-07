@@ -13,6 +13,7 @@ export function merge(intervals: number[][]): number[][] {
   let right = 1;
 
   let result = [...intervals];
+  result.sort((a, b) => a[0] - b[0]);
 
   while (true) {
     if (isOverlapped(result[left], result[right])) {
@@ -21,7 +22,6 @@ export function merge(intervals: number[][]): number[][] {
       result.splice(left, 1, merged);
 
       if (left >= result.length - 1) break;
-      if (right >= result.length) right = left + 1;
     } else {
       right++;
 
