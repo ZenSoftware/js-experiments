@@ -4,18 +4,16 @@
  * 1 <= nums.length <= 105
  * -104 <= nums[i] <= 104
  */
+
+// Solution: https://leetcode.com/problems/maximum-subarray/solutions/4055370/dynamic-programming-o-n/?envType=featured-list&envId=top-microsoft-questions%3FenvType%3Dfeatured-list&envId=top-microsoft-questions
 export function maxSubArray(nums: number[]): number {
-  if (nums.length === 1) return nums[0];
+  let largest = nums[0];
+  let currentSubProb = nums[0];
 
-  let largest = -Infinity;
-
-  for (let i = 0; i < nums.length; i++) {
-    let accum = nums[i];
-    if (accum > largest) largest = accum;
-    for (let j = i + 1; j < nums.length; j++) {
-      accum += nums[j];
-      if (accum > largest) largest = accum;
-    }
+  for (let i = 1; i < nums.length; i++) {
+    if (currentSubProb + nums[i] > nums[i]) currentSubProb += nums[i];
+    else currentSubProb = nums[i];
+    largest = Math.max(largest, currentSubProb);
   }
 
   return largest;
