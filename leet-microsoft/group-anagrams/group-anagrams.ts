@@ -10,8 +10,37 @@ export function groupAnagrams(strs: string[]): string[][] {
   const result: Record<string, string[]> = {};
 
   for (let str of strs) {
-    //
+    let added = false;
+
+    for (let key in result) {
+      if (isAnagram(key, str)) {
+        result[key].push(str);
+        added = true;
+      }
+    }
+
+    if (!added) result[str] = [str];
   }
 
   return Object.values(result);
+}
+
+export function isAnagram(a: string, b: string) {
+  if (a.length === b.length) {
+    const remainingB = b.split('');
+
+    for (let i = 0; i < a.length; i++) {
+      const charA = a.charAt(i);
+      for (let i = 0; i < remainingB.length; i++) {
+        if (charA === remainingB[i]) {
+          remainingB.splice(i, 1);
+          break;
+        }
+      }
+    }
+
+    return remainingB.length === 0;
+  }
+
+  return false;
 }
