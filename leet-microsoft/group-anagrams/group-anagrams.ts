@@ -10,46 +10,18 @@ export function groupAnagrams(strs: string[]): string[][] {
   const result: Record<string, string[]> = {};
 
   for (let str of strs) {
-    let added = false;
+    const sortedStr = sortStr(str);
 
-    for (let key in result) {
-      if (isAnagram(key, str)) {
-        result[key].push(str);
-        added = true;
-      }
+    if (result[sortedStr] !== undefined) {
+      result[sortedStr].push(str);
+    } else {
+      result[sortedStr] = [str];
     }
-
-    if (!added) result[str] = [str];
   }
 
   return Object.values(result);
 }
 
-export function isAnagram(a: string, b: string) {
-  if (a.length === b.length) {
-    const logA: Record<string, number> = {};
-
-    for (let i = 0; i < a.length; i++) {
-      const charA = a.charAt(i);
-      if (logA[charA] !== undefined) ++logA[charA];
-      else logA[charA] = 1;
-    }
-
-    for (let i = 0; i < b.length; i++) {
-      const charB = b.charAt(i);
-      if (logA[charB] !== undefined) {
-        if (--logA[charB] < 0) return false;
-      } else {
-        return false;
-      }
-    }
-
-    for (let key in logA) {
-      if (logA[key] !== 0) return false;
-    }
-
-    return true;
-  }
-
-  return false;
+function sortStr(str: string) {
+  return str.split('').sort().join('');
 }
