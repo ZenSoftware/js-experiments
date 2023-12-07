@@ -11,7 +11,8 @@
  * 0 <= start <= end <= 105
  */
 export function insert(intervals: number[][], newInterval: number[]): number[][] {
-  let result: number[][] = [];
+  if (intervals.length === 0) return [newInterval];
+
   let n = intervals.length;
   let i = 0;
   let start = 0;
@@ -40,5 +41,5 @@ export function insert(intervals: number[][], newInterval: number[]): number[][]
   const deleteCount = end - start + 1;
   intervals.splice(start, deleteCount, [min, max]);
 
-  return result;
+  return intervals;
 }
