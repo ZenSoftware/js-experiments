@@ -27,19 +27,28 @@ export function groupAnagrams(strs: string[]): string[][] {
 
 export function isAnagram(a: string, b: string) {
   if (a.length === b.length) {
-    const remainingB = b.split('');
+    const logA: Record<string, number> = {};
 
     for (let i = 0; i < a.length; i++) {
       const charA = a.charAt(i);
-      for (let i = 0; i < remainingB.length; i++) {
-        if (charA === remainingB[i]) {
-          remainingB.splice(i, 1);
-          break;
-        }
+      if (logA[charA] !== undefined) ++logA[charA];
+      else logA[charA] = 1;
+    }
+
+    for (let i = 0; i < b.length; i++) {
+      const charB = b.charAt(i);
+      if (logA[charB] !== undefined) {
+        if (--logA[charB] < 0) return false;
+      } else {
+        return false;
       }
     }
 
-    return remainingB.length === 0;
+    for (let key in logA) {
+      if (logA[key] !== 0) return false;
+    }
+
+    return true;
   }
 
   return false;
