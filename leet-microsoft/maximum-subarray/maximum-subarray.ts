@@ -9,7 +9,7 @@ export function maxSubArray(nums: number[]): number {
 
   let largest = -Infinity;
 
-  for (let i = 0; i < nums.length - 1; i++) {
+  for (let i = 0; i < nums.length; i++) {
     let accum = nums[i];
     if (accum > largest) largest = accum;
     for (let j = i + 1; j < nums.length; j++) {
