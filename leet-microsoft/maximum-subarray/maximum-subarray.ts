@@ -5,5 +5,18 @@
  * -104 <= nums[i] <= 104
  */
 export function maxSubArray(nums: number[]): number {
-  return 0;
+  if (nums.length === 1) return nums[0];
+
+  let largest = -Infinity;
+
+  for (let i = 0; i < nums.length - 1; i++) {
+    let accum = nums[i];
+    if (accum > largest) largest = accum;
+    for (let j = i + 1; j < nums.length; j++) {
+      accum += nums[j];
+      if (accum > largest) largest = accum;
+    }
+  }
+
+  return largest;
 }
