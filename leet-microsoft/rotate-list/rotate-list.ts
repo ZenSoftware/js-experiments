@@ -16,7 +16,30 @@ class ListNode {
 }
 
 export function rotateRight(head: ListNode | null, k: number): ListNode | null {
-  return null;
+  if (head === null) return null;
+  else if (head.next === null) return head;
+
+  for (let i = 0; i < k; i++) {
+    head = rotateOnce(head);
+  }
+
+  return head;
+}
+
+export function rotateOnce(head: ListNode): ListNode {
+  let trail: ListNode | null = head;
+  let pointer: ListNode | null = head!.next;
+
+  while (pointer!.next !== null) {
+    trail = trail!.next;
+    pointer = pointer!.next;
+  }
+
+  pointer!.next = head;
+  trail!.next = null;
+  head = pointer as ListNode;
+
+  return head;
 }
 
 export function toList(elements: number[]) {
