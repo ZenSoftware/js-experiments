@@ -9,27 +9,31 @@
  * -109 <= target <= 109
  */
 export function searchRange(nums: number[], target: number): number[] {
+  if (nums.length === 0) return [-1, -1];
+
   function binarySearch(start: number, end: number) {
     if (start > end) return -1;
-    const mid = Math.floor((start + end) / 2);
-    if (target === nums[mid]) return mid;
-    if (target < nums[mid]) return binarySearch(start, mid - 1);
-    else return binarySearch(mid + 1, end);
+
+    let mid = Math.floor((start + end) / 2);
+
+    if (nums[mid] === target) return mid;
+
+    if (target > nums[mid]) return binarySearch(mid + 1, end);
+    else return binarySearch(start, mid - 1);
   }
 
   const foundIndex = binarySearch(0, nums.length - 1);
 
-  if (foundIndex !== -1) {
-    let beforeIndex = foundIndex;
-    let afterIndex = foundIndex;
-    while (nums[beforeIndex - 1] === target) {
-      beforeIndex--;
-    }
-    while (nums[afterIndex + 1] === target) {
-      afterIndex++;
-    }
-    return [beforeIndex, afterIndex];
+  if (foundIndex === -1) return [-1, -1];
+
+  let leftBound = foundIndex;
+  let rightBound = foundIndex;
+  while (nums[leftBound - 1] === target) {
+    leftBound--;
+  }
+  while (nums[rightBound + 1] === target) {
+    rightBound++;
   }
 
-  return [-1, -1];
+  return [leftBound, rightBound];
 }
