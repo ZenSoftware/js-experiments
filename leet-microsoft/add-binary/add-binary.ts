@@ -11,6 +11,7 @@ export function addBinary(a: string, b: string): string {
   const longestLength = Math.max(binaryA.length, binaryB.length);
   let carry = 0;
   let result = '';
+
   for (let i = 0; i < longestLength; i++) {
     let valA = 0;
     if (i < binaryA.length) valA = binaryA[binaryA.length - 1 - i];
@@ -20,17 +21,11 @@ export function addBinary(a: string, b: string): string {
 
     let sum = valA + valB + carry;
 
-    if (sum === 0 || sum === 2) {
-      result = '0' + result;
-    } else {
-      result = '1' + result;
-    }
+    if (sum === 0 || sum === 2) result = '0' + result;
+    else result = '1' + result;
 
-    if (sum < 2) {
-      carry = 0;
-    } else {
-      carry = 1;
-    }
+    if (sum < 2) carry = 0;
+    else carry = 1;
   }
 
   if (carry === 1) result = '1' + result;
