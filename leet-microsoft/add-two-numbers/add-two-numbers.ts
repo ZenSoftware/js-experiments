@@ -52,26 +52,30 @@ export class ListNode {
   }
 }
 
-export function toList(list: number[]): ListNode {
-  const first = new ListNode(list[0]);
-  let prev = first;
+export function toList(nums: number[]) {
+  if (nums.length === 0) return null;
 
-  for (let i = 1; i < list.length; i++) {
-    prev.next = new ListNode(list[i]);
-    prev = prev.next;
+  let head = new ListNode(nums[nums.length - 1]);
+
+  for (let i = nums.length - 2; i >= 0; i--) {
+    const node = new ListNode(nums[i]);
+    node.next = head;
+    head = node;
   }
 
-  return first;
+  return head;
 }
 
-export function toArray(list: ListNode): number[] {
-  const result: number[] = [];
-  let head = list;
+export function toArray(root: ListNode | null) {
+  if (root === null) return [];
 
-  do {
-    result.push(head.val);
-    head = head.next as ListNode;
-  } while (head !== null);
+  let result: number[] = [];
+  let pointer: ListNode | null = root;
+
+  while (pointer !== null) {
+    result.push(pointer.val);
+    pointer = pointer.next;
+  }
 
   return result;
 }
