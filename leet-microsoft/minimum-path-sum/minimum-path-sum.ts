@@ -8,5 +8,21 @@
  * 0 <= grid[i][j] <= 200
  */
 export function minPathSum(grid: number[][]): number {
-  return 0;
+  let smallest = Infinity;
+  let maxRow = grid.length - 1;
+  let maxCol = grid[0].length - 1;
+
+  function dfs(row: number, col: number, total: number) {
+    total += grid[row][col];
+    if (row === maxRow && col === maxCol) {
+      if (total < smallest) smallest = total;
+      return;
+    }
+
+    if (row < maxRow) dfs(row + 1, col, total);
+    if (col < maxCol) dfs(row, col + 1, total);
+  }
+
+  dfs(0, 0, 0);
+  return smallest;
 }
