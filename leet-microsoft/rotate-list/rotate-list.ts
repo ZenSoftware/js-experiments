@@ -20,8 +20,8 @@ export function rotateRight(head: ListNode | null, k: number): ListNode | null {
   else if (head.next === null) return head;
 
   let pointer: ListNode | null = head;
-  let length = 0;
-  while (pointer !== null) {
+  let length = 1;
+  while (pointer.next !== null) {
     length++;
     pointer = pointer.next;
   }
@@ -30,7 +30,7 @@ export function rotateRight(head: ListNode | null, k: number): ListNode | null {
   if (k === 0) return head;
 
   let trail: ListNode;
-  let tail: ListNode;
+  let last = pointer;
   let counter = 0;
   pointer = head;
   while (pointer !== null) {
@@ -43,12 +43,10 @@ export function rotateRight(head: ListNode | null, k: number): ListNode | null {
       trail = trail!.next as ListNode;
     }
 
-    if (pointer.next === null) tail = pointer;
-
     pointer = pointer.next;
   }
 
-  tail!.next = head;
+  last!.next = head;
   head = trail!.next;
   trail!.next = null;
 
