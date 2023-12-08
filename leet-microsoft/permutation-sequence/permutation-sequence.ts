@@ -39,5 +39,5 @@ export function getPermutation(n: number, k: number): string {
     return result;
   });
 
-  return allPerms[k - 1].reduce((accum, curr) => (accum += curr.toString()), '');
+  return allPerms[k - 1].reduce((acc, cur) => (acc += cur.toString()), '');
 }
