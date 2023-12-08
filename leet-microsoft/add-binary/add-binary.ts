@@ -6,9 +6,9 @@
  * Each string does not contain leading zeros except for the zero itself.
  */
 export function addBinary(a: string, b: string): string {
-  const listA = a.split('').map(v => parseInt(v));
-  const listB = b.split('').map(v => parseInt(v));
-  const longestLength = Math.max(listA.length, listB.length);
+  const longestLength = Math.max(a.length, b.length);
+  const listA = a.split('').map(n => Number(n));
+  const listB = b.split('').map(n => Number(n));
   let carry = 0;
   let result = '';
 
