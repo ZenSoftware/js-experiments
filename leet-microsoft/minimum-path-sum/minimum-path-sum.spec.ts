@@ -1,4 +1,4 @@
-import { minPathSum } from './minimum-path-sum';
+import { minPathSum } from './minimum-path-sum-bottom-up';
 
 describe('Minimum Path Sum', () => {
   it('evaluates correctly', () => {
