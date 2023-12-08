@@ -10,5 +10,24 @@
  * obstacleGrid[i][j] is 0 or 1.
  */
 export function uniquePathsWithObstacles(obstacleGrid: number[][]): number {
-  return 0;
+  const rowMax = obstacleGrid.length - 1;
+  const colMax = obstacleGrid[0].length - 1;
+  const memo: Record<string, number> = {};
+
+  if (obstacleGrid[rowMax][colMax] === 1) return 0;
+
+  function dfs(row: number, col: number) {
+    let key = `${row},${col}`;
+    if (memo[key] !== undefined) return memo[key];
+    if (obstacleGrid[row][col] === 1) return 0;
+    if (row === rowMax && col === colMax) return 1;
+
+    let result = 0;
+    if (row < rowMax) result += dfs(row + 1, col);
+    if (col < colMax) result += dfs(row, col + 1);
+    memo[key] = result;
+    return result;
+  }
+
+  return dfs(0, 0);
 }
