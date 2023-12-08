@@ -19,25 +19,38 @@ export function rotateRight(head: ListNode | null, k: number): ListNode | null {
   if (head === null) return null;
   else if (head.next === null) return head;
 
-  for (let i = 0; i < k; i++) {
-    head = rotateOnce(head);
+  let pointer: ListNode | null = head;
+  let length = 0;
+  while (pointer !== null) {
+    length++;
+    pointer = pointer.next;
   }
 
-  return head;
-}
+  k = k % length;
+  if (k === 0) return head;
 
-export function rotateOnce(head: ListNode): ListNode {
-  let trail: ListNode | null = head;
-  let pointer: ListNode | null = head!.next;
+  let trail: ListNode;
+  let tail: ListNode;
+  let counter = 0;
+  pointer = head;
+  while (pointer !== null) {
+    if (counter < k) {
+      counter++;
+    } else if (counter === k) {
+      trail = head;
+      counter++;
+    } else {
+      trail = trail!.next as ListNode;
+    }
 
-  while (pointer!.next !== null) {
-    trail = trail!.next;
-    pointer = pointer!.next;
+    if (pointer.next === null) tail = pointer;
+
+    pointer = pointer.next;
   }
 
-  pointer!.next = head;
+  tail!.next = head;
+  head = trail!.next;
   trail!.next = null;
-  head = pointer as ListNode;
 
   return head;
 }
@@ -63,3 +76,7 @@ export function toArray(list: ListNode | null) {
   }
   return result;
 }
+
+// const list = toList([1, 2, 3]);
+// const result = rotateRight(list, 1);
+// console.log(toArray(result));
