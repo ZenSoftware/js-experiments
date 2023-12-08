@@ -7,5 +7,30 @@
  * digits does not contain any leading 0's.
  */
 export function plusOne(digits: number[]): number[] {
-  return [];
+  const result: number[] = Array(digits.length);
+  let carry = 0;
+  let sum = digits[digits.length - 1] + 1;
+  if (sum < 10) {
+    result[digits.length - 1] = sum;
+  } else {
+    result[digits.length - 1] = 0;
+    carry = 1;
+  }
+
+  let i = digits.length - 2;
+  while (i >= 0) {
+    const sum = digits[i] + carry;
+    if (sum < 10) {
+      result[i] = sum;
+      carry = 0;
+    } else {
+      result[i] = 0;
+      carry = 1;
+    }
+    i--;
+  }
+
+  if (carry === 1) result.unshift(1);
+
+  return result;
 }
