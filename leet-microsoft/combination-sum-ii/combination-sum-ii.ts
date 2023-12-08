@@ -11,29 +11,30 @@
 // Solution: https://leetcode.com/problems/combination-sum-ii/solutions/2922413/easy-to-understand-solution-beats-80-typescript/
 export function combinationSum2(candidates: number[], target: number): number[][] {
   candidates.sort((a, b) => a - b);
-  const result: number[][] = [];
+  let result: number[][] = [];
 
-  function dfs(cur: number[], idx: number, sum: number) {
-    if (target === sum) {
-      result.push([...cur]);
+  function dfs(current: number[], sum: number, index: number) {
+    if (sum === target) {
+      result.push([...current]);
       return;
     }
 
-    if (idx >= candidates.length || sum > target) {
+    if (sum > target || index >= candidates.length) {
       return;
     }
 
-    cur.push(candidates[idx]);
-    dfs(cur, idx + 1, sum + candidates[idx]);
-    cur.pop();
+    current.push(candidates[index]);
+    sum += candidates[index];
+    dfs(current, sum, index + 1);
 
-    while (idx < candidates.length && candidates[idx] === candidates[idx + 1]) {
-      idx++;
+    while (candidates[index] === candidates[index + 1]) {
+      index++;
     }
-    dfs(cur, idx + 1, sum);
+    const last = current.pop() as number;
+    sum -= last;
+    dfs(current, sum, index + 1);
   }
 
   dfs([], 0, 0);
-
   return result;
 }
