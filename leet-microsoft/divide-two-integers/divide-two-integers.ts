@@ -14,17 +14,17 @@ export function divide(dividend: number, divisor: number): number {
   const posDividend = Math.abs(dividend);
   const posDivisor = Math.abs(divisor);
 
+  let increment;
+  if ((dividend > 0 && divisor > 0) || (dividend < 0 && divisor < 0)) {
+    increment = 1;
+  } else {
+    increment = -1;
+  }
+
   while (true) {
     accum += posDivisor;
-    if (accum > posDividend) {
-      break;
-    } else {
-      if ((dividend > 0 && divisor > 0) || (dividend < 0 && divisor < 0)) {
-        quotient++;
-      } else {
-        quotient--;
-      }
-    }
+    if (accum > posDividend) break;
+    else quotient += increment;
   }
 
   const MIN = Math.pow(-2, 31);
