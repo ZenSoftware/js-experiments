@@ -8,39 +8,53 @@
  */
 
 /**
- * Time: O()
- * Space: O();
+ * Time: O(n)
+ * Space: O(n)
  */
 export function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
-  const result: number[] = [];
-  let a: any = l1;
-  let b: any = l2;
+  if (l1 === null) return l2;
+  if (l2 === null) return l1;
+
+  let p1: ListNode | null = l1;
+  let p2: ListNode | null = l2;
   let carry = 0;
 
-  do {
-    let valA = 0;
-    if (a !== null) valA = a.val;
+  let head: ListNode;
+  const sum = p1.val + p2.val;
+  if (sum < 10) {
+    head = new ListNode(sum);
+  } else {
+    head = new ListNode(sum - 10);
+    carry = 1;
+  }
+  let pr = head;
+  p1 = p1.next;
+  p2 = p2.next;
 
-    let valB = 0;
-    if (b !== null) valB = b.val;
+  while (p1 !== null || p2 !== null) {
+    let p1Val = 0;
+    let p2Val = 0;
+    if (p1) p1Val = p1.val;
+    if (p2) p2Val = p2.val;
+    const sum = p1Val + p2Val + carry;
 
-    const sum = valA + valB + carry;
-
-    if (sum >= 10) {
-      result.push(sum - 10);
-      carry = 1;
-    } else {
-      result.push(sum);
+    if (sum < 10) {
+      pr.next = new ListNode(sum);
+      pr = pr.next;
       carry = 0;
+    } else {
+      pr.next = new ListNode(sum - 10);
+      pr = pr.next;
+      carry = 1;
     }
 
-    if (a !== null) a = a.next;
-    if (b !== null) b = b.next;
-  } while (a !== null || b !== null);
+    if (p1) p1 = p1.next;
+    if (p2) p2 = p2.next;
+  }
 
-  if (carry !== 0) result.push(1);
+  if (carry === 1) pr.next = new ListNode(1);
 
-  return toList(result);
+  return head;
 }
 
 export class ListNode {
