@@ -6,15 +6,15 @@
  * Each string does not contain leading zeros except for the zero itself.
  */
 export function addBinary(a: string, b: string): string {
-  const binaryA = a.split('').map(v => parseInt(v));
-  const binaryB = b.split('').map(v => parseInt(v));
-  const longestLength = Math.max(binaryA.length, binaryB.length);
+  const listA = a.split('').map(v => parseInt(v));
+  const listB = b.split('').map(v => parseInt(v));
+  const longestLength = Math.max(listA.length, listB.length);
   let carry = 0;
   let result = '';
 
   for (let i = 0; i < longestLength; i++) {
-    let valA = binaryA[binaryA.length - 1 - i] ?? 0;
-    let valB = binaryB[binaryB.length - 1 - i] ?? 0;
+    let valA = listA[a.length - 1 - i] ?? 0;
+    let valB = listB[b.length - 1 - i] ?? 0;
     let sum = valA + valB + carry;
 
     if (sum === 0 || sum === 2) result = '0' + result;
