@@ -13,12 +13,8 @@ export function addBinary(a: string, b: string): string {
   let result = '';
 
   for (let i = 0; i < longestLength; i++) {
-    let valA = 0;
-    if (i < binaryA.length) valA = binaryA[binaryA.length - 1 - i];
-
-    let valB = 0;
-    if (i < binaryB.length) valB = binaryB[binaryB.length - 1 - i];
-
+    let valA = binaryA[binaryA.length - 1 - i] ?? 0;
+    let valB = binaryB[binaryB.length - 1 - i] ?? 0;
     let sum = valA + valB + carry;
 
     if (sum === 0 || sum === 2) result = '0' + result;
