@@ -7,6 +7,10 @@
  * -231 <= dividend, divisor <= 231 - 1
  * divisor != 0
  */
+
+const MIN = Math.pow(-2, 31);
+const MAX = Math.pow(2, 31) - 1;
+
 export function divide(dividend: number, divisor: number): number {
   let quotient = 0;
   let accum = 0;
@@ -27,8 +31,6 @@ export function divide(dividend: number, divisor: number): number {
     else quotient += increment;
   }
 
-  const MIN = Math.pow(-2, 31);
-  const MAX = Math.pow(2, 31) - 1;
   if (quotient < MIN) return MIN;
   else if (quotient > MAX) return MAX;
 
