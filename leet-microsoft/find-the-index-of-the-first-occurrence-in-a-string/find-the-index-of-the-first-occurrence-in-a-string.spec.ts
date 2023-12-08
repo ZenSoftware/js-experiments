@@ -5,5 +5,6 @@ describe('Find the Index of the First Occurrence in a String', () => {
     expect(strStr('sadbutsad', 'sad')).toEqual(0);
     expect(strStr('leetcode', 'leeto')).toEqual(-1);
     expect(strStr('hello', 'll')).toEqual(2);
+    expect(strStr('a', 'a')).toEqual(0);
   });
 });

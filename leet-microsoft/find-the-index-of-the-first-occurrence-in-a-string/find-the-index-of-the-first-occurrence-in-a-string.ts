@@ -5,9 +5,15 @@
  * haystack and needle consist of only lowercase English characters.
  */
 export function strStr(haystack: string, needle: string): number {
-  for (let i = 0; i < haystack.length - needle.length + 1; i++) {
-    const current = haystack.substring(i, i + needle.length);
-    if (current === needle) return i;
+  for (let i = 0; i <= haystack.length - needle.length; i++) {
+    let equal = true;
+    for (let j = 0; j < needle.length; j++) {
+      if (haystack.charAt(i + j) !== needle.charAt(j)) {
+        equal = false;
+        break;
+      }
+    }
+    if (equal) return i;
   }
   return -1;
 }
