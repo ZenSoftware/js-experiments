@@ -6,5 +6,19 @@
  * 1 <= m, n <= 100
  */
 export function uniquePaths(m: number, n: number): number {
-  return 0;
+  let result = 0;
+  const maxRow = m - 1;
+  const maxCol = n - 1;
+
+  function dfs(row: number, col: number) {
+    if (row === maxRow || col === maxCol) {
+      result++;
+      return;
+    }
+    dfs(row + 1, col);
+    dfs(row, col + 1);
+  }
+
+  dfs(0, 0);
+  return result;
 }
