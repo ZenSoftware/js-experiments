@@ -6,5 +6,5 @@
  * s and t consist of lowercase English letters.
  */
 export function isAnagram(s: string, t: string): boolean {
-  return false;
+  return s.split('').sort().join('') === t.split('').sort().join('');
 }
