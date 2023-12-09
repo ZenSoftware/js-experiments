@@ -7,7 +7,13 @@
  */
 
 export function deleteDuplicates(head: ListNode | null): ListNode | null {
-  if (head?.next) return head;
+  if (!head?.next) return head;
+
+  let pointer: ListNode | null = head;
+
+  while (pointer !== null) {
+    pointer = pointer.next;
+  }
 
   return head;
 }
@@ -42,3 +48,7 @@ export function toArray(head: ListNode | null) {
   }
   return result;
 }
+
+const input = toList([1, 1, 1, 2, 3]);
+const result = deleteDuplicates(input);
+console.log(toArray(result));
