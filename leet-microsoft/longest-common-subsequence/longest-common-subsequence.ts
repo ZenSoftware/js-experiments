@@ -25,12 +25,12 @@ export function longestCommonSubsequence(text1: string, text2: string): number {
       const c1 = text1.charAt(i);
       const c2 = text2.charAt(j);
       if (c1 === c2) {
-        console.log([c1, c2]);
+        grid[i][j] = 1 + grid[i + 1][j + 1];
+      } else {
+        grid[i][j] = Math.max(grid[i + 1][j], grid[i][j + 1]);
       }
     }
   }
 
   return grid[0][0];
 }
-
-longestCommonSubsequence('abcde', 'ace');
