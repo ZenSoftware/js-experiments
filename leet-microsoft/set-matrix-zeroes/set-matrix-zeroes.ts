@@ -7,4 +7,28 @@
  * 1 <= m, n <= 200
  * -231 <= matrix[i][j] <= 231 - 1
  */
-export function setZeroes(matrix: number[][]): void {}
+export function setZeroes(matrix: number[][]): void {
+  const rows = matrix.length;
+  const cols = matrix[0].length;
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      if (matrix[r][c] === 0) {
+        for (let i = 0; i < rows; i++) {
+          if (matrix[i][c] !== 0) matrix[i][c] = null as any;
+        }
+        for (let i = 0; i < cols; i++) {
+          if (matrix[r][i] !== 0) matrix[r][i] = null as any;
+        }
+      }
+    }
+  }
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      if (matrix[r][c] === null) {
+        matrix[r][c] = 0;
+      }
+    }
+  }
+}
