@@ -1,6 +1,6 @@
 import { longestCommonSubsequence } from './longest-common-subsequence';
 
-describe('', () => {
+describe('Longest Common Subsequence', () => {
   it('evaluates correctly', () => {
     expect(longestCommonSubsequence('abcde', 'ace')).toEqual(3);
     expect(longestCommonSubsequence('abc', 'abc')).toEqual(3);
