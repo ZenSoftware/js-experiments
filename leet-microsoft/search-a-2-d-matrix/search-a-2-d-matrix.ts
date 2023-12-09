@@ -20,8 +20,6 @@ export function searchMatrix(matrix: number[][], target: number): boolean {
   }
 
   let rowIndex = 0;
-  console.log(matrix[1][0]);
-  console.log(matrix.length);
   while (matrix.length > 1 && rowIndex < matrix.length && matrix[rowIndex + 1][0] <= target) {
     rowIndex++;
   }

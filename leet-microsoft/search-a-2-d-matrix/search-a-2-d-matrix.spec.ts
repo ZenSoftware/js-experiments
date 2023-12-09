@@ -25,5 +25,6 @@ describe('Search a 2D Matrix', () => {
     ).toEqual(false);
 
     expect(searchMatrix([[1]], 0)).toEqual(false);
+    // expect(searchMatrix([[1], [3]], 3)).toEqual(true);
   });
 });
