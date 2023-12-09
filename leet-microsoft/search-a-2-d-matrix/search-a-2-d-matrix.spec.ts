@@ -23,5 +23,7 @@ describe('Search a 2D Matrix', () => {
         13
       )
     ).toEqual(false);
+
+    expect(searchMatrix([[1]], 0)).toEqual(false);
   });
 });
