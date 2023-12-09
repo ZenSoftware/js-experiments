@@ -21,7 +21,8 @@ export function fullJustify(words: string[], maxWidth: number): string[] {
     }
   }
 
-  for (let line of lines) {
+  for (let l = 0; l < lines.length - 1; l++) {
+    const line = lines[l];
     const totalSpaceLength = maxWidth - countWordChars(line);
     const numSpaces = line.length - 1;
     if (line.length > 1) {
@@ -50,6 +51,13 @@ export function fullJustify(words: string[], maxWidth: number): string[] {
 
     result.push(line.join(''));
   }
+
+  let lastLine = lines[lines.length - 1].join(' ');
+  const lastLineLength = lastLine.length;
+  for (let i = 0; i < maxWidth - lastLineLength; i++) {
+    lastLine += ' ';
+  }
+  result.push(lastLine);
 
   return result;
 }
