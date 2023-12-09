@@ -34,5 +34,19 @@ describe('Word Search', () => {
         'ABCB'
       )
     ).toEqual(false);
+
+    expect(
+      exist(
+        [
+          ['A', 'A', 'A', 'A', 'A', 'A'],
+          ['A', 'A', 'A', 'A', 'A', 'A'],
+          ['A', 'A', 'A', 'A', 'A', 'A'],
+          ['A', 'A', 'A', 'A', 'A', 'A'],
+          ['A', 'A', 'A', 'A', 'A', 'A'],
+          ['A', 'A', 'A', 'A', 'A', 'A'],
+        ],
+        'AAAAAAAAAAAAAAB'
+      )
+    ).toEqual(false);
   });
 });
