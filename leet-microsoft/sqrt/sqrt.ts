@@ -6,5 +6,16 @@
  * 0 <= x <= 231 - 1
  */
 export function mySqrt(x: number): number {
-  return 0;
+  let low = 1;
+  let high = x;
+
+  while (low <= high) {
+    const mid = Math.floor((low + high) / 2);
+    const square = mid * mid;
+    if (square === x) return mid;
+    if (square <= x) low = mid + 1;
+    else high = mid - 1;
+  }
+
+  return high;
 }
