@@ -7,12 +7,14 @@
  * 0 <= prices[i] <= 104
  */
 export function maxProfit(prices: number[]): number {
+  let left = 0;
+  let right = 1;
   let largest = -Infinity;
-  for (let i = 0; i < prices.length - 1; i++) {
-    for (let j = i + 1; j < prices.length; j++) {
-      let profit = prices[j] - prices[i];
-      if (profit > largest) largest = profit;
-    }
+  while (right < prices.length) {
+    const profit = prices[right] - prices[left];
+    if (profit > largest) largest = profit;
+    if (prices[right] < prices[left]) left = right;
+    right++;
   }
   return largest > 0 ? largest : 0;
 }
