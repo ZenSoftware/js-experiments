@@ -12,12 +12,11 @@ export function isAnagram(s: string, t: string): boolean {
 
   for (let i = 0; i < s.length; i++) {
     const cs = s.charAt(i);
-    const ct = t.charAt(i);
-
     const hs = hash.get(cs);
     if (hs) hs.source++;
     else hash.set(cs, { source: 1, target: 0 });
 
+    const ct = t.charAt(i);
     const ht = hash.get(ct);
     if (ht) ht.target++;
     else hash.set(ct, { source: 0, target: 1 });
