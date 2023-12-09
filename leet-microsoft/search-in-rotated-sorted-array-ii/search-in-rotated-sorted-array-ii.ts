@@ -18,6 +18,12 @@ export function search(nums: number[], target: number): boolean {
 
     if (nums[mid] === target) return true;
 
+    if (nums[mid] === nums[left] && nums[mid] === nums[right]) {
+      left++;
+      right--;
+      continue;
+    }
+
     if (nums[left] <= nums[mid]) {
       if (nums[left] <= target && target < nums[mid]) right = mid - 1;
       else left = mid + 1;
