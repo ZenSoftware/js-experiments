@@ -22,24 +22,31 @@ export function fullJustify(words: string[], maxWidth: number): string[] {
   }
 
   for (let line of lines) {
-    const totalSpaceCount = maxWidth - countWordChars(line);
-    let spacesBetween = Math.floor(totalSpaceCount / (line.length - 1));
-    spacesBetween ||= 1;
-    let spacesBetweenRemainder = totalSpaceCount % (line.length - 1);
-    spacesBetweenRemainder ||= 0;
-    let joinBy = '';
-    for (let i = 0; i < spacesBetween; i++) {
-      joinBy += ' ';
+    const totalSpaceLength = maxWidth - countWordChars(line);
+    const numSpaces = line.length - 1;
+    if (line.length > 1) {
+      let avgSpaceLength = Math.floor(totalSpaceLength / numSpaces);
+      let joinBy = '';
+      for (let i = 0; i < avgSpaceLength; i++) {
+        joinBy += ' ';
+      }
+      for (let i = 0; i < line.length - 1; i++) {
+        line[i] = line[i] + joinBy;
+      }
+
+      let w2 = 0;
+      let spaceRemainder = totalSpaceLength - avgSpaceLength * numSpaces;
+      while (spaceRemainder > 0) {
+        line[w2] += ' ';
+        w2++;
+        spaceRemainder--;
+      }
+    } else {
+      for (let i = 0; i < maxWidth - line[0].length; i++) {
+        line[0] = line[0] + ' ';
+      }
     }
-    for (let i = 0; i < line.length - 1; i++) {
-      line[i] = line[i] + joinBy;
-    }
-    let w2 = 0;
-    while (spacesBetweenRemainder > 0) {
-      line[w2] += ' ';
-      w2++;
-      spacesBetweenRemainder--;
-    }
+
     result.push(line.join(''));
   }
 
@@ -49,5 +56,3 @@ export function fullJustify(words: string[], maxWidth: number): string[] {
 function countWordChars(line: string[]) {
   return line.reduce((acc, cur) => (acc += cur.length), 0);
 }
-
-// fullJustify(['This', 'is', 'an', 'example', 'of', 'text', 'justification.'], 16);
