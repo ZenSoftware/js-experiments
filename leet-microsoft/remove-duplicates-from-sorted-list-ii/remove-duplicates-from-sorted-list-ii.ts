@@ -18,3 +18,25 @@ class ListNode {
     this.next = next === undefined ? null : next;
   }
 }
+
+export function toList(vals: number[]) {
+  if (vals.length === 0) return null;
+  let pointer = new ListNode(vals[vals.length - 1]);
+  for (let i = vals.length - 2; i >= 0; i--) {
+    const node = new ListNode(vals[i]);
+    node.next = pointer;
+    pointer = node;
+  }
+  return pointer;
+}
+
+export function toArray(head: ListNode | null) {
+  if (head === null) return [];
+  let result: number[] = [];
+  let pointer: ListNode | null = head;
+  while (pointer !== null) {
+    result.push(pointer.val);
+    pointer = pointer.next;
+  }
+  return result;
+}
