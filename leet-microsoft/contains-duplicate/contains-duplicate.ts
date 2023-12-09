@@ -5,5 +5,10 @@
  * -109 <= nums[i] <= 109
  */
 export function containsDuplicate(nums: number[]): boolean {
+  const hash: Record<string, true> = {};
+  for (let num of nums) {
+    if (hash[num]) return true;
+    hash[num] = true;
+  }
   return false;
 }
