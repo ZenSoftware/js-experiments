@@ -7,7 +7,9 @@
  */
 
 export function deleteDuplicates(head: ListNode | null): ListNode | null {
-  return null;
+  if (head?.next) return head;
+
+  return head;
 }
 
 class ListNode {
