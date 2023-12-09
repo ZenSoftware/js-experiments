@@ -6,5 +6,26 @@
  * s and t consist of lowercase English letters.
  */
 export function isAnagram(s: string, t: string): boolean {
-  return s.split('').sort().join('') === t.split('').sort().join('');
+  if (s.length !== t.length) return false;
+
+  const hash = new Map<string, { source: number; target: number }>();
+
+  for (let i = 0; i < s.length; i++) {
+    const cs = s.charAt(i);
+    const ct = t.charAt(i);
+
+    const hs = hash.get(cs);
+    if (hs) hs.source++;
+    else hash.set(cs, { source: 1, target: 0 });
+
+    const ht = hash.get(ct);
+    if (ht) ht.target++;
+    else hash.set(ct, { source: 0, target: 1 });
+  }
+
+  for (let record of hash.values()) {
+    if (record.source !== record.target) return false;
+  }
+
+  return true;
 }
