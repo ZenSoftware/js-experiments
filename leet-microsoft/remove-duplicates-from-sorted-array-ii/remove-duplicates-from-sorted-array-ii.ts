@@ -9,5 +9,28 @@
  * nums is sorted in non-decreasing order.
  */
 export function removeDuplicates(nums: number[]): number {
-  return 0;
+  let i = 0;
+  let k = nums.length;
+  while (i < k) {
+    const current = nums[i];
+    const start = i;
+    let count = 1;
+    i++;
+
+    while (nums[i] === current) {
+      count++;
+      i++;
+      if (i >= k) return k;
+    }
+
+    if (count > 2) {
+      const removeCount = count - 2;
+      for (let s = i; s < k; s++) {
+        nums[s - removeCount] = nums[s];
+      }
+      k -= removeCount;
+      i -= removeCount;
+    }
+  }
+  return k;
 }
