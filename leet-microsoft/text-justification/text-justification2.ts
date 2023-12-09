@@ -42,7 +42,8 @@ export function fullJustify(words: string[], maxWidth: number): string[] {
         spaceRemainder--;
       }
     } else {
-      for (let i = 0; i < maxWidth - line[0].length; i++) {
+      const singleWorldLength = line[0].length;
+      for (let i = 0; i < maxWidth - singleWorldLength; i++) {
         line[0] = line[0] + ' ';
       }
     }
