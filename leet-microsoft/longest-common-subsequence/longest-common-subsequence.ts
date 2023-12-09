@@ -10,6 +10,13 @@
 
 // Solution: https://www.youtube.com/watch?v=Ua0GhsJSlWM&ab_channel=NeetCode
 
+/**
+ * Let m be the length of text1
+ * let n be the length of text2
+ * Time: O(m x n)
+ * Space: O((m+1) x (n+1))
+ */
+
 export function longestCommonSubsequence(text1: string, text2: string): number {
   // Construct grid with an extra dimension for both row and columns.
   // Initialize the extra dimensions with 0s.
