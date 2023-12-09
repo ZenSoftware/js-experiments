@@ -12,7 +12,7 @@ export function fullJustify(words: string[], maxWidth: number): string[] {
     lines.push(line);
     while (w < words.length) {
       const wordCharCount = countWordChars(line);
-      if (wordCharCount + line.length + words[w].length < maxWidth) {
+      if (wordCharCount + line.length + words[w].length <= maxWidth) {
         line.push(words[w]);
       } else {
         break;
