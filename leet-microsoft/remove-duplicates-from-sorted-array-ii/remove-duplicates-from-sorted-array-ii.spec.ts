@@ -30,4 +30,24 @@ describe('Remove Duplicates from Sorted Array II', () => {
       expect(input[i]).toEqual(solution[i]);
     }
   });
+
+  it('evaluates correctly 4', () => {
+    const input = [1, 1, 1];
+    const solution = [1, 1];
+    const k = removeDuplicates(input);
+    expect(k).toEqual(2);
+    for (let i = 0; i < k; i++) {
+      expect(input[i]).toEqual(solution[i]);
+    }
+  });
+
+  it('evaluates correctly 5', () => {
+    const input = [0, 1, 2, 2, 2, 2, 2, 3, 4, 4, 4];
+    const solution = [0, 1, 2, 2, 3, 4, 4];
+    const k = removeDuplicates(input);
+    expect(k).toEqual(7);
+    for (let i = 0; i < k; i++) {
+      expect(input[i]).toEqual(solution[i]);
+    }
+  });
 });
