@@ -8,5 +8,22 @@
  * text1 and text2 consist of only lowercase English characters.
  */
 export function longestCommonSubsequence(text1: string, text2: string): number {
+  const grid = [...Array(text1.length)].map(() => Array(text2.length + 1));
+  grid.push(Array(text2.length + 1).fill(0));
+  for (let i = 0; i < text1.length; i++) {
+    grid[i][text2.length] = 0;
+  }
+
+  for (let i = text1.length - 1; i >= 0; i--) {
+    for (let j = text2.length - 1; j >= 0; j--) {
+      const c1 = text1.charAt(i);
+      const c2 = text2.charAt(j);
+      if (c1 === c2) {
+        console.log([c1, c2]);
+      }
+    }
+  }
   return 0;
 }
+
+longestCommonSubsequence('abcde', 'ace');
