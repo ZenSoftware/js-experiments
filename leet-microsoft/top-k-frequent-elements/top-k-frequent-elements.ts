@@ -16,8 +16,8 @@ export function topKFrequent(nums: number[], k: number): number[] {
   }
 
   return Array.from(hash.entries())
-    .sort((a, b) => a[1] - b[1])
+    .sort((a, b) => b[1] - a[1])
     .map(e => e[0])
-    .sort((a, b) => a - b)
-    .slice(0, k);
+    .slice(0, k)
+    .sort((a, b) => a - b);
 }
