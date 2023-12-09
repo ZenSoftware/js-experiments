@@ -19,9 +19,12 @@ export function searchMatrix(matrix: number[][], target: number): boolean {
     else return binarySearchCols(nums, mid + 1, end);
   }
 
-  let rowIndex = 0;
-  while (matrix.length > 1 && rowIndex < matrix.length && matrix[rowIndex + 1][0] <= target) {
-    rowIndex++;
+  let rowIndex = matrix.length - 1;
+  for (let i = 0; i < matrix.length - 1; i++) {
+    if (target >= matrix[i][0] && target < matrix[i + 1][0]) {
+      rowIndex = i;
+      break;
+    }
   }
 
   return binarySearchCols(matrix[rowIndex], 0, matrix[rowIndex].length - 1);
