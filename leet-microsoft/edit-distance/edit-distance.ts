@@ -8,6 +8,9 @@
  * 0 <= word1.length, word2.length <= 500
  * word1 and word2 consist of lowercase English letters.
  */
+
+// Solution: https://www.youtube.com/watch?v=XYi2-LPrwm4&t=21s&ab_channel=NeetCode
+
 export function minDistance(word1: string, word2: string): number {
   return 0;
 }
