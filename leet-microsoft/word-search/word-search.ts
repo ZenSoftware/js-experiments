@@ -20,11 +20,18 @@ export function exist(board: string[][], word: string): boolean {
     nextVisited[currentKey] = true;
 
     const downResult = dfs(nextWord, row + 1, col, nextVisited);
-    const upResult = dfs(nextWord, row - 1, col, nextVisited);
-    const rightResult = dfs(nextWord, row, col + 1, nextVisited);
-    const leftResult = dfs(nextWord, row, col - 1, nextVisited);
+    if (downResult) return true;
 
-    return upResult || downResult || rightResult || leftResult;
+    const upResult = dfs(nextWord, row - 1, col, nextVisited);
+    if (upResult) return true;
+
+    const rightResult = dfs(nextWord, row, col + 1, nextVisited);
+    if (rightResult) return true;
+
+    const leftResult = dfs(nextWord, row, col - 1, nextVisited);
+    if (leftResult) return true;
+
+    return false;
   }
 
   for (let r = 0; r <= maxRow; r++) {
