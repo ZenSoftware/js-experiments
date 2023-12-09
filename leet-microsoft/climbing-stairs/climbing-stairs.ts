@@ -6,5 +6,18 @@
  */
 
 export function climbStairs(n: number): number {
-  return 0;
+  const memo: Record<number, number> = {};
+
+  function dfs(current: number): number {
+    if (memo[current] !== undefined) return memo[current];
+    if (current > n) return 0;
+    if (current === n) return 1;
+    let count = 0;
+    count += dfs(1 + current);
+    count += dfs(2 + current);
+    memo[current] = count;
+    return count;
+  }
+
+  return dfs(0);
 }
