@@ -24,17 +24,17 @@ export function numDecodings(s: string): number {
     if (s.charAt(i) === '0') return 0;
     if (memo[i] !== undefined) return memo[i];
 
-    let total = dp(i + 1);
+    let count = dp(i + 1);
 
     if (i < s.length - 1) {
       const pairVal = Number(s.charAt(i) + s.charAt(i + 1));
       if (pairVal <= 26) {
-        total += dp(i + 2);
+        count += dp(i + 2);
       }
     }
 
-    memo[i] = total;
-    return total;
+    memo[i] = count;
+    return count;
   }
 
   return dp(0);
