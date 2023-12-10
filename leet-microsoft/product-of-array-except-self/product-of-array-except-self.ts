@@ -27,7 +27,7 @@ export function productExceptSelf(nums: number[]): number[] {
   }
 
   for (let i = 0; i < length; i++) {
-    if (i === 0) result[i] = postfix[i + 1];
+    if (i === 0) result[i] = postfix[1];
     else if (i === length - 1) result[i] = prefix[i - 1];
     else result[i] = prefix[i - 1] * postfix[i + 1];
   }
