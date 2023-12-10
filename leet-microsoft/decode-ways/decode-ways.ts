@@ -17,9 +17,12 @@
 export function numDecodings(s: string): number {
   if (s.charAt(0) === '0') return 0;
 
+  const memo: number[] = Array(s.length);
+
   function dp(index: number) {
     if (index >= s.length) return 1;
     if (s.charAt(index) === '0') return 0;
+    if (memo[index] !== undefined) return memo[index];
 
     let total = dp(index + 1);
 
@@ -30,6 +33,7 @@ export function numDecodings(s: string): number {
       }
     }
 
+    memo[index] = total;
     return total;
   }
 

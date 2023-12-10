@@ -6,6 +6,6 @@ describe('Decode Ways', () => {
     expect(numDecodings('226')).toEqual(3);
     expect(numDecodings('06')).toEqual(0);
     expect(numDecodings('2101')).toEqual(1);
-    // expect(numDecodings('111111111111111111111111111111111111111111111')).toEqual(88);
+    expect(numDecodings('111111111111111111111111111111111111111111111')).toEqual(1836311903);
   });
 });
