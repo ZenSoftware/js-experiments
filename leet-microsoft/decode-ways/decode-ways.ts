@@ -17,32 +17,16 @@
 export function numDecodings(s: string): number {
   if (s.charAt(0) === '0') return 0;
 
-  const memo: Record<string, number> = {};
-
   function dp(index: number) {
     if (index >= s.length) return 1;
     if (s.charAt(index) === '0') return 0;
 
-    let total = 0;
-
-    let keySingle = s.charAt(index);
-    if (memo[keySingle] !== undefined) {
-      total = memo[keySingle];
-    } else {
-      total = dp(index + 1);
-      memo[keySingle] = total;
-    }
+    let total = dp(index + 1);
 
     if (index < s.length - 1) {
-      let keyPair = s.charAt(index) + s.charAt(index + 1);
-      if (memo[keyPair] !== undefined) {
-        total += memo[keyPair];
-      } else {
-        const pairVal = Number(s.charAt(index) + s.charAt(index + 1));
-        if (pairVal <= 26) {
-          total += dp(index + 2);
-          memo[keyPair] = total;
-        }
+      const pairVal = Number(s.charAt(index) + s.charAt(index + 1));
+      if (pairVal <= 26) {
+        total += dp(index + 2);
       }
     }
 
