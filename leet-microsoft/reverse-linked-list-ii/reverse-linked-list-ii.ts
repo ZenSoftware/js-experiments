@@ -11,7 +11,15 @@ export function reverseBetween(
   left: number,
   right: number
 ): ListNode | null {
-  return null;
+  if (!head?.next) return head;
+  let pointerHead = new ListNode(0, head);
+  let pointer = pointerHead;
+
+  while (pointer.next) {
+    pointer = pointer.next;
+  }
+
+  return pointerHead.next;
 }
 
 export class ListNode {
