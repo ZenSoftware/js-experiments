@@ -17,7 +17,7 @@ export function partition(head: ListNode | null, x: number): ListNode | null {
 
   while (pointer.next) {
     if (pointer.next.val < x) {
-      // connect the val to the small list
+      // add the val to the small list
       smallPointer.next = pointer.next;
 
       // advance the tail of the small list
