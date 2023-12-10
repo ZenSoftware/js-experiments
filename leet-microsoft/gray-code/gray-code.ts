@@ -24,7 +24,9 @@ export function grayCode(n: number): number[] {
     return binaryString;
   });
 
-  standardStringSequence.map(x => {});
+  standardStringSequence.map(x => {
+    return x;
+  });
 
   return standardSequence;
 }
