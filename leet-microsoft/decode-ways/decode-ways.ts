@@ -39,5 +39,3 @@ export function numDecodings(s: string): number {
 
   return combinations(0);
 }
-
-console.log(numDecodings('127'));
