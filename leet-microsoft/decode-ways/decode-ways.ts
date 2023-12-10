@@ -17,7 +17,7 @@
 export function numDecodings(s: string): number {
   if (s.length === 0) return 0;
 
-  function combinations(index: number) {
+  function dfs(index: number) {
     if (index >= s.length) {
       return 1;
     }
@@ -25,11 +25,11 @@ export function numDecodings(s: string): number {
     let total = 0;
 
     if (s.charAt(index) !== '0') {
-      total = combinations(index + 1);
+      total = dfs(index + 1);
 
       if (index < s.length - 1) {
         if (Number(s.charAt(index) + s.charAt(index + 1)) <= 26) {
-          total += combinations(index + 2);
+          total += dfs(index + 2);
         }
       }
     }
@@ -37,5 +37,5 @@ export function numDecodings(s: string): number {
     return total;
   }
 
-  return combinations(0);
+  return dfs(0);
 }
