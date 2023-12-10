@@ -12,7 +12,10 @@ export function invertTree(root: TreeNode | null): TreeNode | null {
   stack.push(root);
 
   while (stack.length) {
-    const cur = stack.shift() as TreeNode;
+    const cur = stack.pop() as TreeNode;
+    let temp = cur.left;
+    cur.left = cur.right;
+    cur.right = temp;
     if (cur.left) stack.push(cur.left);
     if (cur.right) stack.push(cur.right);
   }
@@ -20,7 +23,24 @@ export function invertTree(root: TreeNode | null): TreeNode | null {
   return root;
 }
 
-class TreeNode {
+export function bfsArray(root: TreeNode | null): number[] {
+  if (!root) return [];
+
+  let result: number[] = [];
+  let stack: TreeNode[] = [];
+  stack.push(root);
+
+  while (stack.length) {
+    const cur = stack.shift() as TreeNode;
+    result.push(cur.val);
+    if (cur.left) stack.push(cur.left);
+    if (cur.right) stack.push(cur.right);
+  }
+
+  return result;
+}
+
+export class TreeNode {
   val: number;
   left: TreeNode | null;
   right: TreeNode | null;
@@ -30,20 +50,3 @@ class TreeNode {
     this.right = right === undefined ? null : right;
   }
 }
-
-const n1 = new TreeNode(1);
-const n2 = new TreeNode(2);
-const n3 = new TreeNode(3);
-const n4 = new TreeNode(4);
-const n6 = new TreeNode(6);
-const n7 = new TreeNode(7);
-const n9 = new TreeNode(9);
-n4.left = n2;
-n4.right = n7;
-n2.left = n1;
-n2.right = n3;
-n7.left = n6;
-n7.right = n9;
-const root = n4;
-
-invertTree(root);
