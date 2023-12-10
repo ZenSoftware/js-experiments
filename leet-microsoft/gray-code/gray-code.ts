@@ -9,29 +9,15 @@
  * Given an integer n, return any valid n-bit gray code sequence.
  * 1 <= n <= 16
  */
+
+// Solution: https://leetcode.com/problems/gray-code/solutions/4272838/binary-shift/
 export function grayCode(n: number): number[] {
-  const max = Math.pow(2, n) - 1;
-  const standardSequence: number[] = Array(Math.pow(2, n));
-  for (let i = 0; i <= max; i++) {
-    standardSequence[i] = i;
+  const result: number[] = [];
+  const size = 1 << n;
+
+  for (let i = 0; i < size; i++) {
+    result.push(i ^ (i >> 1));
   }
 
-  const standardStringSequence = standardSequence.map(x => {
-    let binaryString = x.toString(2);
-    while (binaryString.length < n) {
-      binaryString = '0' + binaryString;
-    }
-    return binaryString;
-  });
-
-  const grayCodeStrings = standardStringSequence.map(x => {
-    let grayCode = x.charAt(0);
-    for (let i = 0; i < x.length - 1; i++) {
-      if (x.charAt(i) === x.charAt(i + 1)) grayCode += '0';
-      else grayCode += '1';
-    }
-    return grayCode;
-  });
-
-  return grayCodeStrings.map(x => Number('0b' + x));
+  return result;
 }
