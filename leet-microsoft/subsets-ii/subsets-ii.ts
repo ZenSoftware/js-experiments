@@ -6,5 +6,18 @@
  * -10 <= nums[i] <= 10
  */
 export function subsetsWithDup(nums: number[]): number[][] {
-  return [];
+  if (nums.length === 0) return [[]];
+
+  let firstEl = nums[0];
+  let rest = nums.slice(1);
+  let combsWithoutFirst = subsetsWithDup(rest);
+  let combsWithFirst: number[][] = [];
+
+  for (let comb of combsWithoutFirst) {
+    combsWithFirst.push([firstEl, ...comb]);
+  }
+
+  return [...combsWithoutFirst, ...combsWithFirst];
 }
+
+console.log(subsetsWithDup([1, 2, 2]));
