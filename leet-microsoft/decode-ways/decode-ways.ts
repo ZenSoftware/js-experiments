@@ -19,21 +19,21 @@ export function numDecodings(s: string): number {
 
   const memo: number[] = Array(s.length);
 
-  function dp(index: number) {
-    if (index >= s.length) return 1;
-    if (s.charAt(index) === '0') return 0;
-    if (memo[index] !== undefined) return memo[index];
+  function dp(i: number) {
+    if (i >= s.length) return 1;
+    if (s.charAt(i) === '0') return 0;
+    if (memo[i] !== undefined) return memo[i];
 
-    let total = dp(index + 1);
+    let total = dp(i + 1);
 
-    if (index < s.length - 1) {
-      const pairVal = Number(s.charAt(index) + s.charAt(index + 1));
+    if (i < s.length - 1) {
+      const pairVal = Number(s.charAt(i) + s.charAt(i + 1));
       if (pairVal <= 26) {
-        total += dp(index + 2);
+        total += dp(i + 2);
       }
     }
 
-    memo[index] = total;
+    memo[i] = total;
     return total;
   }
 
