@@ -15,5 +15,31 @@
  * s contains only digits and may contain leading zero(s).
  */
 export function numDecodings(s: string): number {
-  return 0;
+  if (s.length === 0 || s.charAt(0) === '0') return 0;
+
+  let count = 0;
+  const poss: string[] = [];
+
+  for (let i = 0; i < s.length - 1; i++) {
+    if (s.charAt(i) !== '0') {
+      poss.push(s.charAt(i));
+      count++;
+    }
+
+    if (s.charAt(i) !== '0') {
+      const pairInt = Number(s.charAt(i) + s.charAt(i + 1));
+      if (0 < pairInt && pairInt <= 26) {
+        poss.push(s.charAt(i) + s.charAt(i + 1));
+        count++;
+      }
+    }
+  }
+
+  poss.push(s.charAt(s.length - 1));
+
+  console.log(poss);
+
+  return count + 1;
 }
+
+console.log(numDecodings('12'));
