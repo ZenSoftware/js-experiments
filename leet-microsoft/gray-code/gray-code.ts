@@ -10,5 +10,21 @@
  * 1 <= n <= 16
  */
 export function grayCode(n: number): number[] {
-  return [];
+  const max = Math.pow(2, n) - 1;
+  const standardSequence: number[] = Array(Math.pow(2, n));
+  for (let i = 0; i <= max; i++) {
+    standardSequence[i] = i;
+  }
+
+  const standardStringSequence = standardSequence.map(x => {
+    let binaryString = x.toString(2);
+    while (binaryString.length < n) {
+      binaryString = '0' + binaryString;
+    }
+    return binaryString;
+  });
+
+  standardStringSequence.map(x => {});
+
+  return standardSequence;
 }
