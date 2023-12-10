@@ -21,7 +21,7 @@ export function partition(head: ListNode | null, x: number): ListNode | null {
       smallPointer.next = pointer.next;
 
       // advance the tail of the small list
-      smallPointer = pointer.next;
+      smallPointer = smallPointer.next;
 
       // remove the val from the bigger list
       pointer.next = pointer.next.next;
