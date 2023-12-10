@@ -27,8 +27,8 @@ export function grayCode(n: number): number[] {
   const grayCodeStrings = standardStringSequence.map(x => {
     let grayCode = x.charAt(0);
     for (let i = 0; i < x.length - 1; i++) {
-      if (x.charAt(i) === x.charAt(i + 1)) grayCode += 0;
-      else grayCode += 1;
+      if (x.charAt(i) === x.charAt(i + 1)) grayCode += '0';
+      else grayCode += '1';
     }
     return grayCode;
   });
