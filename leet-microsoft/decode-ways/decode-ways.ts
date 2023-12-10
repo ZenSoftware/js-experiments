@@ -26,7 +26,8 @@ export function numDecodings(s: string): number {
       total = dfs(index + 1);
 
       if (index < s.length - 1) {
-        if (Number(s.charAt(index) + s.charAt(index + 1)) <= 26) {
+        const pairVal = Number(s.charAt(index) + s.charAt(index + 1));
+        if (pairVal <= 26) {
           total += dfs(index + 2);
         }
       }
