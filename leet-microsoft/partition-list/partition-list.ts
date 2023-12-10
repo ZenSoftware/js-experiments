@@ -6,8 +6,40 @@
  * -100 <= Node.val <= 100
  * -200 <= x <= 200
  */
+
+// solution: https://leetcode.com/problems/partition-list/solutions/4197806/beast-94-type-script-easy-solution-with-explanation/
+
 export function partition(head: ListNode | null, x: number): ListNode | null {
-  return null;
+  const smallerHead = new ListNode();
+  let lastSmallerNode = smallerHead;
+  const pointerHead = new ListNode(0, head);
+  let pointer = pointerHead;
+
+  //[1, 4, 3, 2, 5, 2]
+  //[1, 2, 2, 4, 3, 5]
+  while (pointer.next) {
+    // we always check for the value of the next node to remove it easily
+    if (pointer.next.val < x) {
+      // here we add the samaller node to our smaller list
+      lastSmallerNode.next = pointer.next;
+
+      // then we update the tail of the smallers list
+      lastSmallerNode = pointer.next;
+
+      // here we remove the smaller node from the current list
+      pointer.next = pointer.next.next;
+    } else {
+      // since the head of the smaller values can cointain greater values we need to remove the last value every time that we found a bigger value
+      lastSmallerNode.next = null;
+      pointer = pointer.next;
+    }
+  }
+
+  // finally we merge both lists
+  lastSmallerNode.next = pointerHead.next;
+
+  // notice that we return the second node of the head because our head starts with a placeholder value which helped us to start the list
+  return smallerHead.next;
 }
 
 class ListNode {
@@ -31,7 +63,7 @@ export function toList(vals: number[]) {
 }
 
 export function toArray(head: ListNode | null) {
-  if (head === null) return [];
+  if (!head) return [];
   let result: number[] = [];
   let pointer: ListNode | null = head;
   while (pointer !== null) {
