@@ -10,5 +10,20 @@
  * -109 <= nums1[i], nums2[j] <= 109
  */
 export function merge(nums1: number[], m: number, nums2: number[], n: number): void {
-  //
+  for (let i = 0; i < n; i++) {
+    let insertAt = i;
+    while (insertAt < m && nums1[insertAt] <= nums2[i]) {
+      insertAt++;
+    }
+
+    for (let j = m + i; j > insertAt; j--) {
+      nums1[j] = nums1[j - 1];
+    }
+    nums1[insertAt] = nums2[i];
+  }
 }
+
+// const nums1 = [1, 2, 3, 4, 0, 0, 0];
+// const nums2 = [2, 5, 6];
+// merge(nums1, 4, nums2, 3);
+// console.log(nums1);
