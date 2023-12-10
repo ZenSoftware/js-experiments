@@ -10,36 +10,36 @@
 // solution: https://leetcode.com/problems/partition-list/solutions/4197806/beast-94-type-script-easy-solution-with-explanation/
 
 export function partition(head: ListNode | null, x: number): ListNode | null {
-  const smallerHead = new ListNode();
-  let lastSmallerNode = smallerHead;
+  const smallHead = new ListNode();
+  let smallPointer = smallHead;
   const pointerHead = new ListNode(0, head);
   let pointer = pointerHead;
 
-  //[1, 4, 3, 2, 5, 2]
-  //[1, 2, 2, 4, 3, 5]
   while (pointer.next) {
-    // we always check for the value of the next node to remove it easily
     if (pointer.next.val < x) {
-      // here we add the samaller node to our smaller list
-      lastSmallerNode.next = pointer.next;
+      // connect the val to the small list
+      smallPointer.next = pointer.next;
 
-      // then we update the tail of the smallers list
-      lastSmallerNode = pointer.next;
+      // advance the tail of the small list
+      smallPointer = pointer.next;
 
-      // here we remove the smaller node from the current list
+      // remove the val from the bigger list
       pointer.next = pointer.next.next;
     } else {
-      // since the head of the smaller values can cointain greater values we need to remove the last value every time that we found a bigger value
-      lastSmallerNode.next = null;
+      // we must remove any values after the tail of the
+      // small list due to values possibly being larger afterwards
+      smallPointer.next = null;
+
+      // advance the pointer
       pointer = pointer.next;
     }
   }
 
-  // finally we merge both lists
-  lastSmallerNode.next = pointerHead.next;
+  // attach the smaller than x list to the bigger than x list;
+  smallPointer.next = pointerHead.next;
 
-  // notice that we return the second node of the head because our head starts with a placeholder value which helped us to start the list
-  return smallerHead.next;
+  // return the head utilizing the list node that points to it
+  return smallHead.next;
 }
 
 class ListNode {
