@@ -15,8 +15,6 @@
  * s contains only digits and may contain leading zero(s).
  */
 export function numDecodings(s: string): number {
-  if (s.length === 0) return 0;
-
   function dfs(index: number) {
     if (index >= s.length) {
       return 1;
