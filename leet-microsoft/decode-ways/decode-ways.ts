@@ -15,31 +15,29 @@
  * s contains only digits and may contain leading zero(s).
  */
 export function numDecodings(s: string): number {
-  if (s.length === 0 || s.charAt(0) === '0') return 0;
+  if (s.length === 0) return 0;
 
-  let count = 0;
-  const poss: string[] = [];
-
-  for (let i = 0; i < s.length - 1; i++) {
-    if (s.charAt(i) !== '0') {
-      poss.push(s.charAt(i));
-      count++;
+  function combinations(index: number) {
+    if (index >= s.length) {
+      return 1;
     }
 
-    if (s.charAt(i) !== '0') {
-      const pairInt = Number(s.charAt(i) + s.charAt(i + 1));
-      if (0 < pairInt && pairInt <= 26) {
-        poss.push(s.charAt(i) + s.charAt(i + 1));
-        count++;
+    let total = 0;
+
+    if (s.charAt(index) !== '0') {
+      total = combinations(index + 1);
+
+      if (index < s.length - 1) {
+        if (Number(s.charAt(index) + s.charAt(index + 1)) <= 26) {
+          total += combinations(index + 2);
+        }
       }
     }
+
+    return total;
   }
 
-  poss.push(s.charAt(s.length - 1));
-
-  console.log(poss);
-
-  return count + 1;
+  return combinations(0);
 }
 
-console.log(numDecodings('12'));
+console.log(numDecodings('127'));
