@@ -3,11 +3,21 @@
  */
 
 export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
+  // initialize list of shortest distances
   const shortest = new Map<Vertex, number>();
   for (let v of graph) {
     shortest.set(v, Infinity);
   }
+
   shortest.set(from, 0);
+
+  for (let adj of from.adjacent) {
+    shortest.set(adj.to, adj.distance);
+  }
+
+  // create unvisited list
+  const unvisited = [...graph];
+  unvisited.splice(unvisited.indexOf(from), 1);
 }
 
 export interface Connection {
