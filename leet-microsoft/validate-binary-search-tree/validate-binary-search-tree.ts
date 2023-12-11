@@ -9,22 +9,14 @@
  * -231 <= Node.val <= 231 - 1
  */
 
-export function isValidBST(root: TreeNode | null): boolean {
+export function isValidBST(root: TreeNode | null, min = -Infinity, max = Infinity): boolean {
   if (!root) return true;
-
-  let resultLeft = true;
-  if (root.left) {
-    if (root.left.val >= root.val) return false;
-    resultLeft = isValidBST(root.left);
-  }
-
-  let resultRight = true;
-  if (root.right) {
-    if (root.right.val <= root.val) return false;
-    resultRight = isValidBST(root.right);
-  }
-
-  return resultLeft && resultRight;
+  return (
+    root.val > min &&
+    root.val < max &&
+    isValidBST(root.left, min, root.val) &&
+    isValidBST(root.right, root.val, max)
+  );
 }
 
 export class TreeNode {
