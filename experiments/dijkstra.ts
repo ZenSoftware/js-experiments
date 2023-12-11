@@ -4,20 +4,29 @@
 
 export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
   // initialize list of shortest distances
-  const shortest = new Map<Vertex, number>();
+  const shortestDistances = new Map<Vertex, number>();
   for (let v of graph) {
-    shortest.set(v, Infinity);
+    shortestDistances.set(v, Infinity);
   }
-
-  shortest.set(from, 0);
-
+  shortestDistances.set(from, 0);
   for (let adj of from.adjacent) {
-    shortest.set(adj.to, adj.distance);
+    shortestDistances.set(adj.to, adj.distance);
   }
 
   // create unvisited list
   const unvisited = [...graph];
   unvisited.splice(unvisited.indexOf(from), 1);
+
+  // find the shortest vertex amongst unvisited vertices
+  let shortest: Vertex;
+  let shortestDistance = Infinity;
+  for (let vertex of unvisited) {
+    const distance = shortestDistances.get(vertex) as number;
+    if (distance < shortestDistance) {
+      shortest = vertex;
+      shortestDistance = distance;
+    }
+  }
 }
 
 export interface Connection {
