@@ -4,7 +4,7 @@
 
 export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]): ShortestPath {
   // initialize list of shortest distances
-  const records = new Map<Vertex, Record>();
+  const records = new Map<Vertex, PathRecord>();
 
   for (let v of graph) {
     records.set(v, { distance: Infinity });
@@ -34,10 +34,11 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]): ShortestPat
       }
     }
 
+    // Update the records according to the shortest thus far
     for (let connection of shortest.adjacent) {
       if (unvisited.get(connection.to)) {
         const recordShortestDist = records.get(shortest)!.distance;
-        const recordAdj = records.get(connection.to) as Record;
+        const recordAdj = records.get(connection.to) as PathRecord;
         const newDist = connection.distance + recordShortestDist;
         if (newDist < recordAdj.distance) {
           recordAdj.distance = newDist;
@@ -49,7 +50,8 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]): ShortestPat
     unvisited.delete(shortest);
   }
 
-  // construct the path by traversing the records backwards
+  // construct the path by traversing the records
+  // backwardsand and sum the total distance
   const path: Vertex[] = [to];
   let recordPointer = records.get(to);
   let totalDistance = recordPointer!.distance;
@@ -73,7 +75,7 @@ export interface Connection {
   distance: number;
 }
 
-export interface Record {
+export interface PathRecord {
   distance: number;
   previous?: Vertex;
 }
