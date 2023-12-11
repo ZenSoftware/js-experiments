@@ -5,6 +5,10 @@
  */
 
 export function generateTrees(n: number): Array<TreeNode | null> {
+  const result: Array<TreeNode | null> = [];
+
+  function dfs() {}
+
   return [];
 }
 
