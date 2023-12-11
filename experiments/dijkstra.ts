@@ -10,7 +10,10 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
   }
   record.set(from, { distance: 0 });
   for (let adj of from.adjacent) {
-    record.set(adj.to, { distance: adj.distance, previous: from });
+    record.set(adj.to, {
+      distance: adj.distance,
+      previous: from,
+    });
   }
 
   // create unvisited list
@@ -46,7 +49,7 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
   // construct the path by traversing the record backwards
   const result: Vertex[] = [to];
   let next = record.get(to);
-  while (next?.previous !== from) {
+  while (next!.previous !== from) {
     const previous = next!.previous as Vertex;
     result.unshift(previous);
     next = record.get(previous);
