@@ -4,37 +4,43 @@
 
 export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
   // initialize list of shortest distances
-  const shortestDistances = new Map<Vertex, number>();
+  const record = new Map<Vertex, number>();
   for (let v of graph) {
-    shortestDistances.set(v, Infinity);
+    record.set(v, Infinity);
   }
-  shortestDistances.set(from, 0);
+  record.set(from, 0);
   for (let adj of from.adjacent) {
-    shortestDistances.set(adj.to, adj.distance);
+    record.set(adj.to, adj.distance);
   }
 
   // create unvisited list
-  const unvisited = new Map<Vertex, undefined>(graph.map(v => [v, undefined]));
-  unvisited.delete(from);
+  const unvisited = new Map<Vertex, true>(graph.map(v => [v, true]));
 
-  // find the shortest vertex amongst unvisited vertices
-  let shortest!: Vertex;
-  let tmpDistance = Infinity;
-  for (let [v, _] of unvisited) {
-    const distance = shortestDistances.get(v) as number;
-    if (distance < tmpDistance) {
-      shortest = v;
-      tmpDistance = distance;
+  while (unvisited.size > 0) {
+    // select the vertex with the shortest recorded distance amongst unvisited
+    let shortest!: Vertex;
+    let tmpDistance = Infinity;
+    for (let [v, _] of unvisited) {
+      const distance = record.get(v) as number;
+      if (distance < tmpDistance) {
+        shortest = v;
+        tmpDistance = distance;
+      }
     }
+
+    for (let connection of shortest.adjacent) {
+      if (unvisited.get(connection.to)) {
+        const recordShortestDist = record.get(shortest) as number;
+        const recordAdjDist = record.get(connection.to) as number;
+        const newDist = connection.distance + recordShortestDist;
+        if (newDist < recordAdjDist) record.set(connection.to, newDist);
+      }
+    }
+
+    unvisited.delete(shortest);
   }
 
-  unvisited.delete(shortest);
-
-  for (let connection of shortest.adjacent) {
-    if (unvisited.get(connection.to)) {
-      // shortestDistances
-    }
-  }
+  return Array.from(record.entries()).map(([v, dist]) => [v.id, dist]);
 }
 
 export interface Connection {
