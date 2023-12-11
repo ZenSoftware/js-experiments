@@ -12,7 +12,19 @@
 export function isValidBST(root: TreeNode | null): boolean {
   if (!root) return true;
 
-  return false;
+  let resultLeft = true;
+  if (root.left) {
+    if (root.left.val >= root.val) return false;
+    resultLeft = isValidBST(root.left);
+  }
+
+  let resultRight = true;
+  if (root.right) {
+    if (root.right.val <= root.val) return false;
+    resultRight = isValidBST(root.right);
+  }
+
+  return resultLeft && resultRight;
 }
 
 export class TreeNode {
