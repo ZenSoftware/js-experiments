@@ -5,13 +5,10 @@
 export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]): Path {
   // initialize list of shortest distances
   const records = new Map<Vertex, PathRecord>();
-
+  records.set(from, { distance: 0 });
   for (let v of graph) {
     records.set(v, { distance: Infinity });
   }
-
-  records.set(from, { distance: 0 });
-
   for (let adj of from.adjacent) {
     records.set(adj.to, {
       distance: adj.distance,
