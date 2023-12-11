@@ -17,9 +17,6 @@ dependencies:
   express:
     specifier: ^4.18.2
     version: 4.18.2
-  heap-js:
-    specifier: ^2.3.0
-    version: 2.3.0
   immer:
     specifier: ^10.0.3
     version: 10.0.3
@@ -1884,11 +1881,6 @@ packages:
     engines: {node: '>= 0.4'}
     dependencies:
       function-bind: 1.1.2
-
-  /heap-js@2.3.0:
-    resolution: {integrity: sha512-E5303mzwQ+4j/n2J0rDvEPBN7GKjhis10oHiYOgjxsmxYgqG++hz9NyLLOXttzH8as/DyiBHYpUrJTZWYaMo8Q==}
-    engines: {node: '>=10.0.0'}
-    dev: false
 
   /html-escaper@2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
