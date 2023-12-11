@@ -5,10 +5,13 @@
 export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
   // initialize list of shortest distances
   const record = new Map<Vertex, Record>();
+
   for (let v of graph) {
     record.set(v, { distance: Infinity });
   }
+
   record.set(from, { distance: 0 });
+
   for (let adj of from.adjacent) {
     record.set(adj.to, {
       distance: adj.distance,
@@ -23,7 +26,7 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
     // select the vertex with the shortest recorded distance amongst unvisited
     let shortest!: Vertex;
     let tmpDistance = Infinity;
-    for (let [v, _] of unvisited) {
+    for (let [v] of unvisited) {
       const distance = record.get(v)!.distance;
       if (distance < tmpDistance) {
         shortest = v;
@@ -51,12 +54,12 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
   let next = record.get(to);
   while (next!.previous !== from) {
     const previous = next!.previous as Vertex;
-    result.unshift(previous);
+    result.push(previous);
     next = record.get(previous);
   }
-  result.unshift(from);
+  result.push(from);
 
-  return result.map(v => v);
+  return result.reverse();
 }
 
 export interface Connection {
