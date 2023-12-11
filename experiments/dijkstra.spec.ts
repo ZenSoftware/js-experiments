@@ -1,4 +1,4 @@
-import { Connection, Vertex, dijkstra } from './dijkstra';
+import { Vertex, dijkstra } from './dijkstra';
 
 describe(`Dijkstra's Algorithm`, () => {
   const a = new Vertex('a');
