@@ -2,7 +2,7 @@
  * [Dijkstra's Algorithm Explained](https://www.freecodecamp.org/news/dijkstras-algorithm-explained-with-a-pseudocode-example/)
  */
 
-export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]): ShortestPath {
+export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]): Path {
   // initialize list of shortest distances
   const records = new Map<Vertex, PathRecord>();
 
@@ -70,7 +70,7 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]): ShortestPat
   };
 }
 
-export interface Connection {
+export interface PathConnection {
   to: Vertex;
   distance: number;
 }
@@ -80,13 +80,13 @@ export interface PathRecord {
   previous?: Vertex;
 }
 
-export interface ShortestPath {
+export interface Path {
   path: Vertex[];
   distance: number;
 }
 
 export class Vertex {
-  constructor(public id: string | number, public adjacent: Connection[] = []) {}
+  constructor(public id: string | number, public adjacent: PathConnection[] = []) {}
 }
 
 // const a = new Vertex('a');
