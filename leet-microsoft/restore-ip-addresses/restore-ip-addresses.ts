@@ -8,9 +8,42 @@
  */
 
 export function restoreIpAddresses(s: string): string[] {
-  let result: string[];
+  let result: string[] = [];
 
-  function dp(index: number, cur: string[]) {}
+  function dp(index: number, cur: string[]) {
+    if (cur.length >= 4) {
+      if (index === s.length) {
+        result.push(cur.join('.'));
+      }
+      return;
+    }
 
+    if (index > s.length) return;
+
+    cur.push(s.charAt(index));
+    dp(index + 1, cur);
+    cur.pop();
+
+    if (index < s.length - 1) {
+      if (s.charAt(index) !== '0') {
+        cur.push(s.substring(index, index + 2));
+        dp(index + 2, cur);
+        cur.pop();
+      }
+    }
+
+    if (index < s.length - 2) {
+      if (s.charAt(index) !== '0') {
+        const possibility = s.substring(index, index + 3);
+        if (Number(possibility) <= 255) {
+          cur.push(possibility);
+          dp(index + 3, cur);
+          cur.pop();
+        }
+      }
+    }
+  }
+
+  dp(0, []);
   return result;
 }
