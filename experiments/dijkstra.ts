@@ -2,12 +2,12 @@
  * [Dijkstra's Algorithm Explained](https://www.freecodecamp.org/news/dijkstras-algorithm-explained-with-a-pseudocode-example/)
  */
 
-export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]): Path {
+export function dijkstra(from: PathNode, to: PathNode, graph: PathNode[]): Path {
   // initialize list of shortest distances
-  const records = new Map<Vertex, PathRecord>();
+  const records = new Map<PathNode, PathRecord>();
   records.set(from, { distance: 0 });
-  for (let v of graph) {
-    records.set(v, { distance: Infinity });
+  for (let n of graph) {
+    records.set(n, { distance: Infinity });
   }
   for (let adj of from.adjacent) {
     records.set(adj.to, {
@@ -17,16 +17,16 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]): Path {
   }
 
   // create unvisited list
-  const unvisited = new Map<Vertex, true>(graph.map(v => [v, true]));
+  const unvisited = new Map<PathNode, true>(graph.map(n => [n, true]));
 
   while (unvisited.size > 0) {
-    // select the vertex with the shortest recorded distance amongst unvisited
-    let shortest!: Vertex;
+    // select the node with the shortest recorded distance amongst unvisited
+    let shortest!: PathNode;
     let tmpDistance = Infinity;
-    for (let [v] of unvisited) {
-      const distance = records.get(v)!.distance;
+    for (let [n] of unvisited) {
+      const distance = records.get(n)!.distance;
       if (distance < tmpDistance) {
-        shortest = v;
+        shortest = n;
         tmpDistance = distance;
       }
     }
@@ -49,11 +49,11 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]): Path {
 
   // construct the path by traversing the records
   // backwardsand and sum the total distance
-  const path: Vertex[] = [to];
+  const path: PathNode[] = [to];
   let recordPointer = records.get(to);
   let totalDistance = recordPointer!.distance;
   while (recordPointer!.previous !== from) {
-    const previous = recordPointer!.previous as Vertex;
+    const previous = recordPointer!.previous as PathNode;
     path.push(previous);
     recordPointer = records.get(previous);
     totalDistance += recordPointer!.distance;
@@ -68,29 +68,29 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]): Path {
 }
 
 export interface PathConnection {
-  to: Vertex;
+  to: PathNode;
   distance: number;
 }
 
 export interface PathRecord {
   distance: number;
-  previous?: Vertex;
+  previous?: PathNode;
 }
 
 export interface Path {
-  path: Vertex[];
+  path: PathNode[];
   distance: number;
 }
 
-export class Vertex {
+export class PathNode {
   constructor(public id: string | number, public adjacent: PathConnection[] = []) {}
 }
 
-// const a = new Vertex('a');
-// const b = new Vertex('b');
-// const c = new Vertex('c');
-// const d = new Vertex('d');
-// const e = new Vertex('e');
+// const a = new PathNode('a');
+// const b = new PathNode('b');
+// const c = new PathNode('c');
+// const d = new PathNode('d');
+// const e = new PathNode('e');
 
 // a.adjacent = [
 //   { to: c, distance: 2 },

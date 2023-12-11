@@ -1,11 +1,11 @@
-import { Vertex, dijkstra } from './dijkstra';
+import { PathNode, dijkstra } from './dijkstra';
 
 describe(`Dijkstra's Algorithm`, () => {
-  const a = new Vertex('a');
-  const b = new Vertex('b');
-  const c = new Vertex('c');
-  const d = new Vertex('d');
-  const e = new Vertex('e');
+  const a = new PathNode('a');
+  const b = new PathNode('b');
+  const c = new PathNode('c');
+  const d = new PathNode('d');
+  const e = new PathNode('e');
 
   a.adjacent = [
     { to: c, distance: 2 },
