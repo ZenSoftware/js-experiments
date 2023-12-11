@@ -16,14 +16,23 @@ export function isInterleave(s1: string, s2: string, s3: string): boolean {
   if (s1.length + s2.length !== s3.length) return false;
 
   function dp(index1: number, index2: number, index3: number) {
+    if (index1 > s1.length && index2 > s2.length) return true;
+
     const char1 = s1.charAt(index1);
     const char2 = s2.charAt(index2);
     const char3 = s3.charAt(index3);
 
-    if (char1 === char3) dp(index1 + 1, index2, index3 + 1);
-    if (char2 === char3) dp(index1, index2 + 1, index3 + 1);
+    let result1 = false;
+    if (char1 === char3 && index1 <= s1.length) {
+      result1 = dp(index1 + 1, index2, index3 + 1);
+    }
 
-    return false;
+    let result2 = false;
+    if (char2 === char3 && index2 <= s2.length) {
+      result2 = dp(index1, index2 + 1, index3 + 1);
+    }
+
+    return result1 || result2;
   }
 
   return dp(0, 0, 0);
