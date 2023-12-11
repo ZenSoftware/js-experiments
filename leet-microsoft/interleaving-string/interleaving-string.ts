@@ -14,8 +14,11 @@
 
 export function isInterleave(s1: string, s2: string, s3: string): boolean {
   if (s1.length + s2.length !== s3.length) return false;
+  const memo: Record<string, boolean> = {};
 
   function dp(index1: number, index2: number, index3: number) {
+    let key = `${index1}_${index2}_${index3}`;
+    if (memo[key] !== undefined) return memo[key];
     if (index1 > s1.length && index2 > s2.length) return true;
 
     const char1 = s1.charAt(index1);
@@ -32,7 +35,8 @@ export function isInterleave(s1: string, s2: string, s3: string): boolean {
       result2 = dp(index1, index2 + 1, index3 + 1);
     }
 
-    return result1 || result2;
+    memo[key] = result1 || result2;
+    return memo[key];
   }
 
   return dp(0, 0, 0);
