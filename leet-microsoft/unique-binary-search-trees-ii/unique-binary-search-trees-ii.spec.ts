@@ -6,7 +6,7 @@ describe('Unique Binary Search Trees II', () => {
     const result = generateTrees(n);
     for (let tree of result) {
       const vals = dfs(tree);
-      expect(vals.length).toEqual(3);
+      expect(vals.length).toEqual(n);
       expect(allUnique(vals)).toEqual(true);
     }
     expect(result.length).toEqual(5);
