@@ -8,5 +8,9 @@
  */
 
 export function restoreIpAddresses(s: string): string[] {
-  return [];
+  let result: string[];
+
+  function dp(index: number, cur: string[]) {}
+
+  return result;
 }
