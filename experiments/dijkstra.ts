@@ -34,11 +34,11 @@ export function dijkstra(from: PathNode, to: PathNode, graph: PathNode[]): Path 
     // Update the records according to the shortest thus far
     for (let connection of shortest.adjacent) {
       if (unvisited.get(connection.to)) {
-        const recordShortestDist = records.get(shortest)!.distance;
+        const shortestDist = records.get(shortest)!.distance;
+        const newShortest = connection.distance + shortestDist;
         const recordAdj = records.get(connection.to) as PathRecord;
-        const newDist = connection.distance + recordShortestDist;
-        if (newDist < recordAdj.distance) {
-          recordAdj.distance = newDist;
+        if (newShortest < recordAdj.distance) {
+          recordAdj.distance = newShortest;
           recordAdj.previous = shortest;
         }
       }
