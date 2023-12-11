@@ -15,11 +15,16 @@
 export function isInterleave(s1: string, s2: string, s3: string): boolean {
   if (s1.length + s2.length !== s3.length) return false;
 
-  function dp(index: number) {
-    if (index >= s3.length) return true;
+  function dp(index1: number, index2: number, index3: number) {
+    const char1 = s1.charAt(index1);
+    const char2 = s2.charAt(index2);
+    const char3 = s3.charAt(index3);
 
-    return dp(index + 1);
+    if (char1 === char3) dp(index1 + 1, index2, index3 + 1);
+    if (char2 === char3) dp(index1, index2 + 1, index3 + 1);
+
+    return false;
   }
 
-  return dp(0);
+  return dp(0, 0, 0);
 }
