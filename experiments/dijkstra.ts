@@ -4,13 +4,13 @@
 
 export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
   // initialize list of shortest distances
-  const record = new Map<Vertex, number>();
+  const record = new Map<Vertex, Record>();
   for (let v of graph) {
-    record.set(v, Infinity);
+    record.set(v, { distance: Infinity });
   }
-  record.set(from, 0);
+  record.set(from, { distance: 0 });
   for (let adj of from.adjacent) {
-    record.set(adj.to, adj.distance);
+    record.set(adj.to, { distance: adj.distance });
   }
 
   // create unvisited list
@@ -21,7 +21,7 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
     let shortest!: Vertex;
     let tmpDistance = Infinity;
     for (let [v, _] of unvisited) {
-      const distance = record.get(v) as number;
+      const distance = record.get(v)!.distance;
       if (distance < tmpDistance) {
         shortest = v;
         tmpDistance = distance;
@@ -30,14 +30,25 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
 
     for (let connection of shortest.adjacent) {
       if (unvisited.get(connection.to)) {
-        const recordShortestDist = record.get(shortest) as number;
-        const recordAdjDist = record.get(connection.to) as number;
+        const recordShortestDist = record.get(shortest)!.distance;
+        const recordAdj = record.get(connection.to) as Record;
         const newDist = connection.distance + recordShortestDist;
-        if (newDist < recordAdjDist) record.set(connection.to, newDist);
+        if (newDist < recordAdj.distance) {
+          recordAdj.distance = newDist;
+          recordAdj.previous = connection.to;
+        }
       }
     }
 
     unvisited.delete(shortest);
+  }
+
+  const result: Vertex[] = [to];
+  let next = record.get(to);
+  while (next?.previous !== from) {
+    const previous = next!.previous as Vertex;
+    result.push(previous);
+    next = record.get(previous);
   }
 
   return Array.from(record.entries()).map(([v, dist]) => [v.id, dist]);
@@ -46,6 +57,11 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
 export interface Connection {
   to: Vertex;
   distance: number;
+}
+
+export interface Record {
+  distance: number;
+  previous?: Vertex;
 }
 
 export class Vertex {
