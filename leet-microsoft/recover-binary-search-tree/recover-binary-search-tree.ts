@@ -5,7 +5,28 @@
  * -231 <= Node.val <= 231 - 1
  */
 
-export function recoverTree(root: TreeNode | null): void {}
+export function recoverTree(root: TreeNode | null): void {
+  if (!root) return;
+
+  if (root.left) {
+    if (root.left.val > root.val) {
+      const tmp = root.left.val;
+      root.left.val = root.val;
+      root.val = tmp;
+    }
+    recoverTree(root.left);
+  }
+
+  if (root.right) {
+    if (root.right.val < root.val) {
+      const tmp = root.right.val;
+      root.right.val = root.val;
+      root.val = tmp;
+    }
+
+    recoverTree(root.right);
+  }
+}
 
 class TreeNode {
   val: number;
