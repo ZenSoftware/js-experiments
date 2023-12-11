@@ -3,7 +3,7 @@
  */
 
 export function dijkstra(from: PathNode, to: PathNode, graph: PathNode[]): Path {
-  // initialize list of shortest distances
+  // initialize list of shortest recorded distances
   const records = new Map<PathNode, PathRecord>();
   records.set(from, { distance: 0 });
   for (let n of graph) {
