@@ -13,10 +13,25 @@ export function reverseBetween(
 ): ListNode | null {
   if (!head?.next) return head;
   let pointerHead = new ListNode(0, head);
-  let pointer = pointerHead;
+  let pointer: ListNode | null = pointerHead;
+  let beforeLeft: ListNode;
 
-  while (pointer.next) {
-    pointer = pointer.next;
+  let count = 0;
+  while (count < left) {
+    count++;
+    beforeLeft = pointer as ListNode;
+    pointer = pointer!.next;
+  }
+
+  let numberToSwap = right - left;
+  for (let i = 0; i < numberToSwap; i++) {
+    pointer = beforeLeft!.next;
+    for (let j = 0; j < numberToSwap - 1; j++) {
+      const temp = pointer!.next;
+      pointer!.next = pointer!.next!.next;
+      temp!.next = pointer;
+      beforeLeft!.next = temp;
+    }
   }
 
   return pointerHead.next;
@@ -58,3 +73,7 @@ export function toArray(root: ListNode | null) {
 
   return result;
 }
+
+// const list = toList([1, 2, 3, 4, 5]);
+// const result = reverseBetween(list, 1, 4);
+// console.log(toArray(result));
