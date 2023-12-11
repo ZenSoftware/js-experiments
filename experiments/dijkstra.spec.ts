@@ -33,6 +33,6 @@ describe(`Dijkstra's Algorithm`, () => {
   const graph = [a, b, c, d, e];
 
   it('evaluates correctly 1', () => {
-    expect(dijkstra(a, b, graph)).toEqual([a, c, b]);
+    expect(dijkstra(a, d, graph)).toEqual([a, c, b, d]);
   });
 });

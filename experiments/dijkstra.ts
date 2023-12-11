@@ -10,7 +10,7 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
   }
   record.set(from, { distance: 0 });
   for (let adj of from.adjacent) {
-    record.set(adj.to, { distance: adj.distance });
+    record.set(adj.to, { distance: adj.distance, previous: from });
   }
 
   // create unvisited list
@@ -35,7 +35,7 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
         const newDist = connection.distance + recordShortestDist;
         if (newDist < recordAdj.distance) {
           recordAdj.distance = newDist;
-          recordAdj.previous = connection.to;
+          recordAdj.previous = shortest;
         }
       }
     }
@@ -43,15 +43,17 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
     unvisited.delete(shortest);
   }
 
+  // construct the path by traversing the record backwards
   const result: Vertex[] = [to];
   let next = record.get(to);
   while (next?.previous !== from) {
     const previous = next!.previous as Vertex;
-    result.push(previous);
+    result.unshift(previous);
     next = record.get(previous);
   }
+  result.unshift(from);
 
-  return Array.from(record.entries()).map(([v, dist]) => [v.id, dist]);
+  return result.map(v => v);
 }
 
 export interface Connection {
