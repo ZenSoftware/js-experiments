@@ -2,18 +2,18 @@
  * [Dijkstra's Algorithm Explained](https://www.freecodecamp.org/news/dijkstras-algorithm-explained-with-a-pseudocode-example/)
  */
 
-export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
+export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]): PathResult {
   // initialize list of shortest distances
-  const record = new Map<Vertex, Record>();
+  const records = new Map<Vertex, Record>();
 
   for (let v of graph) {
-    record.set(v, { distance: Infinity });
+    records.set(v, { distance: Infinity });
   }
 
-  record.set(from, { distance: 0 });
+  records.set(from, { distance: 0 });
 
   for (let adj of from.adjacent) {
-    record.set(adj.to, {
+    records.set(adj.to, {
       distance: adj.distance,
       previous: from,
     });
@@ -27,7 +27,7 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
     let shortest!: Vertex;
     let tmpDistance = Infinity;
     for (let [v] of unvisited) {
-      const distance = record.get(v)!.distance;
+      const distance = records.get(v)!.distance;
       if (distance < tmpDistance) {
         shortest = v;
         tmpDistance = distance;
@@ -36,8 +36,8 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
 
     for (let connection of shortest.adjacent) {
       if (unvisited.get(connection.to)) {
-        const recordShortestDist = record.get(shortest)!.distance;
-        const recordAdj = record.get(connection.to) as Record;
+        const recordShortestDist = records.get(shortest)!.distance;
+        const recordAdj = records.get(connection.to) as Record;
         const newDist = connection.distance + recordShortestDist;
         if (newDist < recordAdj.distance) {
           recordAdj.distance = newDist;
@@ -49,17 +49,23 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
     unvisited.delete(shortest);
   }
 
-  // construct the path by traversing the record backwards
-  const result: Vertex[] = [to];
-  let next = record.get(to);
-  while (next!.previous !== from) {
-    const previous = next!.previous as Vertex;
-    result.push(previous);
-    next = record.get(previous);
+  // construct the path by traversing the records backwards
+  const path: Vertex[] = [to];
+  let recordPointer = records.get(to);
+  let totalDistance = recordPointer!.distance;
+  while (recordPointer!.previous !== from) {
+    const previous = recordPointer!.previous as Vertex;
+    path.push(previous);
+    recordPointer = records.get(previous);
+    totalDistance += recordPointer!.distance;
   }
-  result.push(from);
+  path.push(from);
+  path.reverse();
 
-  return result.reverse();
+  return {
+    path,
+    distance: totalDistance,
+  };
 }
 
 export interface Connection {
@@ -70,6 +76,11 @@ export interface Connection {
 export interface Record {
   distance: number;
   previous?: Vertex;
+}
+
+export interface PathResult {
+  path: Vertex[];
+  distance: number;
 }
 
 export class Vertex {
