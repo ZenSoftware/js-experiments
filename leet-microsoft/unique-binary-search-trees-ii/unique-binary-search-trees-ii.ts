@@ -20,7 +20,7 @@ export function generateTrees(end: number, start = 1): Array<TreeNode | null> {
   return trees;
 }
 
-class TreeNode {
+export class TreeNode {
   val: number;
   left: TreeNode | null;
   right: TreeNode | null;
