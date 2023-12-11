@@ -1,6 +1,7 @@
 /**
  * [Sample Graph](https://www.freecodecamp.org/news/dijkstras-algorithm-explained-with-a-pseudocode-example/)
  */
+
 export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
   const shortest = new Map<Vertex, number>();
   for (let v of graph) {
