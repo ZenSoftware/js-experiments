@@ -11,14 +11,14 @@ export function restoreIpAddresses(s: string): string[] {
   let result: string[] = [];
 
   function dp(index: number, cur: string[]) {
+    if (index > s.length) return;
+
     if (cur.length >= 4) {
       if (index === s.length) {
         result.push(cur.join('.'));
       }
       return;
     }
-
-    if (index > s.length) return;
 
     cur.push(s.charAt(index));
     dp(index + 1, cur);
