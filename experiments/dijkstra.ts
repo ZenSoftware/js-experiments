@@ -14,17 +14,25 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
   }
 
   // create unvisited list
-  const unvisited = [...graph];
-  unvisited.splice(unvisited.indexOf(from), 1);
+  const unvisited = new Map<Vertex, undefined>(graph.map(v => [v, undefined]));
+  unvisited.delete(from);
 
   // find the shortest vertex amongst unvisited vertices
-  let shortest: Vertex;
-  let shortestDistance = Infinity;
-  for (let vertex of unvisited) {
-    const distance = shortestDistances.get(vertex) as number;
-    if (distance < shortestDistance) {
-      shortest = vertex;
-      shortestDistance = distance;
+  let shortest!: Vertex;
+  let tmpDistance = Infinity;
+  for (let [v, _] of unvisited) {
+    const distance = shortestDistances.get(v) as number;
+    if (distance < tmpDistance) {
+      shortest = v;
+      tmpDistance = distance;
+    }
+  }
+
+  unvisited.delete(shortest);
+
+  for (let connection of shortest.adjacent) {
+    if (unvisited.get(connection.to)) {
+      // shortestDistances
     }
   }
 }
