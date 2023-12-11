@@ -16,7 +16,7 @@ export function dijkstra(from: PathNode, to: PathNode, graph: PathNode[]): Path 
     });
   }
 
-  // create unvisited list
+  // initialize the unvisited list
   const unvisited = new Map<PathNode, true>(graph.map(n => [n, true]));
 
   while (unvisited.size > 0) {
