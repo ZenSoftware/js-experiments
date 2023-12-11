@@ -5,26 +5,33 @@
  * -231 <= Node.val <= 231 - 1
  */
 
+// Solution: https://leetcode.com/problems/recover-binary-search-tree/solutions/2829561/easy-ts-solution/
+
 export function recoverTree(root: TreeNode | null): void {
   if (!root) return;
+  let prev: TreeNode | null = null;
+  let first: TreeNode | null = null;
+  let second: TreeNode | null = null;
+  inOrder(root);
 
-  if (root.left) {
-    if (root.left.val > root.val) {
-      const tmp = root.left.val;
-      root.left.val = root.val;
-      root.val = tmp;
+  let temp = first!.val;
+  first!.val = second!.val;
+  second!.val = temp;
+
+  function inOrder(node: TreeNode | null) {
+    if (!node) return;
+
+    inOrder(node.left);
+
+    if (prev && prev.val > node.val) {
+      if (!first) {
+        first = prev;
+      }
+      second = node;
     }
-    recoverTree(root.left);
-  }
+    prev = node;
 
-  if (root.right) {
-    if (root.right.val < root.val) {
-      const tmp = root.right.val;
-      root.right.val = root.val;
-      root.val = tmp;
-    }
-
-    recoverTree(root.right);
+    inOrder(node.right);
   }
 }
 
