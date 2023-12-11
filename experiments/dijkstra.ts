@@ -1,5 +1,5 @@
 /**
- * [Sample Graph](https://www.freecodecamp.org/news/dijkstras-algorithm-explained-with-a-pseudocode-example/)
+ * [Dijkstra's Algorithm Explained](https://www.freecodecamp.org/news/dijkstras-algorithm-explained-with-a-pseudocode-example/)
  */
 
 export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
