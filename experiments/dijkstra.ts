@@ -2,42 +2,43 @@
  * [Dijkstra's Algorithm Explained](https://www.freecodecamp.org/news/dijkstras-algorithm-explained-with-a-pseudocode-example/)
  */
 
-export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
-  // initialize list of shortest distances
-  const record = new Map<Vertex, Record>();
-  for (let v of graph) {
-    record.set(v, { distance: Infinity });
+export function dijkstra(from: PathNode, to: PathNode, graph: PathNode[]): Path {
+  // initialize list of shortest recorded distances
+  const records = new Map<PathNode, PathRecord>();
+  records.set(from, { distance: 0 });
+  for (let n of graph) {
+    records.set(n, { distance: Infinity });
   }
-  record.set(from, { distance: 0 });
   for (let adj of from.adjacent) {
-    record.set(adj.to, {
+    records.set(adj.to, {
       distance: adj.distance,
       previous: from,
     });
   }
 
-  // create unvisited list
-  const unvisited = new Map<Vertex, true>(graph.map(v => [v, true]));
+  // initialize the unvisited list
+  const unvisited = new Map<PathNode, true>(graph.map(n => [n, true]));
 
   while (unvisited.size > 0) {
-    // select the vertex with the shortest recorded distance amongst unvisited
-    let shortest!: Vertex;
+    // select the node with the shortest recorded distance amongst unvisited
+    let shortest!: PathNode;
     let tmpDistance = Infinity;
-    for (let [v, _] of unvisited) {
-      const distance = record.get(v)!.distance;
+    for (let [n] of unvisited) {
+      const distance = records.get(n)!.distance;
       if (distance < tmpDistance) {
-        shortest = v;
+        shortest = n;
         tmpDistance = distance;
       }
     }
 
+    // Update the records according to the shortest thus far
     for (let connection of shortest.adjacent) {
       if (unvisited.get(connection.to)) {
-        const recordShortestDist = record.get(shortest)!.distance;
-        const recordAdj = record.get(connection.to) as Record;
-        const newDist = connection.distance + recordShortestDist;
-        if (newDist < recordAdj.distance) {
-          recordAdj.distance = newDist;
+        const shortestDist = records.get(shortest)!.distance;
+        const newShortest = connection.distance + shortestDist;
+        const recordAdj = records.get(connection.to) as PathRecord;
+        if (newShortest < recordAdj.distance) {
+          recordAdj.distance = newShortest;
           recordAdj.previous = shortest;
         }
       }
@@ -46,60 +47,41 @@ export function dijkstra(from: Vertex, to: Vertex, graph: Vertex[]) {
     unvisited.delete(shortest);
   }
 
-  // construct the path by traversing the record backwards
-  const result: Vertex[] = [to];
-  let next = record.get(to);
-  while (next!.previous !== from) {
-    const previous = next!.previous as Vertex;
-    result.unshift(previous);
-    next = record.get(previous);
+  // construct the path by traversing the records
+  // backwardsand and sum the total distance
+  const path: PathNode[] = [to];
+  let recordPointer = records.get(to);
+  let totalDistance = recordPointer!.distance;
+  while (recordPointer!.previous !== from) {
+    const previous = recordPointer!.previous as PathNode;
+    path.push(previous);
+    recordPointer = records.get(previous);
+    totalDistance += recordPointer!.distance;
   }
-  result.unshift(from);
+  path.push(from);
+  path.reverse();
 
-  return result.map(v => v);
+  return {
+    path,
+    distance: totalDistance,
+  };
 }
 
-export interface Connection {
-  to: Vertex;
+export interface PathConnection {
+  to: PathNode;
   distance: number;
 }
 
-export interface Record {
+export interface PathRecord {
   distance: number;
-  previous?: Vertex;
+  previous?: PathNode;
 }
 
-export class Vertex {
-  constructor(public id: string | number, public adjacent: Connection[] = []) {}
+export interface Path {
+  path: PathNode[];
+  distance: number;
 }
 
-// const a = new Vertex('a');
-// const b = new Vertex('b');
-// const c = new Vertex('c');
-// const d = new Vertex('d');
-// const e = new Vertex('e');
-
-// a.adjacent = [
-//   { to: c, distance: 2 },
-//   { to: b, distance: 4 },
-// ];
-// b.adjacent = [
-//   { to: a, distance: 4 },
-//   { to: c, distance: 1 },
-//   { to: d, distance: 3 },
-//   { to: e, distance: 2 },
-// ];
-// c.adjacent = [
-//   { to: a, distance: 2 },
-//   { to: b, distance: 1 },
-// ];
-// d.adjacent = [
-//   { to: b, distance: 3 },
-//   { to: e, distance: 5 },
-// ];
-// e.adjacent = [
-//   { to: b, distance: 2 },
-//   { to: d, distance: 5 },
-// ];
-
-// console.log(dijkstra(a, d, [a, b, c, d, e]));
+export class PathNode {
+  constructor(public id: string | number, public adjacent: PathConnection[] = []) {}
+}

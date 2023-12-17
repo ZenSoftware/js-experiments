@@ -4,15 +4,23 @@
  * 1 <= n <= 8
  */
 
-export function generateTrees(n: number): Array<TreeNode | null> {
-  const result: Array<TreeNode | null> = [];
-
-  function dfs() {}
-
-  return [];
+export function generateTrees(end: number, start = 1): Array<TreeNode | null> {
+  if (end < start) return [null];
+  if (end === start) return [new TreeNode(end)];
+  let trees: TreeNode[] = [];
+  for (let i = start; i <= end; i++) {
+    const leftTrees = generateTrees(i - 1, start);
+    const rightTrees = generateTrees(end, i + 1);
+    for (let left of leftTrees) {
+      for (let right of rightTrees) {
+        trees.push(new TreeNode(i, left, right));
+      }
+    }
+  }
+  return trees;
 }
 
-class TreeNode {
+export class TreeNode {
   val: number;
   left: TreeNode | null;
   right: TreeNode | null;
