@@ -16,15 +16,20 @@
  */
 
 export class NumMatrix {
+  cache: Record<string, number> = {};
+
   constructor(public matrix: number[][]) {}
 
   sumRegion(row1: number, col1: number, row2: number, col2: number): number {
+    let key = `${row1}-${col1},${row2}-${col2}`;
+    if (this.cache[key] !== undefined) return this.cache[key];
     let sum = 0;
     for (let r = row1; r <= row2; r++) {
       for (let c = col1; c <= col2; c++) {
         sum += this.matrix[r][c];
       }
     }
+    this.cache[key] = sum;
     return sum;
   }
 }
