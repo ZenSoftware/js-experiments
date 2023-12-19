@@ -9,25 +9,32 @@ export function levelOrder(root: TreeNode | null): number[][] {
   if (!root) return [];
 
   const result: number[][] = [];
-  const stack: TreeNode[] = [];
-  stack.push(root);
-  result.push([root.val]);
+  const stack: TreeNodeLevel[] = [];
+  stack.push({ level: 0, node: root });
 
   while (stack.length) {
-    const current = stack.shift() as TreeNode;
-    const pair: number[] = [];
+    const current = stack.shift() as TreeNodeLevel;
 
-    if (current.left) {
-      stack.push(current.left);
-      pair.push(current.left.val);
+    if (result[current.level] === undefined) {
+      result[current.level] = [];
+    }
+    result[current.level].push(current.node.val);
+
+    if (current.node.left) {
+      const left: TreeNodeLevel = {
+        level: current.level + 1,
+        node: current.node.left,
+      };
+      stack.push(left);
     }
 
-    if (current.right) {
-      stack.push(current.right);
-      pair.push(current.right.val);
+    if (current.node.right) {
+      const right: TreeNodeLevel = {
+        level: current.level + 1,
+        node: current.node.right,
+      };
+      stack.push(right);
     }
-
-    if (pair.length > 0) result.push(pair);
   }
 
   return result;
@@ -42,4 +49,9 @@ export class TreeNode {
     this.left = left === undefined ? null : left;
     this.right = right === undefined ? null : right;
   }
+}
+
+interface TreeNodeLevel {
+  level: number;
+  node: TreeNode;
 }
