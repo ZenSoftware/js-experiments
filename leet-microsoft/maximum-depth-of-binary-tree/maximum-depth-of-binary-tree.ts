@@ -7,7 +7,41 @@
  */
 
 export function maxDepth(root: TreeNode | null): number {
-  return 0;
+  if (!root) return 0;
+
+  let deepest = -Infinity;
+
+  const stack: TreeNodeLevel[] = [];
+  stack.push({ level: 1, node: root });
+
+  while (stack.length) {
+    const current = stack.shift() as TreeNodeLevel;
+
+    if (current.level > deepest) deepest = current.level;
+
+    if (current.node.left) {
+      const left: TreeNodeLevel = {
+        level: current.level + 1,
+        node: current.node.left,
+      };
+      stack.push(left);
+    }
+
+    if (current.node.right) {
+      const right: TreeNodeLevel = {
+        level: current.level + 1,
+        node: current.node.right,
+      };
+      stack.push(right);
+    }
+  }
+
+  return deepest;
+}
+
+interface TreeNodeLevel {
+  level: number;
+  node: TreeNode;
 }
 
 export class TreeNode {
