@@ -26,6 +26,7 @@ export function zigzagLevelOrder(root: TreeNode | null): number[][] {
         level: current.level + 1,
         node: current.node.left,
       };
+      stack.push(left);
     }
 
     if (current.node.right) {
@@ -33,15 +34,12 @@ export function zigzagLevelOrder(root: TreeNode | null): number[][] {
         level: current.level + 1,
         node: current.node.right,
       };
+      stack.push(right);
     }
+  }
 
-    if (current.level % 2 === 1) {
-      if (left) stack.push(left);
-      if (right) stack.push(right);
-    } else {
-      if (right) stack.push(right);
-      if (left) stack.push(left);
-    }
+  for (let i = 1; i < result.length; i += 2) {
+    result[i].reverse();
   }
 
   return result;
@@ -62,16 +60,3 @@ export class TreeNode {
     this.right = right === undefined ? null : right;
   }
 }
-
-const n3 = new TreeNode(3);
-const n9 = new TreeNode(9);
-const n20 = new TreeNode(20);
-const n15 = new TreeNode(15);
-const n7 = new TreeNode(7);
-
-n3.left = n9;
-n3.right = n20;
-n20.left = n15;
-n20.right = n7;
-
-console.log(zigzagLevelOrder(n3));
