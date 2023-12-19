@@ -11,37 +11,15 @@ export function maxDepth(root: TreeNode | null): number {
 
   let deepest = -Infinity;
 
-  const stack: TreeNodeLevel[] = [];
-  stack.push({ level: 1, node: root });
-
-  while (stack.length) {
-    const current = stack.pop() as TreeNodeLevel;
-
-    if (current.level > deepest) deepest = current.level;
-
-    if (current.node.left) {
-      const left: TreeNodeLevel = {
-        level: current.level + 1,
-        node: current.node.left,
-      };
-      stack.push(left);
-    }
-
-    if (current.node.right) {
-      const right: TreeNodeLevel = {
-        level: current.level + 1,
-        node: current.node.right,
-      };
-      stack.push(right);
-    }
+  function dfs(node: TreeNode, depth: number) {
+    if (depth > deepest) deepest = depth;
+    if (node.left) dfs(node.left, depth + 1);
+    if (node.right) dfs(node.right, depth + 1);
   }
 
-  return deepest;
-}
+  dfs(root, 1);
 
-interface TreeNodeLevel {
-  level: number;
-  node: TreeNode;
+  return deepest;
 }
 
 export class TreeNode {
