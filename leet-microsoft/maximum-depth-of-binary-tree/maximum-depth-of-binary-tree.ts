@@ -15,7 +15,7 @@ export function maxDepth(root: TreeNode | null): number {
   stack.push({ level: 1, node: root });
 
   while (stack.length) {
-    const current = stack.shift() as TreeNodeLevel;
+    const current = stack.pop() as TreeNodeLevel;
 
     if (current.level > deepest) deepest = current.level;
 
