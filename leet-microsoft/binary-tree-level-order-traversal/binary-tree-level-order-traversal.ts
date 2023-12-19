@@ -6,7 +6,29 @@
  */
 
 export function levelOrder(root: TreeNode | null): number[][] {
+  if (!root) return [];
+
   const result: number[][] = [];
+  const stack: TreeNode[] = [];
+  stack.push(root);
+  result.push([root.val]);
+
+  while (stack.length) {
+    const current = stack.shift() as TreeNode;
+    const pair: number[] = [];
+
+    if (current.left) {
+      stack.push(current.left);
+      pair.push(current.left.val);
+    }
+
+    if (current.right) {
+      stack.push(current.right);
+      pair.push(current.right.val);
+    }
+
+    if (pair.length > 0) result.push(pair);
+  }
 
   return result;
 }
