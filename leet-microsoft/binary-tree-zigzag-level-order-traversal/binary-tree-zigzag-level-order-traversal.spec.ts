@@ -15,4 +15,19 @@ describe('Binary Tree Zigzag Level Order Traversal', () => {
 
     expect(zigzagLevelOrder(n3)).toEqual([[3], [20, 9], [15, 7]]);
   });
+
+  it('evaluates correctly 2', () => {
+    const n1 = new TreeNode(1);
+    const n2 = new TreeNode(2);
+    const n3 = new TreeNode(3);
+    const n4 = new TreeNode(4);
+    const n5 = new TreeNode(5);
+
+    n1.left = n2;
+    n1.right = n3;
+    n2.left = n4;
+    n3.right = n5;
+
+    expect(zigzagLevelOrder(n1)).toEqual([[1], [3, 2], [4, 5]]);
+  });
 });

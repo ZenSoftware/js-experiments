@@ -18,38 +18,29 @@ export function zigzagLevelOrder(root: TreeNode | null): number[][] {
     if (result[current.level] === undefined) result[current.level] = [];
     result[current.level].push(current.node.val);
 
+    let left: TreeNodeLevel | undefined;
+    let right: TreeNodeLevel | undefined;
+
+    if (current.node.left) {
+      left = {
+        level: current.level + 1,
+        node: current.node.left,
+      };
+    }
+
+    if (current.node.right) {
+      right = {
+        level: current.level + 1,
+        node: current.node.right,
+      };
+    }
+
     if (current.level % 2 === 1) {
-      if (current.node.left) {
-        const left: TreeNodeLevel = {
-          level: current.level + 1,
-          node: current.node.left,
-        };
-        stack.push(left);
-      }
-
-      if (current.node.right) {
-        const right: TreeNodeLevel = {
-          level: current.level + 1,
-          node: current.node.right,
-        };
-        stack.push(right);
-      }
+      if (left) stack.push(left);
+      if (right) stack.push(right);
     } else {
-      if (current.node.right) {
-        const right: TreeNodeLevel = {
-          level: current.level + 1,
-          node: current.node.right,
-        };
-        stack.push(right);
-      }
-
-      if (current.node.left) {
-        const left: TreeNodeLevel = {
-          level: current.level + 1,
-          node: current.node.left,
-        };
-        stack.push(left);
-      }
+      if (right) stack.push(right);
+      if (left) stack.push(left);
     }
   }
 
