@@ -37,15 +37,20 @@ export class TreeNode {
 export function bfsLeftFirst(root: TreeNode | null) {
   if (!root) return [];
 
-  const result: number[] = [];
-  const stack: TreeNode[] = [];
+  const result: (number | null)[] = [];
+  const stack: (TreeNode | null)[] = [];
   stack.unshift(root);
 
   while (stack.length) {
-    const current = stack.pop() as TreeNode;
-    result.push(current!.val);
-    if (current.left) stack.push(current.left);
-    if (current.right) stack.push(current.right);
+    const current = stack.shift() as TreeNode;
+
+    if (current) {
+      result.push(current.val);
+      stack.push(current.left);
+      stack.push(current.right);
+    } else {
+      result.push(null);
+    }
   }
 
   return result;
@@ -54,41 +59,40 @@ export function bfsLeftFirst(root: TreeNode | null) {
 export function bfsRightFirst(root: TreeNode | null) {
   if (!root) return [];
 
-  const result: number[] = [];
-  const stack: TreeNode[] = [];
+  const result: (number | null)[] = [];
+  const stack: (TreeNode | null)[] = [];
   stack.unshift(root);
 
   while (stack.length) {
-    const current = stack.pop() as TreeNode;
-    result.push(current!.val);
-    if (current.right) stack.push(current.right);
-    if (current.left) stack.push(current.left);
+    const current = stack.shift() as TreeNode;
+
+    if (current) {
+      result.push(current.val);
+      stack.push(current.right);
+      stack.push(current.left);
+    } else {
+      result.push(null);
+    }
   }
 
   return result;
 }
 
-// const r1 = new TreeNode(1);
-// const l2 = new TreeNode(2);
-// const r2 = new TreeNode(2);
-// const l3 = new TreeNode(3);
-// const r4 = new TreeNode(4);
-// const l4 = new TreeNode(4);
-// const r3 = new TreeNode(3);
+const r1 = new TreeNode(1);
+const n_1_2 = new TreeNode(2);
+const n_2_2 = new TreeNode(2);
+const n_1_3 = new TreeNode(3);
+const n_2_3 = new TreeNode(3);
+const n_1_4 = new TreeNode(4);
+const n_2_4 = new TreeNode(4);
 
-// r1.left = l2;
-// r1.right = r2;
-// l2.left = l3;
-// l2.right = r4;
-// r2.left = l4;
-// r2.right = r3;
+r1.left = n_1_2;
+r1.right = n_2_2;
+n_1_2.right = n_1_3;
+n_2_2.right = n_2_3;
 
-// // [1, 2, 2, 3, 4, 4, 3]
+const leftVals = bfsLeftFirst(r1.left);
+console.log(leftVals);
 
-// const bfsValues = bfsRightFirst(r1);
-// console.log(bfsValues);
-
-// const leftVals = bfsLeftFirst(r1.left);
-// const rightVals = bfsRightFirst(r1.right);
-// console.log(leftVals);
-// console.log(rightVals);
+const rightVals = bfsRightFirst(r1.right);
+console.log(rightVals);
