@@ -1,4 +1,4 @@
-import { isSymmetric, TreeNode, bfs } from './symmetric-tree';
+import { isSymmetric, TreeNode, bfsRightFirst } from './symmetric-tree';
 
 describe('Symmetric Tree', () => {
   const r1 = new TreeNode(1);
@@ -17,7 +17,7 @@ describe('Symmetric Tree', () => {
   r2.right = r3;
 
   it('constructs tree correctly', () => {
-    const values = bfs(r1);
+    const values = bfsRightFirst(r1);
     expect(values).toEqual([1, 2, 3, 4, 2, 4, 3]);
   });
 
