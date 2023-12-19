@@ -77,22 +77,3 @@ export function bfsRightFirst(root: TreeNode | null) {
 
   return result;
 }
-
-const r1 = new TreeNode(1);
-const n_1_2 = new TreeNode(2);
-const n_2_2 = new TreeNode(2);
-const n_1_3 = new TreeNode(3);
-const n_2_3 = new TreeNode(3);
-const n_1_4 = new TreeNode(4);
-const n_2_4 = new TreeNode(4);
-
-r1.left = n_1_2;
-r1.right = n_2_2;
-n_1_2.right = n_1_3;
-n_2_2.right = n_2_3;
-
-const leftVals = bfsLeftFirst(r1.left);
-console.log(leftVals);
-
-const rightVals = bfsRightFirst(r1.right);
-console.log(rightVals);
