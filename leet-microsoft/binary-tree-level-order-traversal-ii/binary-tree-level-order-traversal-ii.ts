@@ -9,11 +9,39 @@ export function levelOrderBottom(root: TreeNode | null): number[][] {
   if (!root) return [];
 
   const result: number[][] = [];
+  const queue: TreeNodeLevel[] = [{ level: 0, node: root }];
 
-  return result;
+  while (queue.length) {
+    const current = queue.shift() as TreeNodeLevel;
+
+    if (!result[current.level]) result[current.level] = [];
+
+    result[current.level].push(current.node.val);
+
+    if (current.node.left) {
+      queue.push({
+        level: current.level + 1,
+        node: current.node.left,
+      });
+    }
+
+    if (current.node.right) {
+      queue.push({
+        level: current.level + 1,
+        node: current.node.right,
+      });
+    }
+  }
+
+  return result.reverse();
 }
 
-class TreeNode {
+interface TreeNodeLevel {
+  level: number;
+  node: TreeNode;
+}
+
+export class TreeNode {
   val: number;
   left: TreeNode | null;
   right: TreeNode | null;
@@ -23,3 +51,16 @@ class TreeNode {
     this.right = right === undefined ? null : right;
   }
 }
+
+// const n3 = new TreeNode(3);
+// const n9 = new TreeNode(9);
+// const n20 = new TreeNode(20);
+// const n15 = new TreeNode(15);
+// const n7 = new TreeNode(7);
+
+// n3.left = n9;
+// n3.right = n20;
+// n20.left = n15;
+// n20.right = n7;
+
+// console.log(levelOrderBottom(n3));
