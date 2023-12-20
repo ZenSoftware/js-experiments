@@ -38,16 +38,16 @@ export function bfsLeftFirst(root: TreeNode | null) {
   if (!root) return [];
 
   const result: (number | null)[] = [];
-  const stack: (TreeNode | null)[] = [];
-  stack.unshift(root);
+  const queue: (TreeNode | null)[] = [];
+  queue.unshift(root);
 
-  while (stack.length) {
-    const current = stack.shift() as TreeNode;
+  while (queue.length) {
+    const current = queue.shift() as TreeNode;
 
     if (current) {
       result.push(current.val);
-      stack.push(current.left);
-      stack.push(current.right);
+      queue.push(current.left);
+      queue.push(current.right);
     } else {
       result.push(null);
     }
@@ -60,16 +60,16 @@ export function bfsRightFirst(root: TreeNode | null) {
   if (!root) return [];
 
   const result: (number | null)[] = [];
-  const stack: (TreeNode | null)[] = [];
-  stack.unshift(root);
+  const queue: (TreeNode | null)[] = [];
+  queue.unshift(root);
 
-  while (stack.length) {
-    const current = stack.shift() as TreeNode;
+  while (queue.length) {
+    const current = queue.shift() as TreeNode;
 
     if (current) {
       result.push(current.val);
-      stack.push(current.right);
-      stack.push(current.left);
+      queue.push(current.right);
+      queue.push(current.left);
     } else {
       result.push(null);
     }
