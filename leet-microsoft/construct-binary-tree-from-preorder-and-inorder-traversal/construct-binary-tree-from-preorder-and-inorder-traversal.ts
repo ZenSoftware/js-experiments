@@ -14,13 +14,13 @@ export function buildTree(preorder: number[], inorder: number[]): TreeNode | nul
   if (preorder.length === 0) return null;
 
   const root = new TreeNode(preorder[0]);
-  const nextPreorder = preorder.slice(1);
 
   const i = inorder.indexOf(preorder[0]);
-  const nextInorder = [...inorder.slice(0, i), ...inorder.slice(i + 1)];
+  const left_inorder = inorder.slice(0, i);
+  const right_inorder = inorder.slice(i + 1);
 
-  root.left = buildTree(nextPreorder, inorder.slice(0, i));
-  root.right = buildTree([], inorder.slice(i + 1));
+  root.left = buildTree(preorder.slice(1, left_inorder.length + 1), left_inorder);
+  root.right = buildTree(preorder.slice(left_inorder.length + 1), right_inorder);
 
   return root;
 }
@@ -63,3 +63,9 @@ export function dfsInorder(root: TreeNode | null) {
   search(root);
   return result;
 }
+
+const preorder = [3, 9, 20, 15, 7];
+const inorder = [9, 3, 15, 20, 7];
+const result = buildTree(preorder, inorder);
+console.log(dfsPreorder(result));
+console.log(dfsInorder(result));
