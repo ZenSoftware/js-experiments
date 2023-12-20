@@ -28,3 +28,34 @@ class TreeNode {
     this.right = right === undefined ? null : right;
   }
 }
+
+export function toList(vals: number[]) {
+  if (vals.length === 0) return null;
+
+  let pointer = new ListNode(vals[vals.length - 1]);
+
+  for (let i = vals.length - 2; i >= 0; i--) {
+    const node = new ListNode(vals[i]);
+    node.next = pointer;
+    pointer = node;
+  }
+
+  return pointer;
+}
+
+export function toArray(root: ListNode | null) {
+  if (!root) return [];
+  const result: number[] = [];
+
+  let pointer: ListNode | null = root;
+  while (pointer) {
+    result.push(pointer.val);
+    pointer = pointer.next;
+  }
+
+  return result;
+}
+
+const head = toList([-10, -3, 0, 5, 9]);
+const result = sortedListToBST(head);
+console.log(result);
