@@ -11,19 +11,24 @@
  */
 
 export function buildTree(inorder: number[], postorder: number[]): TreeNode | null {
-  if (inorder.length === 0) return null;
+  const indexCache: Record<string, number> = {};
+  for (let i = 0; i < inorder.length; i++) {
+    indexCache[inorder[i]] = i;
+  }
 
-  const last = postorder.pop() as number;
-  const root = new TreeNode(last);
+  function helper(l: number, r: number) {
+    if (l > r) return null;
 
-  const i = inorder.findIndex(x => x === last);
-  const inorder_right = inorder.slice(i + 1);
-  const inorder_left = inorder.slice(0, i);
+    const last = postorder.pop() as number;
+    const root = new TreeNode(last);
+    const idx = indexCache[last];
+    root.right = helper(idx + 1, r);
+    root.left = helper(l, idx - 1);
 
-  root.right = buildTree(inorder_right, postorder);
-  root.left = buildTree(inorder_left, postorder);
+    return root;
+  }
 
-  return root;
+  return helper(0, inorder.length - 1);
 }
 
 class TreeNode {
