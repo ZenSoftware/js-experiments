@@ -6,7 +6,33 @@
  * nums is sorted in a strictly increasing order.
  */
 export function sortedArrayToBST(nums: number[]): TreeNode | null {
-  return null;
+  if (nums.length === 0) return null;
+
+  const root = new TreeNode(nums[0]);
+
+  for (let i = 1; i < nums.length; i++) {
+    const node = nextAvailable(root);
+    if (!node.left) node.left = new TreeNode(nums[i]);
+    else node.right = new TreeNode(nums[i]);
+  }
+
+  return root;
+}
+
+function nextAvailable(root: TreeNode): TreeNode {
+  const queue: TreeNode[] = [root];
+
+  while (queue.length) {
+    const current = queue.shift() as TreeNode;
+
+    if (current.left) queue.push(current.left);
+    else return current;
+
+    if (current.right) queue.push(current.right);
+    else return current;
+  }
+
+  throw 'something went wrong';
 }
 
 class TreeNode {
