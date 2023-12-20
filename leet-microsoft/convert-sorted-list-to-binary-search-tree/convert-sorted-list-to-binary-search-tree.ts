@@ -15,19 +15,28 @@ export function sortedListToBST(head: ListNode | null): TreeNode | null {
     tmp = tmp.next;
   }
 
-  function helper(first: ListNode, length: number) {
-    if (length <= 0) return null;
+  function helper(first: ListNode | null, length: number) {
+    if (length <= 0 || first === null) return null;
     if (length === 1) return new TreeNode(first.val);
 
-    const mid = Math.floor(length / 2);
-    let root: TreeNode;
+    const mid = Math.ceil(length / 2);
+    let pointer: ListNode | null = first;
 
-    for (let i = 1; i <= mid; i++) {}
+    for (let i = 1; i < mid - 1; i++) {
+      pointer = pointer!.next;
+    }
 
-    return root!;
+    const midNode = pointer!.next!;
+    let root = new TreeNode(midNode.val);
+
+    root.left = helper(first, mid - 1);
+    root.right = helper(midNode.next, length - mid);
+
+    return root;
   }
 
-  return helper(head, fullLength);
+  const result = helper(head, fullLength);
+  return result;
 }
 
 class ListNode {
