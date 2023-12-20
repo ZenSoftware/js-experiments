@@ -64,8 +64,8 @@ export function dfsInorder(root: TreeNode | null) {
   return result;
 }
 
-const preorder = [3, 9, 20, 15, 7];
-const inorder = [9, 3, 15, 20, 7];
-const result = buildTree(preorder, inorder);
-console.log(dfsPreorder(result));
-console.log(dfsInorder(result));
+// const preorder = [3, 9, 20, 15, 7];
+// const inorder = [9, 3, 15, 20, 7];
+// const result = buildTree(preorder, inorder);
+// console.log(dfsPreorder(result));
+// console.log(dfsInorder(result));
