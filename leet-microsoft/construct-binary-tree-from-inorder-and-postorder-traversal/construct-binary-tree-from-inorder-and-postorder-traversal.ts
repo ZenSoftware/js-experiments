@@ -65,8 +65,8 @@ export function dfsPostOrder(root: TreeNode | null) {
   return result;
 }
 
-const inorder = [9, 3, 15, 20, 7];
-const postorder = [9, 15, 7, 20, 3];
-const result = buildTree(inorder, postorder);
-console.log(dfsInOrder(result));
-console.log(dfsPostOrder(result));
+// const inorder = [9, 3, 15, 20, 7];
+// const postorder = [9, 15, 7, 20, 3];
+// const result = buildTree(inorder, postorder);
+// console.log(dfsInOrder(result));
+// console.log(dfsPostOrder(result));

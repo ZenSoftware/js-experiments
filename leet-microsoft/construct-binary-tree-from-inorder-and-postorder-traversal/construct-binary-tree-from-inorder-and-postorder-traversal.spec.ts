@@ -9,7 +9,7 @@ describe('Construct Binary Tree from Inorder and Postorder Traversal', () => {
     const inorder = [9, 3, 15, 20, 7];
     const postorder = [9, 15, 7, 20, 3];
     const result = buildTree(inorder, postorder);
-    expect(dfsInOrder(result)).toEqual(inorder);
-    expect(dfsPostOrder(result)).toEqual(postorder);
+    expect(dfsInOrder(result)).toEqual([9, 3, 15, 20, 7]);
+    expect(dfsPostOrder(result)).toEqual([9, 15, 7, 20, 3]);
   });
 });
