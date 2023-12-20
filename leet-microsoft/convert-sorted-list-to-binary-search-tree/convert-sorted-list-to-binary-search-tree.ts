@@ -6,7 +6,28 @@
  */
 
 export function sortedListToBST(head: ListNode | null): TreeNode | null {
-  return null;
+  if (!head) return null;
+
+  let fullLength = 0;
+  let tmp: ListNode | null = head;
+  while (tmp) {
+    fullLength++;
+    tmp = tmp.next;
+  }
+
+  function helper(first: ListNode, length: number) {
+    if (length <= 0) return null;
+    if (length === 1) return new TreeNode(first.val);
+
+    const mid = Math.floor(length / 2);
+    let root: TreeNode;
+
+    for (let i = 1; i <= mid; i++) {}
+
+    return root!;
+  }
+
+  return helper(head, fullLength);
 }
 
 class ListNode {
