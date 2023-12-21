@@ -11,6 +11,7 @@ describe('Path Sum II', () => {
     const n13 = new TreeNode(13);
     const n4_2 = new TreeNode(4);
     const n1 = new TreeNode(1);
+    const n5_2 = new TreeNode(5);
 
     n5.left = n4;
     n5.right = n8;
@@ -19,6 +20,7 @@ describe('Path Sum II', () => {
     n11.right = n2;
     n8.left = n13;
     n8.right = n4_2;
+    n4_2.left = n5_2;
     n4_2.right = n1;
 
     expect(pathSum(n5, 22)).toEqual([
