@@ -7,11 +7,17 @@
  * 0 <= prices[i] <= 104
  */
 export function maxProfit(prices: number[]): number {
-  const maxProfit = 0;
-
-  function dp(profit: number, timePointer: number, buyDay: number | null) {}
-
-  dp(0, 0, null);
-
-  return maxProfit;
+  let profit = 0;
+  let l = 0;
+  let r = 1;
+  while (r < prices.length) {
+    if (prices[l] < prices[r]) {
+      profit += prices[r] - prices[l];
+      l++;
+    } else {
+      l = r;
+    }
+    r++;
+  }
+  return profit;
 }
