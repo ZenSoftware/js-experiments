@@ -14,7 +14,47 @@
  */
 
 export function connect(root: Node | null): Node | null {
-  return null;
+  if (!root) return null;
+
+  const levels: Node[][] = [];
+  const queue: NodeLevel[] = [{ level: 0, node: root }];
+
+  while (queue.length) {
+    const current = queue.shift() as NodeLevel;
+
+    if (levels[current.level] === undefined) {
+      levels[current.level] = [];
+    }
+
+    levels[current.level].push(current.node);
+
+    if (current.node.left) {
+      queue.push({
+        level: current.level + 1,
+        node: current.node.left,
+      });
+    }
+
+    if (current.node.right) {
+      queue.push({
+        level: current.level + 1,
+        node: current.node.right,
+      });
+    }
+  }
+
+  for (const level of levels) {
+    for (let i = 0; i < level.length - 1; i++) {
+      level[i].next = level[i + 1];
+    }
+  }
+
+  return root;
+}
+
+interface NodeLevel {
+  level: number;
+  node: Node;
 }
 
 export class Node {
