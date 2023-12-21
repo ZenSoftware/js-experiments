@@ -6,13 +6,13 @@
  */
 
 export function generate(numRows: number): number[][] {
-  const result: number[][] = [];
+  const result: number[][] = Array(numRows);
 
   for (let i = 0; i < numRows; i++) {
     const row: number[] = Array(i + 1);
     row[0] = 1;
     row[i] = 1;
-    result.push(row);
+    result[i] = row;
   }
 
   for (let i = 1; i < numRows - 1; i++) {
