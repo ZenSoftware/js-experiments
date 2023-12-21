@@ -30,20 +30,43 @@ describe('Surrounded Regions', () => {
 
     solve(input);
 
-    const incorrect = [
-      ['O', 'X', 'X', 'O', 'X'],
-      ['X', 'X', 'X', 'X', 'O'],
-      ['X', 'X', 'X', 'X', 'X'],
-      ['O', 'X', 'O', 'O', 'O'],
-      ['X', 'X', 'O', 'X', 'O'],
-    ];
-
     expect(input).toEqual([
       ['O', 'X', 'X', 'O', 'X'],
       ['X', 'X', 'X', 'X', 'O'],
       ['X', 'X', 'X', 'O', 'X'],
       ['O', 'X', 'O', 'O', 'O'],
       ['X', 'X', 'O', 'X', 'O'],
+    ]);
+  });
+
+  it('evaluates correctly 3', () => {
+    const input = [
+      ['O', 'X', 'O', 'O', 'X', 'X'],
+      ['O', 'X', 'X', 'X', 'O', 'X'],
+      ['X', 'O', 'O', 'X', 'O', 'O'],
+      ['X', 'O', 'X', 'X', 'X', 'X'],
+      ['O', 'O', 'X', 'O', 'X', 'X'],
+      ['X', 'X', 'O', 'O', 'O', 'O'],
+    ];
+
+    solve(input);
+
+    const got = [
+      ['O', 'X', 'O', 'O', 'X', 'X'],
+      ['O', 'X', 'X', 'X', 'O', 'X'],
+      ['X', 'X', 'X', 'X', 'O', 'O'],
+      ['X', 'O', 'X', 'X', 'X', 'X'],
+      ['O', 'O', 'X', 'O', 'X', 'X'],
+      ['X', 'X', 'O', 'O', 'O', 'O'],
+    ];
+
+    expect(input).toEqual([
+      ['O', 'X', 'O', 'O', 'X', 'X'],
+      ['O', 'X', 'X', 'X', 'O', 'X'],
+      ['X', 'O', 'O', 'X', 'O', 'O'],
+      ['X', 'O', 'X', 'X', 'X', 'X'],
+      ['O', 'O', 'X', 'O', 'X', 'X'],
+      ['X', 'X', 'O', 'O', 'O', 'O'],
     ]);
   });
 });
