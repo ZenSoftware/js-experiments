@@ -7,32 +7,14 @@
  */
 export function sortedArrayToBST(nums: number[]): TreeNode | null {
   if (nums.length === 0) return null;
+  if (nums.length === 1) return new TreeNode(nums[0]);
 
-  const root = new TreeNode(nums[0]);
-
-  for (let i = 1; i < nums.length; i++) {
-    const node = nextAvailable(root);
-    if (!node.left) node.left = new TreeNode(nums[i]);
-    else node.right = new TreeNode(nums[i]);
-  }
+  const mid = Math.floor((nums.length - 1) / 2);
+  const root = new TreeNode(nums[mid]);
+  root.left = sortedArrayToBST(nums.slice(0, mid));
+  root.right = sortedArrayToBST(nums.slice(mid + 1));
 
   return root;
-}
-
-function nextAvailable(root: TreeNode): TreeNode {
-  const queue: TreeNode[] = [root];
-
-  while (queue.length) {
-    const current = queue.shift() as TreeNode;
-
-    if (current.left) queue.push(current.left);
-    else return current;
-
-    if (current.right) queue.push(current.right);
-    else return current;
-  }
-
-  throw 'something went wrong';
 }
 
 class TreeNode {
