@@ -8,19 +8,21 @@
  * -104 <= triangle[i][j] <= 104
  */
 export function minimumTotal(triangle: number[][]): number {
-  let result = triangle[0][0];
+  let minimum = Infinity;
 
-  let pointer = 0;
-  for (let i = 1; i < triangle.length; i++) {
-    const first = triangle[i][pointer];
-    const second = triangle[i][pointer + 1];
-    if (first <= second) {
-      result += first;
-    } else {
-      result += second;
-      pointer++;
+  function dfs(sum: number, row: number, col: number) {
+    if (col > row) return;
+    if (row >= triangle.length) {
+      if (sum < minimum) minimum = sum;
+      return;
     }
+
+    sum += triangle[row][col];
+    dfs(sum, row + 1, col);
+    dfs(sum, row + 1, col + 1);
   }
 
-  return result;
+  dfs(0, 0, 0);
+
+  return minimum;
 }
