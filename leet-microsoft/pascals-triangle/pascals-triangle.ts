@@ -8,5 +8,21 @@
 export function generate(numRows: number): number[][] {
   const result: number[][] = [];
 
+  for (let i = 0; i < numRows; i++) {
+    const row: number[] = Array(i + 1);
+    row[0] = 1;
+    row[i] = 1;
+    result.push(row);
+  }
+
+  for (let i = 1; i < numRows - 1; i++) {
+    const above = result[i];
+    const below = result[i + 1];
+
+    for (let j = 0; j < above.length - 1; j++) {
+      below[j + 1] = above[j] + above[j + 1];
+    }
+  }
+
   return result;
 }
