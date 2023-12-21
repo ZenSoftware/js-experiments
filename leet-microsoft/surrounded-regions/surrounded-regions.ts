@@ -8,4 +8,44 @@
  * board[i][j] is 'X' or 'O'.
  */
 
-export function solve(board: string[][]): void {}
+export function solve(board: string[][]): void {
+  const flips: { r: number; c: number }[] = [];
+
+  for (let r = 1; r < board.length - 1; r++) {
+    const row = board[r];
+    for (let c = 1; c < row.length - 1; c++) {
+      if (row[c] === 'O' && isSurrounded(board, r, c)) {
+        flips.push({ r, c });
+      }
+    }
+  }
+
+  for (let flip of flips) {
+    board[flip.r][flip.c] = 'X';
+  }
+}
+
+function isSurrounded(board: string[][], r: number, c: number): boolean {
+  return (
+    hasLeftX(board, r, c) &&
+    hasRightX(board, r, c) &&
+    hasTopX(board, r, c) &&
+    hasBottomX(board, r, c)
+  );
+}
+
+function hasLeftX(board: string[][], r: number, c: number): boolean {
+  return true;
+}
+
+function hasRightX(board: string[][], r: number, c: number): boolean {
+  return true;
+}
+
+function hasTopX(board: string[][], r: number, c: number): boolean {
+  return true;
+}
+
+function hasBottomX(board: string[][], r: number, c: number): boolean {
+  return true;
+}
