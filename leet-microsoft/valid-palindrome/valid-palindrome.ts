@@ -6,92 +6,34 @@
  * s consists only of printable ASCII characters.
  */
 export function isPalindrome(s: string): boolean {
-  let cleaned = '';
+  s = s.toLocaleLowerCase();
+  let left = 0;
+  let right = s.length - 1;
 
-  for (let i = 0; i < s.length; i++) {
-    const char = s.charAt(i);
-    if (VALID_CHARACTERS.includes(char)) {
-      cleaned += char.toLowerCase();
+  const validChar = c => ('a' <= c && c <= 'z') || ('0' <= c && c <= '9');
+
+  while (left <= right) {
+    let leftChar = s.charAt(left);
+    while (!validChar(leftChar)) {
+      left++;
+      if (left > right) break;
+      leftChar = s.charAt(left);
     }
-  }
 
-  let l = 0;
-  let r = cleaned.length - 1;
+    let rightChar = s.charAt(right);
+    while (!validChar(rightChar)) {
+      right--;
+      if (left > right) break;
+      rightChar = s.charAt(right);
+    }
 
-  while (l <= r) {
-    if (cleaned.charAt(l) !== cleaned.charAt(r)) {
+    if (leftChar !== rightChar) {
       return false;
     }
-    l++;
-    r--;
+
+    left++;
+    right--;
   }
 
   return true;
 }
-
-const VALID_CHARACTERS = [
-  'a',
-  'b',
-  'c',
-  'd',
-  'e',
-  'f',
-  'g',
-  'h',
-  'i',
-  'j',
-  'k',
-  'l',
-  'm',
-  'n',
-  'o',
-  'p',
-  'q',
-  'r',
-  's',
-  't',
-  'u',
-  'v',
-  'w',
-  'x',
-  'y',
-  'z',
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-  'T',
-  'U',
-  'V',
-  'W',
-  'X',
-  'Y',
-  'Z',
-  '1',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-  '0',
-];
-
-isPalindrome('A man, a plan, a canal: Panama');
