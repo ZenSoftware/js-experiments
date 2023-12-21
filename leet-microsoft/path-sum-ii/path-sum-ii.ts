@@ -11,25 +11,19 @@ export function pathSum(root: TreeNode | null, targetSum: number): number[][] {
 
   const result: number[][] = [];
 
-  function backtrack(currentNode: TreeNode, inputSum: number, currentPath: number[]) {
+  function backtrack(currentNode: TreeNode | null, inputSum: number, currentPath: number[]) {
+    if (!currentNode) return;
+
     const currentSum = inputSum + currentNode.val;
 
-    if (currentSum === targetSum && !currentNode.left && !currentNode.right) {
+    if (!currentNode.left && !currentNode.right && currentSum === targetSum) {
       result.push([...currentPath, currentNode.val]);
-      return;
     }
 
-    if (currentNode.left) {
-      currentPath.push(currentNode.val);
-      backtrack(currentNode.left, currentSum, currentPath);
-      currentPath.pop();
-    }
-
-    if (currentNode.right) {
-      currentPath.push(currentNode.val);
-      backtrack(currentNode.right, currentSum, currentPath);
-      currentPath.pop();
-    }
+    currentPath.push(currentNode.val);
+    backtrack(currentNode.left, currentSum, currentPath);
+    backtrack(currentNode.right, currentSum, currentPath);
+    currentPath.pop();
   }
 
   backtrack(root, 0, []);
@@ -47,25 +41,25 @@ export class TreeNode {
   }
 }
 
-// const n5 = new TreeNode(5);
-// const n4 = new TreeNode(4);
-// const n11 = new TreeNode(11);
-// const n7 = new TreeNode(7);
-// const n2 = new TreeNode(2);
-// const n8 = new TreeNode(8);
-// const n13 = new TreeNode(13);
-// const n4_2 = new TreeNode(4);
-// const n1 = new TreeNode(1);
-// const n5_2 = new TreeNode(5);
+const n5 = new TreeNode(5);
+const n4 = new TreeNode(4);
+const n11 = new TreeNode(11);
+const n7 = new TreeNode(7);
+const n2 = new TreeNode(2);
+const n8 = new TreeNode(8);
+const n13 = new TreeNode(13);
+const n4_2 = new TreeNode(4);
+const n1 = new TreeNode(1);
+const n5_2 = new TreeNode(5);
 
-// n5.left = n4;
-// n5.right = n8;
-// n4.left = n11;
-// n11.left = n7;
-// n11.right = n2;
-// n8.left = n13;
-// n8.right = n4_2;
-// n4_2.left = n5_2;
-// n4_2.right = n1;
+n5.left = n4;
+n5.right = n8;
+n4.left = n11;
+n11.left = n7;
+n11.right = n2;
+n8.left = n13;
+n8.right = n4_2;
+n4_2.left = n5_2;
+n4_2.right = n1;
 
-// console.log(pathSum(n5, 22));
+console.log(pathSum(n5, 22));
