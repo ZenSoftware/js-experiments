@@ -11,7 +11,22 @@
  */
 
 export function sumNumbers(root: TreeNode | null): number {
-  return 0;
+  if (!root) return 0;
+
+  let result = 0;
+
+  function dfs(node: TreeNode, path: string) {
+    if (!node.left && !node.right) {
+      result += Number(path + node.val);
+    }
+
+    path += node.val;
+    if (node.left) dfs(node.left, path);
+    if (node.right) dfs(node.right, path);
+  }
+
+  dfs(root, '');
+  return result;
 }
 
 export class TreeNode {
