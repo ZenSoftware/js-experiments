@@ -1,7 +1,7 @@
 import { hasPathSum, TreeNode } from './path-sum';
 
 describe('Path Sum', () => {
-  it('evaluates correctly', () => {
+  it('evaluates correctly 1', () => {
     const n5 = new TreeNode(5);
     const n4 = new TreeNode(4);
     const n11 = new TreeNode(11);
@@ -23,5 +23,14 @@ describe('Path Sum', () => {
 
     expect(hasPathSum(n5, 22)).toEqual(true);
     expect(hasPathSum(n5, 34)).toEqual(false);
+  });
+
+  it('evaluates correctly 2', () => {
+    const n1 = new TreeNode(1);
+    const n2 = new TreeNode(2);
+
+    n1.left = n2;
+
+    expect(hasPathSum(n1, 1)).toEqual(false);
   });
 });

@@ -7,7 +7,29 @@
  * -1000 <= targetSum <= 1000
  */
 export function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
-  return false;
+  if (!root) return false;
+
+  let foundPath = false;
+
+  function dfs(currentNode: TreeNode, inputSum: number) {
+    if (foundPath) return;
+
+    const currentSum = inputSum + currentNode.val;
+    if (!currentNode.left && !currentNode.right && currentSum === targetSum) {
+      foundPath = true;
+    }
+
+    if (currentNode.left) {
+      dfs(currentNode.left, currentSum);
+    }
+
+    if (currentNode.right) {
+      dfs(currentNode.right, currentSum);
+    }
+  }
+
+  dfs(root, 0);
+  return foundPath;
 }
 
 export class TreeNode {
