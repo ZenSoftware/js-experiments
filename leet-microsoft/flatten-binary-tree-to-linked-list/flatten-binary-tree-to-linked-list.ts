@@ -7,7 +7,25 @@
  * -100 <= Node.val <= 100
  */
 
-export function flatten(root: TreeNode | null): void {}
+export function flatten(root: TreeNode | null): void {
+  if (!root) return;
+
+  const preordered: TreeNode[] = [];
+
+  function dfs(node: TreeNode | null) {
+    if (!node) return;
+    preordered.push(node);
+    dfs(node.left);
+    dfs(node.right);
+  }
+
+  dfs(root);
+
+  for (let i = 0; i < preordered.length - 1; i++) {
+    preordered[i].right = preordered[i + 1];
+    preordered[i].left = null;
+  }
+}
 
 export class TreeNode {
   val: number;
