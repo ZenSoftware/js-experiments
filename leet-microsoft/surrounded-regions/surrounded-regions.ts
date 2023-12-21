@@ -35,17 +35,37 @@ function isSurrounded(board: string[][], r: number, c: number): boolean {
 }
 
 function hasLeftX(board: string[][], r: number, c: number): boolean {
-  return true;
+  do {
+    c--;
+    if (board[r][c] === 'X') return true;
+  } while (c > 0);
+
+  return false;
 }
 
 function hasRightX(board: string[][], r: number, c: number): boolean {
-  return true;
+  do {
+    c++;
+    if (board[r][c] === 'X') return true;
+  } while (c < board[r].length - 1);
+
+  return false;
 }
 
 function hasTopX(board: string[][], r: number, c: number): boolean {
-  return true;
+  do {
+    r--;
+    if (board[r][c] === 'X') return true;
+  } while (r > 0);
+
+  return false;
 }
 
 function hasBottomX(board: string[][], r: number, c: number): boolean {
-  return true;
+  do {
+    r++;
+    if (board[r][c] === 'X') return true;
+  } while (r < board.length - 1);
+
+  return false;
 }
