@@ -8,5 +8,19 @@
  * -104 <= triangle[i][j] <= 104
  */
 export function minimumTotal(triangle: number[][]): number {
-  return 0;
+  let result = triangle[0][0];
+
+  let pointer = 0;
+  for (let i = 1; i < triangle.length; i++) {
+    const first = triangle[i][pointer];
+    const second = triangle[i][pointer + 1];
+    if (first <= second) {
+      result += first;
+    } else {
+      result += second;
+      pointer++;
+    }
+  }
+
+  return result;
 }
