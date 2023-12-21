@@ -7,33 +7,27 @@
  */
 export function isPalindrome(s: string): boolean {
   s = s.toLocaleLowerCase();
+  let cleaned = '';
+
+  for (let i = 0; i < s.length; i++) {
+    const char = s[i];
+    if (validChar(char)) cleaned += char;
+  }
+
   let left = 0;
-  let right = s.length - 1;
+  let right = cleaned.length - 1;
 
-  const validChar = c => ('a' <= c && c <= 'z') || ('0' <= c && c <= '9');
-
-  while (left <= right) {
-    let leftChar = s.charAt(left);
-    while (!validChar(leftChar)) {
-      left++;
-      if (left > right) break;
-      leftChar = s.charAt(left);
-    }
-
-    let rightChar = s.charAt(right);
-    while (!validChar(rightChar)) {
-      right--;
-      if (left > right) break;
-      rightChar = s.charAt(right);
-    }
-
-    if (leftChar !== rightChar) {
+  while (left < right) {
+    if (cleaned[left] !== cleaned[right]) {
       return false;
     }
-
     left++;
     right--;
   }
 
   return true;
+}
+
+function validChar(c: string) {
+  return ('a' <= c && c <= 'z') || ('0' <= c && c <= '9');
 }
