@@ -1,4 +1,4 @@
-import { getRow } from './pascals-triangle-ii';
+import { getRow, factorial } from './pascals-triangle-ii';
 
 describe("Pascal's Triangle II", () => {
   it('evaluates correctly', () => {

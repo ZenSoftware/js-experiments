@@ -6,5 +6,39 @@
  */
 
 export function getRow(rowIndex: number): number[] {
-  return [];
+  const fact = factorial();
+
+  // n! / k!(n-k)!
+  const binomailCoef = (n, k) => fact(n) / (fact(k) * fact(n - k));
+
+  const rowLength = rowIndex + 1;
+  const midIndex = Math.ceil(rowLength / 2) - 1;
+
+  const result: number[] = Array(rowLength);
+  result[0] = 1;
+  result[rowLength - 1] = 1;
+
+  for (let i = 1; i <= midIndex; i++) {
+    result[i] = binomailCoef(rowIndex, i);
+  }
+
+  for (let i = midIndex; i >= 1; i--) {
+    result[rowLength - 1 - i] = result[i];
+  }
+
+  return result;
+}
+
+export function factorial() {
+  const memo: Record<string, number> = {};
+
+  function calc(n: number) {
+    if (memo[n]) return memo[n];
+    if (n === 1) return 1;
+    const result = n * calc(n - 1);
+    memo[n] = result;
+    return result;
+  }
+
+  return calc;
 }
