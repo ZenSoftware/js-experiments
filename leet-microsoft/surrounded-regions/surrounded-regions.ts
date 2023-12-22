@@ -66,7 +66,7 @@ function allFixedOs(board: string[][]) {
   return fixed;
 }
 
-function capturable(board: string[][], r: number, c: number): boolean {
+function capturable(board: string[][], r: number, c: number) {
   return (
     hasLeftX(board, r, c) &&
     hasRightX(board, r, c) &&
@@ -75,7 +75,7 @@ function capturable(board: string[][], r: number, c: number): boolean {
   );
 }
 
-function hasLeftX(board: string[][], r: number, c: number): boolean {
+function hasLeftX(board: string[][], r: number, c: number) {
   do {
     c--;
     if (board[r][c] === 'X') return true;
@@ -84,7 +84,7 @@ function hasLeftX(board: string[][], r: number, c: number): boolean {
   return false;
 }
 
-function hasRightX(board: string[][], r: number, c: number): boolean {
+function hasRightX(board: string[][], r: number, c: number) {
   do {
     c++;
     if (board[r][c] === 'X') return true;
@@ -93,7 +93,7 @@ function hasRightX(board: string[][], r: number, c: number): boolean {
   return false;
 }
 
-function hasTopX(board: string[][], r: number, c: number): boolean {
+function hasTopX(board: string[][], r: number, c: number) {
   do {
     r--;
     if (board[r][c] === 'X') return true;
@@ -102,7 +102,7 @@ function hasTopX(board: string[][], r: number, c: number): boolean {
   return false;
 }
 
-function hasBottomX(board: string[][], r: number, c: number): boolean {
+function hasBottomX(board: string[][], r: number, c: number) {
   do {
     r++;
     if (board[r][c] === 'X') return true;
