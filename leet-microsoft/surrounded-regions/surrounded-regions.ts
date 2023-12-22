@@ -9,30 +9,30 @@
  */
 
 export function solve(board: string[][]): void {
-  const flips: Flip[] = [];
-  const dontFlips = allFixedOs(board);
+  const captures: Capture[] = [];
+  const fixed = allFixedOs(board);
 
   for (let r = 1; r < board.length - 1; r++) {
     const row = board[r];
     for (let c = 1; c < row.length - 1; c++) {
-      if (row[c] === 'O' && !dontFlips.get(`${r},${c}`) && isSurrounded(board, r, c)) {
-        flips.push({ r, c });
+      if (row[c] === 'O' && !fixed.get(`${r},${c}`) && capturable(board, r, c)) {
+        captures.push({ r, c });
       }
     }
   }
 
-  for (let flip of flips) {
-    board[flip.r][flip.c] = 'X';
+  for (let capture of captures) {
+    board[capture.r][capture.c] = 'X';
   }
 }
 
-interface Flip {
+interface Capture {
   r: number;
   c: number;
 }
 
 function allFixedOs(board: string[][]) {
-  const fixed = new Map<string, Flip>();
+  const fixed = new Map<string, Capture>();
   const rowLength = board.length;
   const colLength = board[0].length;
 
@@ -53,20 +53,20 @@ function allFixedOs(board: string[][]) {
     dfs(r, c + 1);
   }
 
-  for (let c = 1; c < colLength - 1; c++) {
-    if (board[0][c] === 'O') dfs(1, c);
-    if (board[rowLength - 1][c] === 'O') dfs(rowLength - 2, c);
-  }
-
   for (let r = 1; r < rowLength - 1; r++) {
     if (board[r][0] === 'O') dfs(r, 1);
     if (board[r][colLength - 1] === 'O') dfs(r, colLength - 2);
   }
 
+  for (let c = 1; c < colLength - 1; c++) {
+    if (board[0][c] === 'O') dfs(1, c);
+    if (board[rowLength - 1][c] === 'O') dfs(rowLength - 2, c);
+  }
+
   return fixed;
 }
 
-function isSurrounded(board: string[][], r: number, c: number): boolean {
+function capturable(board: string[][], r: number, c: number): boolean {
   return (
     hasLeftX(board, r, c) &&
     hasRightX(board, r, c) &&
