@@ -44,11 +44,8 @@ function allFixedOs(board: string[][]) {
     if (board[r][c] === 'X') return;
 
     const key = `${r},${c}`;
-    if (fixed.get(key) === undefined) {
-      fixed.set(key, { r, c });
-    } else {
-      return;
-    }
+    if (fixed.get(key)) return;
+    else fixed.set(key, { r, c });
 
     dfs(r - 1, c);
     dfs(r + 1, c);
