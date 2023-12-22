@@ -15,7 +15,7 @@ export function solve(board: string[][]): void {
   for (let r = 1; r < board.length - 1; r++) {
     const row = board[r];
     for (let c = 1; c < row.length - 1; c++) {
-      if (row[c] === 'O' && isSurrounded(board, r, c) && !dontFlips.get(`${r},${c}`)) {
+      if (row[c] === 'O' && !dontFlips.get(`${r},${c}`) && isSurrounded(board, r, c)) {
         flips.push({ r, c });
       }
     }
