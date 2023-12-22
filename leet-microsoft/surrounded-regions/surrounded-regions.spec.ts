@@ -51,15 +51,6 @@ describe('Surrounded Regions', () => {
 
     solve(input);
 
-    const got = [
-      ['O', 'X', 'O', 'O', 'X', 'X'],
-      ['O', 'X', 'X', 'X', 'O', 'X'],
-      ['X', 'X', 'X', 'X', 'O', 'O'],
-      ['X', 'O', 'X', 'X', 'X', 'X'],
-      ['O', 'O', 'X', 'O', 'X', 'X'],
-      ['X', 'X', 'O', 'O', 'O', 'O'],
-    ];
-
     expect(input).toEqual([
       ['O', 'X', 'O', 'O', 'X', 'X'],
       ['O', 'X', 'X', 'X', 'O', 'X'],

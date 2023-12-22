@@ -9,12 +9,13 @@
  */
 
 export function solve(board: string[][]): void {
-  const flips: { r: number; c: number }[] = [];
+  const flips: Flip[] = [];
+  const dontFlips = allFixedOs(board);
 
   for (let r = 1; r < board.length - 1; r++) {
     const row = board[r];
     for (let c = 1; c < row.length - 1; c++) {
-      if (row[c] === 'O' && isSurrounded(board, r, c)) {
+      if (row[c] === 'O' && isSurrounded(board, r, c) && !dontFlips.get(`${r},${c}`)) {
         flips.push({ r, c });
       }
     }
@@ -23,6 +24,49 @@ export function solve(board: string[][]): void {
   for (let flip of flips) {
     board[flip.r][flip.c] = 'X';
   }
+}
+
+interface Flip {
+  r: number;
+  c: number;
+}
+
+function allFixedOs(board: string[][]) {
+  const fixed = new Map<string, Flip>();
+  const rowLength = board.length;
+  const colLength = board[0].length;
+
+  function dfs(r: number, c: number) {
+    if (!(1 <= r && r <= rowLength - 2 && 1 <= c && c <= colLength - 2)) {
+      return;
+    }
+
+    if (board[r][c] === 'X') return;
+
+    const key = `${r},${c}`;
+    if (fixed.get(key) === undefined) {
+      fixed.set(key, { r, c });
+    } else {
+      return;
+    }
+
+    dfs(r - 1, c);
+    dfs(r + 1, c);
+    dfs(r, c - 1);
+    dfs(r, c + 1);
+  }
+
+  for (let c = 1; c < colLength - 1; c++) {
+    if (board[0][c] === 'O') dfs(1, c);
+    if (board[rowLength - 1][c] === 'O') dfs(rowLength - 2, c);
+  }
+
+  for (let r = 1; r < rowLength - 1; r++) {
+    if (board[r][0] === 'O') dfs(r, 1);
+    if (board[r][colLength - 1] === 'O') dfs(r, colLength - 2);
+  }
+
+  return fixed;
 }
 
 function isSurrounded(board: string[][], r: number, c: number): boolean {
