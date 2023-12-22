@@ -53,7 +53,7 @@ function search(
 
   if (coppiedNode === undefined) {
     coppiedNode = new Node(node.val);
-    copyMap.set(node.val, coppiedNode);
+    copyMap.set(coppiedNode.val, coppiedNode);
   }
 
   for (let neighbor of node.neighbors) {
@@ -77,7 +77,7 @@ function fillNeighbors(
     neighborCopies.push(neighborCopy);
 
     if (!visited.get(neighbor)) {
-      search(neighbor, copyMap, visited);
+      fillNeighbors(neighbor, copyMap, visited);
     }
   }
 
