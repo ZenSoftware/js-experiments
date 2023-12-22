@@ -1,8 +1,8 @@
 /**
+ * https://leetcode.com/problems/clone-graph/?envType=featured-list&envId=top-microsoft-questions%3FenvType%3Dfeatured-list&envId=top-microsoft-questions
  * Given a reference of a node in a connected undirected graph.
  * Return a deep copy (clone) of the graph.
  * Each node in the graph contains a value (int) and a list (List[Node]) of its neighbors.
- *
  * class Node {
  *     public int val;
  *     public List<Node> neighbors;
@@ -21,8 +21,14 @@
 export function cloneGraph(node: Node | null): Node | null {
   if (!node) return null;
 
+  const copyMap = new Map<number, Node>();
+
   const root = new Node(node.val);
   root.neighbors = node.neighbors.map(n => new Node(n.val));
+  copyMap.set(root.val, root);
+
+  search(node, copyMap);
+  fillNeighbors(node, copyMap);
 
   return root;
 }
@@ -34,4 +40,47 @@ export class Node {
     this.val = val === undefined ? 0 : val;
     this.neighbors = neighbors === undefined ? [] : neighbors;
   }
+}
+
+function search(
+  node: Node,
+  copyMap: Map<number, Node>,
+  visited: Map<Node, true> = new Map<Node, true>()
+) {
+  visited.set(node, true);
+
+  let coppiedNode = copyMap.get(node.val);
+
+  if (coppiedNode === undefined) {
+    coppiedNode = new Node(node.val);
+    copyMap.set(node.val, coppiedNode);
+  }
+
+  for (let neighbor of node.neighbors) {
+    if (!visited.get(neighbor)) {
+      search(neighbor, copyMap, visited);
+    }
+  }
+}
+
+function fillNeighbors(
+  node: Node,
+  copyMap: Map<number, Node>,
+  visited: Map<Node, true> = new Map<Node, true>()
+) {
+  visited.set(node, true);
+
+  const neighborCopies: Node[] = [];
+
+  for (let neighbor of node.neighbors) {
+    const neighborCopy = copyMap.get(neighbor.val) as Node;
+    neighborCopies.push(neighborCopy);
+
+    if (!visited.get(neighbor)) {
+      search(neighbor, copyMap, visited);
+    }
+  }
+
+  const nodeCopy = copyMap.get(node.val) as Node;
+  nodeCopy.neighbors = neighborCopies;
 }

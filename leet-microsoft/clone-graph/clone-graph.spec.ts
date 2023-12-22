@@ -1,7 +1,7 @@
 import { cloneGraph, Node } from './clone-graph';
 
 describe('Clone Graph', () => {
-  it('evaluates correctly', () => {
+  it('evaluates correctly 1', () => {
     const n1 = new Node(1);
     const n2 = new Node(2);
     const n3 = new Node(3);
