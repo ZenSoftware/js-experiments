@@ -35,7 +35,7 @@ export class LRUCache {
       value,
     };
 
-    if (this.map.size >= this.capacity) {
+    if (this.map.size >= this.capacity && !this.map.get(key)) {
       let leastKey: number;
       let leastRank = Infinity;
 

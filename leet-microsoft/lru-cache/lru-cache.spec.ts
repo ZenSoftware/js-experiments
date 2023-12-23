@@ -36,4 +36,15 @@ describe('LRU Cache', () => {
     expect(lRUCache.get(3)).toEqual(3);
     expect(lRUCache.get(4)).toEqual(4);
   });
+
+  it('evaluates correctly 4', () => {
+    const lRUCache = new LRUCache(2);
+    expect(lRUCache.get(2)).toEqual(-1);
+    lRUCache.put(2, 6);
+    expect(lRUCache.get(1)).toEqual(-1);
+    lRUCache.put(1, 5);
+    lRUCache.put(1, 2);
+    expect(lRUCache.get(1)).toEqual(2);
+    expect(lRUCache.get(2)).toEqual(6);
+  });
 });
