@@ -8,17 +8,11 @@
  */
 
 export function singleNumber(nums: number[]): number {
-  const map = new Map<number, number>();
+  let compound = 0;
 
   for (let i = 0; i < nums.length; i++) {
-    let count = map.get(nums[i]);
-    if (count === undefined) count = 0;
-    map.set(nums[i], ++count);
+    compound = compound ^ nums[i];
   }
 
-  for (let [key, count] of map) {
-    if (count === 1) return key;
-  }
-
-  throw 'No unique element exists';
+  return compound;
 }
