@@ -9,7 +9,38 @@
  * 1 <= Node.val <= 1000
  */
 
-export function reorderList(head: ListNode | null): void {}
+export function reorderList(head: ListNode | null): void {
+  let pointer = head;
+  const list: ListNode[] = [];
+  while (pointer) {
+    list.push(pointer);
+    pointer = pointer.next;
+  }
+  const reordered = swap(list);
+
+  for (let i = 0; i < list.length - 1; i++) {
+    reordered[i].next = reordered[i + 1];
+  }
+  reordered[reordered.length - 1].next = null;
+}
+
+export function swap<T>(list: T[]) {
+  const reordered: T[] = Array(list.length);
+
+  let j = 0;
+  for (let i = 0; i < list.length; i += 2) {
+    reordered[i] = list[j];
+    j++;
+  }
+
+  j = list.length - 1;
+  for (let i = 1; i < list.length; i += 2) {
+    reordered[i] = list[j];
+    j--;
+  }
+
+  return reordered;
+}
 
 export class ListNode {
   val: number;
@@ -43,7 +74,3 @@ export function toArray(root: ListNode | null): number[] {
 
   return result;
 }
-
-// const sampleList = toList([1, 2, 3, 4]);
-// console.log(sampleList);
-// console.log(toArray(sampleList));
