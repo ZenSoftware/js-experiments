@@ -37,5 +37,3 @@ function isPalindrome(s: string, l: number, r: number) {
   }
   return true;
 }
-
-console.log(partition('aab'));
