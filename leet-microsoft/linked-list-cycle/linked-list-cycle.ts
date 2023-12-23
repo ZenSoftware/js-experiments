@@ -9,13 +9,15 @@
  */
 
 export function hasCycle(head: ListNode | null): boolean {
-  const visited = new Map<ListNode, true>();
+  let slow = head;
+  let fast = head;
 
-  let pointer = head;
-  while (pointer) {
-    if (visited.get(pointer)) return true;
-    visited.set(pointer, true);
-    pointer = pointer.next;
+  let toggle = false;
+  while (fast) {
+    if (toggle) slow = slow!.next;
+    toggle = !toggle;
+    fast = fast.next;
+    if (fast === slow) return true;
   }
 
   return false;
