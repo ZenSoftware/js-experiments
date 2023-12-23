@@ -10,6 +10,18 @@
 export function canCompleteCircuit(gas: number[], cost: number[]): number {
   for (let i = 0; i < gas.length; i++) {
     if (gas[i] >= cost[i]) {
+      let pointer = i + 1;
+      let tank = gas[i] - cost[i];
+      while (pointer !== i) {
+        if (pointer >= gas.length) {
+          pointer = 0;
+          if (i === 0) return 0;
+        }
+        tank += gas[pointer] - cost[pointer];
+        if (tank < 0) break;
+        pointer++;
+      }
+      if (pointer === i) return i;
     }
   }
 
