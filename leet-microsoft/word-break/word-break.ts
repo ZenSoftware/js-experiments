@@ -13,17 +13,11 @@ export function wordBreak(s: string, wordDict: string[]): boolean {
 
   function dfs(i: number) {
     if (memo[i] !== undefined) return false;
-
-    if (i >= s.length) {
-      return true;
-    }
+    if (i >= s.length) return true;
 
     for (let word of wordDict) {
-      if (word === s.substring(i, i + word.length)) {
-        let result = dfs(i + word.length);
-        if (result === true) {
-          return true;
-        }
+      if (word === s.substring(i, i + word.length) && dfs(i + word.length)) {
+        return true;
       }
     }
 
