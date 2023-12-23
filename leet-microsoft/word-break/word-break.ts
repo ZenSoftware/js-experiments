@@ -9,23 +9,21 @@
  * All the strings of wordDict are unique.
  */
 export function wordBreak(s: string, wordDict: string[]): boolean {
-  let done = false;
+  let memo: Record<string, false> = {};
 
   function dfs(i: number) {
-    if (done) return;
-    if (i === s.length) {
-      done = true;
-      return;
-    }
+    if (memo[i] !== undefined) return false;
+    if (i >= s.length) return true;
 
     for (let word of wordDict) {
-      if (word === s.substring(i, word.length)) {
-        if (done) return;
-        dfs(i + word.length);
+      if (word === s.substring(i, i + word.length) && dfs(i + word.length)) {
+        return true;
       }
     }
+
+    memo[i] = false;
+    return false;
   }
 
-  dfs(0);
-  return done;
+  return dfs(0);
 }
