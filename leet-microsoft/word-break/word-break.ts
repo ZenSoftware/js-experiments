@@ -9,24 +9,19 @@
  * All the strings of wordDict are unique.
  */
 export function wordBreak(s: string, wordDict: string[]): boolean {
-  let done = false;
-
   function dfs(i: number) {
-    if (done) return;
-
     if (i >= s.length) {
-      done = true;
-      return;
+      return true;
     }
 
     for (let word of wordDict) {
       if (word === s.substring(i, i + word.length)) {
-        if (done) return;
-        dfs(i + word.length);
+        return dfs(i + word.length);
       }
     }
+
+    return false;
   }
 
-  dfs(0);
-  return done;
+  return dfs(0);
 }
