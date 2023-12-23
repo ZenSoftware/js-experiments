@@ -16,8 +16,8 @@ export function reorderList(head: ListNode | null): void {
     list.push(pointer);
     pointer = pointer.next;
   }
-  const reordered = swap(list);
 
+  const reordered = swap(list);
   for (let i = 0; i < list.length - 1; i++) {
     reordered[i].next = reordered[i + 1];
   }
