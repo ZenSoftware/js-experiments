@@ -19,7 +19,14 @@ export class LRUCache {
   constructor(private capacity: number) {}
 
   get(key: number): number {
-    return this.map.get(key)?.value ?? -1;
+    const entry = this.map.get(key);
+    if (entry) {
+      entry.rank = this.rank;
+      this.rank++;
+      return entry.value;
+    } else {
+      return -1;
+    }
   }
 
   put(key: number, value: number): void {
