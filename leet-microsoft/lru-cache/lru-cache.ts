@@ -13,11 +13,40 @@
  */
 
 export class LRUCache {
-  constructor(capacity: number) {}
+  map = new Map<number, CacheItem>();
+  rank = 0;
+
+  constructor(private capacity: number) {}
 
   get(key: number): number {
-    return -1;
+    return this.map.get(key)?.value ?? -1;
   }
 
-  put(key: number, value: number): void {}
+  put(key: number, value: number): void {
+    const cacheItem: CacheItem = {
+      rank: this.rank,
+      value,
+    };
+
+    if (this.map.size >= this.capacity) {
+      let leastKey: number;
+      let leastRank = Infinity;
+
+      for (const [key, value] of this.map) {
+        if (value.rank < leastRank) {
+          leastKey = key;
+        }
+        this.map.delete(key);
+      }
+    }
+
+    this.map.set(key, cacheItem);
+
+    this.rank++;
+  }
+}
+
+interface CacheItem {
+  rank: number;
+  value: number;
 }
