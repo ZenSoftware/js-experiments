@@ -18,5 +18,3 @@ export function partition(s: string): string[][] {
   dfs(0);
   return res;
 }
-
-console.log(partition('abc'));
