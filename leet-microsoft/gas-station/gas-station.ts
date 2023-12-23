@@ -8,5 +8,10 @@
  * 0 <= gas[i], cost[i] <= 104
  */
 export function canCompleteCircuit(gas: number[], cost: number[]): number {
+  for (let i = 0; i < gas.length; i++) {
+    if (gas[i] >= cost[i]) {
+    }
+  }
+
   return -1;
 }
