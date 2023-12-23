@@ -32,12 +32,14 @@ export class LRUCache {
       let leastKey: number;
       let leastRank = Infinity;
 
-      for (const [key, value] of this.map) {
-        if (value.rank < leastRank) {
-          leastKey = key;
+      for (const [k, v] of this.map) {
+        if (v.rank < leastRank) {
+          leastKey = k;
+          leastRank = v.rank;
         }
-        this.map.delete(key);
       }
+
+      this.map.delete(leastKey!);
     }
 
     this.map.set(key, cacheItem);
