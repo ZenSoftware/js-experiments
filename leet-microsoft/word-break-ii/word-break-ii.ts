@@ -13,5 +13,20 @@
 export function wordBreak(s: string, wordDict: string[]): string[] {
   const result: string[] = [];
 
+  function dfs(i: number, cur: string) {
+    if (i === s.length) {
+      result.push(cur);
+      return;
+    }
+
+    for (let word of wordDict) {
+      if (word === s.substring(i, i + word.length)) {
+        if (cur === '') dfs(i + word.length, word);
+        else dfs(i + word.length, cur + ' ' + word);
+      }
+    }
+  }
+
+  dfs(0, '');
   return result;
 }
