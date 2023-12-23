@@ -11,21 +11,22 @@
 export function wordBreak(s: string, wordDict: string[]): boolean {
   let done = false;
 
-  function dfs(cur: string) {
+  function dfs(i: number) {
     if (done) return;
-    if (cur.length > s.length) return;
-    if (cur !== s.substring(0, cur.length)) return;
-    if (cur === s) {
+
+    if (i >= s.length) {
       done = true;
       return;
     }
 
     for (let word of wordDict) {
-      if (done) return;
-      dfs(cur + word);
+      if (word === s.substring(i, i + word.length)) {
+        if (done) return;
+        dfs(i + word.length);
+      }
     }
   }
 
-  dfs('');
+  dfs(0);
   return done;
 }
