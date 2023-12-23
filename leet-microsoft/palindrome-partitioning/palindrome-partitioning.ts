@@ -6,23 +6,36 @@
  */
 
 export function partition(s: string): string[][] {
-  function perm(elements: string[]): string[][] {
-    if (elements.length === 0) return [[]];
+  const res: string[][] = [];
+  const part: string[] = [];
 
-    const firstEl = elements[0];
-    const withoutFirst = elements.slice(1);
-    const permsWithoutFirst = perm(withoutFirst);
-    const result: string[][] = [];
-
-    for (let perm of permsWithoutFirst) {
-      for (let i = 0; i <= perm.length; i++)
-        result.push([...perm.slice(0, i), firstEl, ...perm.slice(i)]);
+  function dfs(i: number) {
+    if (i >= s.length) {
+      res.push([...part]);
+      return;
     }
 
-    return result;
+    for (let j = i; j < s.length; j++) {
+      if (isPalindrome(s, i, j)) {
+        part.push(s.substring(i, j + 1));
+        dfs(j + 1);
+        part.pop();
+      }
+    }
   }
 
-  return perm(s.split(''));
+  dfs(0);
+  return res;
 }
 
-console.log(partition('abc'));
+function isPalindrome(s: string, l: number, r: number) {
+  while (l < r) {
+    if (s.charAt(l) !== s.charAt(r)) {
+      return false;
+    }
+    l++, r--;
+  }
+  return true;
+}
+
+console.log(partition('aab'));
