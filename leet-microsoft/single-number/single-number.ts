@@ -8,5 +8,17 @@
  */
 
 export function singleNumber(nums: number[]): number {
-  return 0;
+  const map = new Map<number, number>();
+
+  for (let i = 0; i < nums.length; i++) {
+    let count = map.get(nums[i]);
+    if (count === undefined) count = 0;
+    map.set(nums[i], ++count);
+  }
+
+  for (let [key, count] of map) {
+    if (count === 1) return key;
+  }
+
+  throw 'No unique element exists';
 }
