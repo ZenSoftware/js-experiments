@@ -5,6 +5,6 @@ describe('Word Break', () => {
     expect(wordBreak('leetcode', ['leet', 'code'])).toEqual(true);
     expect(wordBreak('applepenapple', ['apple', 'pen'])).toEqual(true);
     expect(wordBreak('catsandog', ['cats', 'dog', 'sand', 'and', 'cat'])).toEqual(false);
-    // expect(wordBreak('cars', ['car', 'ca', 'rs'])).toEqual(true);
+    expect(wordBreak('cars', ['car', 'ca', 'rs'])).toEqual(true);
   });
 });

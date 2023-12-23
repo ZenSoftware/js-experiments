@@ -16,7 +16,8 @@ export function wordBreak(s: string, wordDict: string[]): boolean {
 
     for (let word of wordDict) {
       if (word === s.substring(i, i + word.length)) {
-        return dfs(i + word.length);
+        let result = dfs(i + word.length);
+        if (result === true) return true;
       }
     }
 
