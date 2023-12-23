@@ -9,7 +9,7 @@
  * All the strings of wordDict are unique.
  */
 export function wordBreak(s: string, wordDict: string[]): boolean {
-  let memo: Record<string, boolean> = {};
+  let memo: Record<string, false> = {};
 
   function dfs(i: number) {
     if (memo[i] !== undefined) return false;
