@@ -21,6 +21,7 @@ export function wordBreak(s: string, wordDict: string[]): boolean {
     }
 
     for (let word of wordDict) {
+      if (done) break;
       dfs(cur + word);
     }
   }
