@@ -9,6 +9,15 @@
  */
 
 export function detectCycle(head: ListNode | null): ListNode | null {
+  let pointer = head;
+  const record = new Map<ListNode, true>();
+
+  while (pointer) {
+    if (record.get(pointer)) return pointer;
+    else record.set(pointer, true);
+    pointer = pointer.next;
+  }
+
   return null;
 }
 
